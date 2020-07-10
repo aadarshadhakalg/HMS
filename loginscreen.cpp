@@ -141,7 +141,8 @@ void MainWindow::loginButton_clicked(){
 
     if(user){ // condition is true if user exists
         if(query.next()){
-        QMessageBox::information(this,"User Found","User is in the database"); // Displays user found popup
+            connect(this,SIGNAL(loggedIn()),this,SLOT(dashboard())); // Navigates to Dashboard //Receives loggedIn signal
+            emit loggedIn(); // Emits loggedIn signal
         }else{
             QMessageBox::warning(window(),"NO USER Found","Check Email and Password before trying again"); // Displays user not found popup
         }
