@@ -8,6 +8,8 @@
 void MainWindow::loginScreen(){
 
     // Setting up connection to MYSQL Database on Cloud
+    //
+    // Database configuration details
     // hostname: hms.cxsp6l8xtyqr.us-east-1.rds.amazonaws.com,
     // Port: 2206,
     // Database Name : hms,
