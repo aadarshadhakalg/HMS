@@ -14,6 +14,7 @@
 #include <QLineEdit>
 #include <QMovie>
 #include <QtWidgets>
+#include <QSizePolicy>
 
 class QAction;
 class QActionGroup;
@@ -41,13 +42,23 @@ private slots:
     void save();
     void contact();
     void question();
+    void style();
 
-// TO Fetch Line Text Data from another Function
+
 private:
     QLineEdit *emailText;
     QLineEdit *passwordText;
     void Action();
     void MenuItem();
+
+
+    void Hotel();
+    void Room();
+    void Package();
+    void Bill();
+    void Customer();
+    void Status();
+
     QMenu *file;
     QMenu *help;
     QMenu *about;
