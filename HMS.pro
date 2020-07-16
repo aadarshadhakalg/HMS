@@ -20,7 +20,8 @@ SOURCES += \
     loginscreen.cpp \
     main.cpp \
     mainwindow.cpp \
-    menu.cpp
+    menu.cpp \
+    style.cpp
 
 HEADERS += \
     mainwindow.h

@@ -41,13 +41,24 @@ private slots:
     void save();
     void contact();
     void question();
+    void style();
+
+
+    void Hotel();
+    void Room();
+    void Package();
+    void Bill();
+    void Customer();
+    void Status();
 
 // TO Fetch Line Text Data from another Function
 private:
-    QLineEdit *emailText;
-    QLineEdit *passwordText;
     void Action();
     void MenuItem();
+
+    QLineEdit *emailText;
+    QLineEdit *passwordText;
+
     QMenu *file;
     QMenu *help;
     QMenu *about;
