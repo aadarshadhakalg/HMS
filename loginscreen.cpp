@@ -6,7 +6,6 @@
 // Defining loginScreen //
 
 void MainWindow::loginScreen(){
-
     // Setting up connection to MYSQL Database on Cloud
     //
     // Database configuration details
@@ -16,7 +15,7 @@ void MainWindow::loginScreen(){
     // Database Username: hms,
     // Database Password: password
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL"); // Initializing Database, QMYSQL is MySQL database driver for QT.
+    db = QSqlDatabase::addDatabase("QMYSQL"); // Initializing Database, QMYSQL is MySQL database driver for QT.
     db.setHostName("hms.cxsp6l8xtyqr.us-east-1.rds.amazonaws.com"); // Setting hostname
     db.setPort(3306); // setting port
     db.setDatabaseName("hms"); // setting database name
@@ -24,7 +23,6 @@ void MainWindow::loginScreen(){
     db.setPassword("password"); //setting password
 
     if(db.open()){                                    // Ensures database is connected
-
 
     //if database conection is successful displays new window
     QWidget *window = new QWidget(this);
@@ -123,7 +121,6 @@ void MainWindow::loginScreen(){
 
 
     }else{ // If database connection is not established
-
         QMessageBox::warning(window(),"Error Connection","Error connecting to Database"); //Displays a popup warning message
     }
 }

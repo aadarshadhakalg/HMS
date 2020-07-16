@@ -31,6 +31,7 @@ public:
 
 signals:
     void loggedIn();
+    void dbready();
 
 // SLOTS
 private slots:
@@ -59,9 +60,7 @@ private:
     QLabel *infoLabel;
     QPushButton *managerBtn ;
     QLabel *label;
-
-
-
+    QSqlDatabase db;
 };
 
 #endif // MAINWINDOW_H
