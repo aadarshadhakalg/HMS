@@ -19,7 +19,7 @@ void MainWindow::dashboard(){
 
     QWidget *leftside = new QWidget;
     leftside->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-
+    leftside-> setMaximumWidth(300);
     QPushButton* DosthotelBtn = new QPushButton("Sushantdost hotel");
     QPushButton* roomBtn = new QPushButton("room");
     QPushButton* PackageBtn = new QPushButton("Package");
@@ -36,13 +36,13 @@ void MainWindow::dashboard(){
     exitBtn->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
     statusBtn->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 
-    DosthotelBtn->setFixedHeight(50);
-    roomBtn->setFixedHeight(50);
-    PackageBtn->setFixedHeight(50);
-    billBtn->setFixedHeight(50);
-    customerBtn->setFixedHeight(50);
-    exitBtn->setFixedHeight(50);
-    statusBtn->setFixedHeight(50);
+    DosthotelBtn->setFixedHeight(150);
+    roomBtn->setFixedHeight(150);
+    PackageBtn->setFixedHeight(150);
+    billBtn->setFixedHeight(150);
+    customerBtn->setFixedHeight(150);
+    exitBtn->setFixedHeight(150);
+    statusBtn->setFixedHeight(150);
 
 
     DosthotelBtn->setStyleSheet(StyleSheetBtns);
@@ -69,13 +69,14 @@ void MainWindow::dashboard(){
     btnLayout->addWidget(PackageBtn);
     btnLayout->addWidget(billBtn);
     btnLayout->addWidget(customerBtn);
-    btnLayout->addWidget(statusBtn);
+
+    btnLayout->addWidget(exitBtn);
 
     leftside->setLayout(btnLayout);
 
 
     QHBoxLayout *layout =new QHBoxLayout;
-    layout->setMargin(3);
+    layout->setMargin(1);
     layout->addWidget(leftside);
 
     //layout->addWidget(rightside);
@@ -99,7 +100,6 @@ void MainWindow::dashboard(){
 
     QVBoxLayout *btnLayout2 = new QVBoxLayout;
     btnLayout2->addWidget(groupBox);
-   btnLayout2->addWidget(exitBtn);
 
     rightside->setLayout(btnLayout2);
 
@@ -130,6 +130,6 @@ void MainWindow::Customer(){
 }
 void MainWindow::Status(){
     style();
+
     infoLabel->setText("active or not");
 }
-
