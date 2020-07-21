@@ -10,10 +10,11 @@ void MainWindow::loginScreen(){
     //
     // Database configuration details
     // hostname: hms.cxsp6l8xtyqr.us-east-1.rds.amazonaws.com,
-    // Port: 2206,
+    // Port: 3306,
     // Database Name : hms,
     // Database Username: hms,
     // Database Password: password
+
 
     db = QSqlDatabase::addDatabase("QMYSQL"); // Initializing Database, QMYSQL is MySQL database driver for QT.
     db.setHostName("hms.cxsp6l8xtyqr.us-east-1.rds.amazonaws.com"); // Setting hostname
@@ -23,7 +24,6 @@ void MainWindow::loginScreen(){
     db.setPassword("password"); //setting password
 
     if(db.open()){                                    // Ensures database is connected
-
     //if database conection is successful displays new window
     QWidget *window = new QWidget(this);
     setCentralWidget(window);

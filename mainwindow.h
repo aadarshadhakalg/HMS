@@ -33,6 +33,7 @@ signals:
     void loggedIn();
     void dbready();
 
+
 // SLOTS
 private slots:
     void loginScreen();
@@ -42,6 +43,7 @@ private slots:
     void save();
     void contact();
     void question();
+    void style();
 
 // TO Fetch Line Text Data from another Function
 private:
@@ -49,6 +51,13 @@ private:
     QLineEdit *passwordText;
     void Action();
     void MenuItem();
+    void Hotel();
+    void Room();
+    void Package();
+    void Bill();
+    void Customer();
+    void Status();
+
     QMenu *file;
     QMenu *help;
     QMenu *about;
@@ -61,6 +70,7 @@ private:
     QPushButton *managerBtn ;
     QLabel *label;
     QSqlDatabase db;
+
 };
 
 #endif // MAINWINDOW_H
