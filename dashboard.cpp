@@ -6,6 +6,8 @@ void MainWindow::dashboard(){
     MenuItem();
     setWindowTitle("Dashboard");
 
+    QWidget *dashboard = new QWidget;
+    setCentralWidget(dashboard);
 
     QString StyleSheetBtns =   "QPushButton { color: black; background-color: #778899; border: none; font: 19pt 'Microsoft YaHei UI Light'; outline: none; } QPushButton:hover { background-color: #2ECCFA; border-style: solid; border-width: 3px; border-color: #58D3F7; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
 
@@ -14,8 +16,7 @@ void MainWindow::dashboard(){
     QString StyleSheetBtn ="*{background:red;height:30px;}";
       //yo timle banako wala try gari hera yo ramro dekhena;
 
-    QWidget *dashboard = new QWidget;
-    setCentralWidget(dashboard);
+
 
     QWidget *leftside = new QWidget;
     leftside->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -112,10 +113,7 @@ void MainWindow::Hotel(){
     infoLabel->setText(tr("Hotel ko bare"));
 }
 
-void MainWindow::Room(){
-    style();
-   infoLabel->setText("Open room option");
-}
+
 void MainWindow::Package(){
     style();
     infoLabel->setText("give package if can");

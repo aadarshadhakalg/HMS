@@ -1,14 +1,15 @@
 #include "mainwindow.h"
 
 void MainWindow::style(){
-   /* QString StyleSheetBtns =   "QPushButton { color: black; background-color: #778899; border: none; font: 19pt 'Microsoft YaHei UI Light'; outline: none; } QPushButton:hover { background-color: #2ECCFA; border-style: solid; border-width: 3px; border-color: #58D3F7; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
-// yei style rakham.. hover ani clicked ma different cha
-
-    QString StyleSheetBtn ="*{background:red;height:30px;}";
-//yo timle banako wala try gari hera yo ramro dekhena;
 
     QWidget *dashboard = new QWidget;
     setCentralWidget(dashboard);
+
+    QString StyleSheetBtns =   "QPushButton { color: black; background-color: #778899; border: none; font: 19pt 'Microsoft YaHei UI Light'; outline: none; } QPushButton:hover { background-color: #2ECCFA; border-style: solid; border-width: 3px; border-color: #58D3F7; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
+ // yei style rakham.. hover ani clicked ma different cha
+
+     QString StyleSheetBtn ="*{background:red;height:30px;}";
+ //yo timle banako wala try gari hera yo ramro dekhena;
 
     QWidget *leftside = new QWidget;
     leftside->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -66,21 +67,18 @@ void MainWindow::style(){
 
     leftside->setLayout(btnLayout);
 
+    QWidget *rightside = new QWidget;
+    rightside->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     QHBoxLayout *layout =new QHBoxLayout;
+
     layout->setMargin(3);
     layout->addWidget(leftside);
-    dashboard->setLayout(layout);*/
+    layout->addWidget(rightside);
+    dashboard->setLayout(layout);
 
 
-    QWidget *widget = new QWidget;
-    setCentralWidget(widget);
-    infoLabel = new QLabel();
-    infoLabel -> setAlignment(Qt::AlignCenter);
 
 
-    QVBoxLayout *layout = new QVBoxLayout;
 
-    layout->addWidget(infoLabel);
-    widget->setLayout(layout);
 }
