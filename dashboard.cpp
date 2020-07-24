@@ -110,6 +110,7 @@ void MainWindow::dashboard(){
 
     QGroupBox *groupBox = new QGroupBox();
     groupBox->setTitle("Hotel Ko Basic photo haru");
+    groupBox->setCheckable(true);
     groupBox->setFont(banner);
 
 

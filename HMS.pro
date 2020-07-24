@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     dashboard.cpp \
+    guesttable.cpp \
     loginscreen.cpp \
     main.cpp \
     mainwindow.cpp \

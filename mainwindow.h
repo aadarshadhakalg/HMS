@@ -44,11 +44,18 @@ private slots:
     void contact();
     void question();
     void style();
+    void guesttable();
+    void search();
+    void editTable();
+    void noEditTable();
 
 // TO Fetch Line Text Data from another Function
 private:
     QLineEdit *emailText;
     QLineEdit *passwordText;
+    QLineEdit *searchField;
+    QPushButton *editButton;
+    QPushButton *noEditButton;
     void Action();
     void MenuItem();
     void Hotel();
@@ -70,6 +77,7 @@ private:
     QPushButton *managerBtn ;
     QLabel *label;
     QSqlDatabase db;
+    QSqlTableModel *model;
 
 };
 
