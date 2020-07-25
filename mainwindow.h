@@ -14,6 +14,9 @@
 #include <QLineEdit>
 #include <QMovie>
 #include <QtWidgets>
+#include <QSizePolicy>
+#include <QSqlTableModel>
+#include <QComboBox>
 
 class QAction;
 class QActionGroup;
@@ -44,27 +47,24 @@ private slots:
     void contact();
     void question();
     void style();
-    void guesttable();
     void search();
     void editTable();
     void noEditTable();
-
-// TO Fetch Line Text Data from another Function
-private:
-    QLineEdit *emailText;
-    QLineEdit *passwordText;
-    QLineEdit *searchField;
-    QPushButton *editButton;
-    QPushButton *noEditButton;
-    void Action();
-    void MenuItem();
-    void Hotel();
-    void Room();
     void Package();
     void Bill();
     void Customer();
-    void Status();
+    void Room();
 
+private:
+    QLineEdit *emailText;
+    QLineEdit *passwordText;
+    QWidget *rightside;
+    QLineEdit *searchField;
+    QPushButton *editButton;
+    QPushButton *noEditButton;
+    QWidget *guesttable();
+    void Action();
+    void MenuItem();
     QMenu *file;
     QMenu *help;
     QMenu *about;

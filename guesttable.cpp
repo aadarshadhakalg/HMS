@@ -1,12 +1,7 @@
 #include "mainwindow.h"
-#include <QSqlTableModel>
-#include <QSizePolicy>
-#include <QComboBox>
-#include <QString>
 
-void MainWindow::guesttable(){
+QWidget * MainWindow::guesttable(){
     QWidget *table = new QWidget();
-    table->showMaximized();
     QVBoxLayout *layout = new QVBoxLayout();
 
         QWidget *header = new QWidget(this);
@@ -153,7 +148,9 @@ void MainWindow::guesttable(){
     layout->addWidget(header);
     layout->addWidget(view);
     table->setLayout(layout);
-    table->show();
+//    table->show();
+
+    return table;
 }
 
 void MainWindow::search(){

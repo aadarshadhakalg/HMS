@@ -24,7 +24,6 @@ SOURCES += \
     menu.cpp \
     style.cpp
 
-
 HEADERS += \
     mainwindow.h
 
