@@ -43,21 +43,18 @@ private slots:
     void contact();
     void question();
     void style();
+    void Package();
+    void Bill();
+    void Customer();
+    void Room();
 
 
 private:
     QLineEdit *emailText;
     QLineEdit *passwordText;
+    QWidget *rightside;
     void Action();
     void MenuItem();
-
-
-    void Hotel();
-    void Room();
-    void Package();
-    void Bill();
-    void Customer();
-    void Status();
 
     QMenu *file;
     QMenu *help;
