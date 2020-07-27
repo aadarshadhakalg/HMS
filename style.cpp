@@ -2,11 +2,11 @@
 
 void MainWindow::style(){
 
-    QWidget *dashboard = new QWidget;
+    QWidget *dashboard = new QWidget; // parent widget
     setCentralWidget(dashboard);
     QString StyleSheetBtns =   "QPushButton { color: white; background-color: #1c2c3c; border: solid 5px white; font: 16pt 'Microsoft YaHei UI Light'; font-weight:bold; outline: none; } QPushButton:hover { background-color: #dc2525; border-style: solid; border-width: 3px; border-color: white; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
 
-    QWidget *leftside = new QWidget;
+    QWidget *leftside = new QWidget;  // left column of window
     leftside->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     leftside-> setMaximumWidth(300);
     leftside->setStyleSheet("*{background:#1c2c3c;}");

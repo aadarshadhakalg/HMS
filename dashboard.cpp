@@ -40,8 +40,4 @@ void MainWindow::Customer(){
     tablelayout->addWidget(guesttable());
 }
 
-void MainWindow::Room(){
-    setWindowTitle("Rooms");
-    style();
-    rightside->setStyleSheet("*{background:blue;}");
-}
+
