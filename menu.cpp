@@ -52,10 +52,12 @@ void MainWindow::save()
 void MainWindow::contact()
 {
     QWidget *widget = new QWidget;
-    setCentralWidget(widget);
+
+   setCentralWidget(widget);
+
     infoLabel = new QLabel();
     infoLabel -> setAlignment(Qt::AlignCenter);
-    infoLabel->setText(tr("Number"));
+    infoLabel->setText(tr("Number k ho"));
 
     QVBoxLayout *layout = new QVBoxLayout;
 
@@ -67,13 +69,45 @@ void MainWindow::question()
 {
     QWidget *widget = new QWidget;
     setCentralWidget(widget);
-    infoLabel = new QLabel();
-    infoLabel -> setAlignment(Qt::AlignCenter);
 
-    infoLabel->setText(tr("Querry?"));
+    QLabel *faq = new QLabel();
+    QLabel *q1 = new QLabel();
+    QLabel *ans1 = new QLabel();
+    QLabel *q2 = new QLabel();
+    QLabel *ans2 = new QLabel();
+
+    QFont banner("Helvetica",30,QFont::Bold);
+    QFont question("Helvetica",20,QFont::Bold);
+    QFont ans("Helvetica",15,QFont::Bold);
+
+   faq -> setAlignment(Qt::AlignCenter);
+   // faq -> setAlignment(Qt::AlignLeft);
+    faq ->setText(tr("FAQ" ));
+     faq->setFont(banner);
+
+
+   q1-> setAlignment(Qt::AlignLeft);
+   q1->setText(tr("Q1) Why this Hotel?"));
+   q1->setFont(question);
+
+   ans1-> setAlignment(Qt::AlignLeft);
+   ans1->setText(tr("Because this is the best"));
+   ans1->setFont(ans);
+
+
+
+
+
     QVBoxLayout *layout = new QVBoxLayout;
 
-    layout->addWidget(infoLabel);
+    layout->addWidget(faq);
+    layout->addWidget(q1);
+    layout->addWidget(ans1);
+    layout->addWidget(q2);
+    layout->addWidget(ans2);
+
+
+
     widget->setLayout(layout);
 
 }
