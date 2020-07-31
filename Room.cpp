@@ -37,14 +37,14 @@ void MainWindow::Room(){
     billBtn4->setStyleSheet(StyleSheetBtns);
 
 
-    roomBtn->setFixedSize(100,120);
-    PackageBtn->setFixedSize(100,120);
-    billBtn->setFixedSize(100,120);
-    customerBtn->setFixedSize(100,120);
-    billBtn1->setFixedSize(100,120);
-    billBtn2->setFixedSize(100,120);
-    billBtn3->setFixedSize(100,120);
-    billBtn4->setFixedSize(100,120);
+    roomBtn->setFixedSize(200,120);
+    PackageBtn->setFixedSize(200,120);
+    billBtn->setFixedSize(200,120);
+    customerBtn->setFixedSize(200,120);
+    billBtn1->setFixedSize(200,120);
+    billBtn2->setFixedSize(200,120);
+    billBtn3->setFixedSize(200,120);
+    billBtn4->setFixedSize(200,120);
 
 
     connect(roomBtn,SIGNAL(clicked()), this, SLOT(Room()));
@@ -63,7 +63,7 @@ void MainWindow::Room(){
 
 
 
-    roomtype-> addWidget(label2,2,0,1,4);
+    roomtype-> addWidget(label2);
 
     roomtype-> addWidget(billBtn,3,0,1,1);
     roomtype-> addWidget(customerBtn,3,1,1,1);
