@@ -91,7 +91,9 @@ void MainWindow::question()
 
 
    q1-> setAlignment(Qt::AlignLeft);
-  // q1->setFrameStyle(QFrame::Panel | QFrame::Sunken);
+   //q1->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Expanding);
+
+   // q1->setFrameStyle(QFrame::Panel | QFrame::Sunken);
    q1->setText(tr("Q1) What is this software used for?"));
    q1->setFont(question);
    q1->setFixedHeight(50);
