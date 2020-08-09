@@ -18,15 +18,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     Room.cpp \
     dashboard.cpp \
+    database.cpp \
+    guest.cpp \
     guesttable.cpp \
     loginscreen.cpp \
     main.cpp \
     mainwindow.cpp \
     menu.cpp \
+    package.cpp \
+    room.cpp \
     style.cpp
 
 HEADERS += \
-    mainwindow.h
+    database.h \
+    guest.h \
+    mainwindow.h \
+    package.h \
+    room.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
