@@ -27,6 +27,7 @@ private slots:
     void loginScreen();
     void homeScreen();
     void loginButton_clicked();
+    void roombooking();
 
 // TO Fetch Line Text Data from another Function
 private:
