@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Room.cpp \
+    class_room.cpp \
     dashboard.cpp \
     guesttable.cpp \
     loginscreen.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
     style.cpp
 
 HEADERS += \
+    class_room.h \
     mainwindow.h
 
 # Default rules for deployment.

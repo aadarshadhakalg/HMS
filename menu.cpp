@@ -1,10 +1,17 @@
 #include "mainwindow.h"
+#include <QWhatsThis>
 
 void MainWindow::Action()
 {
-    saveAct = new QAction(tr("&Save"), this);
-    saveAct->setStatusTip(tr("Saving"));
+    QString user_name = " gyushanba";
+    // user_name =MainWindow::emailText->text();
+    saveAct = new QAction(user_name, this);
     connect(saveAct, &QAction::triggered, this, &MainWindow::save);
+
+    logoutAct = new QAction(tr("&Logout"), this);
+    logoutAct->setStatusTip(tr("Logging oUt"));
+    connect(logoutAct, &QAction::triggered, this, &MainWindow::Room);
+
 
     contactAct = new QAction(tr("&Contact us"), this);
     contactAct->setStatusTip(tr("Opening contact page"));
@@ -18,8 +25,9 @@ void MainWindow::Action()
 }
 void MainWindow::MenuItem()
 {
-file = menuBar()->addMenu(tr("&File"));
+file = menuBar()->addMenu(tr("&HMS"));
 file->addAction(saveAct);
+file->addAction(logoutAct);
 
 
 

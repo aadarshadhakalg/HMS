@@ -17,6 +17,7 @@
 #include <QSizePolicy>
 #include <QSqlTableModel>
 #include <QComboBox>
+#include <iostream>
 
 class QAction;
 class QActionGroup;
@@ -69,6 +70,7 @@ private:
     QMenu *help;
     QMenu *about;
     QAction *saveAct;
+    QAction *logoutAct;
     QAction *contactAct;
     QAction *QuesAct;
     QFormLayout *main_layout ;
