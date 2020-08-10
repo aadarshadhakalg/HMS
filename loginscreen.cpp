@@ -6,25 +6,6 @@
 // Defining loginScreen //
 
 void MainWindow::loginScreen(){
-    // Setting up connection to MYSQL Database on Cloud
-    //
-    // Database configuration details
-    // hostname: hms.cxsp6l8xtyqr.us-east-1.rds.amazonaws.com,
-    // Port: 3306,
-    // Database Name : hms,
-    // Database Username: hms,
-    // Database Password: password
-
-
-    db = QSqlDatabase::addDatabase("QMYSQL"); // Initializing Database, QMYSQL is MySQL database driver for QT.
-    db.setHostName("hms.cxsp6l8xtyqr.us-east-1.rds.amazonaws.com"); // Setting hostname
-    db.setPort(3306); // setting port
-    db.setDatabaseName("hms"); // setting database name
-    db.setUserName("hms"); //setting username
-    db.setPassword("password"); //setting password
-
-    if(db.open()){                                    // Ensures database is connected
-    //if database conection is successful displays new window
     QWidget *window = new QWidget(this);
     setCentralWidget(window);
     window->setStyleSheet("*{background:white;}");
@@ -118,11 +99,6 @@ void MainWindow::loginScreen(){
         layout->addWidget(loginForm);
         layout->addWidget(backButton);
     window->setLayout(layout); // Setting layout to main window
-
-
-    }else{ // If database connection is not established
-        QMessageBox::warning(window(),"Error Connection","Error connecting to Database"); //Displays a popup warning message
-    }
 }
 
 // Defines loginButton_clicked method. This is called when login button is pressed
