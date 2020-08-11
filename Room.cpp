@@ -75,5 +75,7 @@ void MainWindow::Room(){
 
     rightside->setLayout(roomtype);
 
+    connect(roomBtn,SIGNAL(clicked()),this,SLOT(roombooking())); //pachi add gareko
+
 
 }

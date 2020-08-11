@@ -7,27 +7,27 @@
 
 void MainWindow::roombooking(){
 
-    if( ){                                    // Correction needed
+                                 // Correction needed
 
     QWidget *window = new QWidget(this);
     setCentralWidget(window);
     window->setStyleSheet("*{background:white;}");
-        QHBoxLayout *layout =new QHBoxLayout();  //Defining Horizontal Box Layout
+        QVBoxLayout *main_layout =new QVBoxLayout();  //Defining Vertical Box Layout
 
             //Displays User Details Text At Center
 
-            QLabel *label = new QLabel(window);
-            label->setText("User Details");
-            label->setAlignment(Qt::AlignHCenter);
+            QLabel *user_label = new QLabel(window);
+            user_label->setText("User Details");
+            user_label->setAlignment(Qt::AlignHCenter);
             QFont font("Helvetica",30,QFont::Bold);
-            label->setFont(font);
-            label->show();
+            user_label->setFont(font);
+            user_label->show();
 
             //Diaplays Name Form
 
-            QWidget *nameForm = new QWidget(window);
-            QGridLayout *formLayout = new QGridLayout(); // Defines grid layout for name
-            formLayout->setColumnMinimumWidth(1,300);
+            QWidget *userForm = new QWidget(window);
+            QGridLayout *user_formLayout = new QGridLayout(); // Defines grid layout for name
+            user_formLayout->setColumnMinimumWidth(1,300);
 
             // Form Fields Start
 
@@ -73,5 +73,140 @@ void MainWindow::roombooking(){
 
             customer_nationality->setFixedHeight(40);
             customer_nationality->setClearButtonEnabled(true);
+
+            //Adding widgets in the userForm layout
+            user_formLayout->addWidget(nameHint,0,0);
+            user_formLayout->addWidget(customer_name,0,1);
+
+            user_formLayout->addWidget(emailHint,1,0);
+            user_formLayout->addWidget(customer_email,1,1);
+
+            user_formLayout->addWidget(phoneHint,2,0);
+            user_formLayout->addWidget(customer_phone,2,1);
+
+            user_formLayout->addWidget(addressHint,3,0);
+            user_formLayout->addWidget(customer_address,3,1);
+
+            user_formLayout->addWidget(nationalityHint,4,0);
+            user_formLayout->addWidget(customer_nationality,4,1);
+
+            user_formLayout->setColumnStretch(4,1);
+            userForm->setLayout(user_formLayout); //userForm layout set
+
+            //ROOM details label start
+
+            QLabel *room_label = new QLabel(window);
+            room_label->setText("Room Details");
+            room_label->setAlignment(Qt::AlignHCenter);
+            room_label->setFont(font);
+            room_label->show();
+
+            //Diaplays Room details Form
+
+            QWidget *room_detailsForm = new QWidget(window);
+            QGridLayout *room_formLayout = new QGridLayout(); // Defines grid layout for name
+            room_formLayout->setColumnMinimumWidth(3,600);
+
+            //Room select
+            QLabel *room_select = new QLabel("ROOM:");
+            room_select->setStyleSheet("*{font-weight:bold;font-size:20px;padding:12px;}");
+
+            //Room select check box
+            QCheckBox *room1_checkbox = new QCheckBox("Room 1");
+
+            QCheckBox *room2_checkbox = new QCheckBox("Room 2");
+
+            QCheckBox *room3_checkbox = new QCheckBox("Room 3");
+
+            QCheckBox *room4_checkbox = new QCheckBox("Room 4");
+
+            QCheckBox *room5_checkbox = new QCheckBox("Room 5");
+
+            QCheckBox *room6_checkbox = new QCheckBox("Room 6");
+
+            QCheckBox *room7_checkbox = new QCheckBox("Room 7");
+
+            QCheckBox *room8_checkbox = new QCheckBox("Room 8");
+
+
+
+            //Additional service select
+            QLabel *service_select = new QLabel("SERVICES:");
+            service_select->setStyleSheet("*{font-weight:bold;font-size:20px;padding:12px;}");
+
+            //Room select check box
+            QCheckBox *dinner_checkbox = new QCheckBox("DINNER");
+
+            QCheckBox *breakfast_checkbox = new QCheckBox("BREAKFAST");
+
+            QCheckBox *lunch_checkbox = new QCheckBox("LUNCH");
+
+            QCheckBox *transportation_checkbox = new QCheckBox("TRANSPORTATION");
+
+            QCheckBox *sim_checkbox = new QCheckBox("SIM");
+
+            QCheckBox *guide_checkbox = new QCheckBox("GUIDE");
+
+
+            //Adding widgets in the room_FormLayout
+            room_formLayout->addWidget(room_select,0,0);
+
+            room_formLayout->addWidget(room1_checkbox,1,0);
+            room_formLayout->addWidget(room2_checkbox,1,1);
+            room_formLayout->addWidget(room3_checkbox,1,2);
+            room_formLayout->addWidget(room4_checkbox,1,3);
+            room_formLayout->addWidget(room5_checkbox,2,0);
+            room_formLayout->addWidget(room6_checkbox,2,1);
+            room_formLayout->addWidget(room7_checkbox,2,2);
+            room_formLayout->addWidget(room8_checkbox,2,3);
+
+            room_formLayout->addWidget(service_select,3,0);
+
+            room_formLayout->addWidget(dinner_checkbox,4,0);
+            room_formLayout->addWidget(breakfast_checkbox,4,1);
+            room_formLayout->addWidget(lunch_checkbox,4,2);
+            room_formLayout->addWidget(transportation_checkbox,5,0);
+            room_formLayout->addWidget(sim_checkbox,5,1);
+            room_formLayout->addWidget(guide_checkbox,5,2);
+
+            //Adding layout to room_detailsForm
+
+            room_formLayout->setColumnStretch(5,2);
+            room_detailsForm->setLayout(room_formLayout); //room_detailsForm layout set
+
+
+            //Layout for Buttons
+            QWidget *Button_widget = new QWidget(window);
+            QGridLayout *buttonLayout = new QGridLayout(); //Layout for back and book now button
+            room_formLayout->setColumnMinimumWidth(3,300);
+
+            //Book now Button
+            QPushButton *book_nowButton = new QPushButton("Book Now");
+            book_nowButton->setStyleSheet("*{background:red;height:30px;}");
+
+            // GO Back Button
+            QPushButton *backButton = new QPushButton("Back");
+            backButton->setStyleSheet("*{background:red;height:30px;}");
+            //backButton->adjustSize();
+            connect(backButton,SIGNAL(clicked()),this,SLOT(Room()));
+
+            //adding button widgets to buttonlayout
+            buttonLayout->addWidget(backButton,0,Qt::AlignLeft);
+            buttonLayout->addWidget(book_nowButton,0,3,Qt::AlignRight);
+
+
+            buttonLayout->setColumnStretch(2,2);
+            Button_widget->setLayout(buttonLayout); //Adding Layout to Button_widget
+
+
+
+            //Adding widgets to main_layout
+            main_layout->addWidget(user_label);
+            main_layout->addWidget(userForm);
+            main_layout->addWidget(room_label);
+            main_layout->addWidget(room_detailsForm);
+            main_layout->addWidget(Button_widget);
+            window->setLayout(main_layout);  //main_layout set to main window
+
 }
-}
+
