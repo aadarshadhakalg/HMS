@@ -19,32 +19,23 @@ SOURCES += \
     Room.cpp \
     class_room.cpp \
     dashboard.cpp \
-    database.cpp \
-<<<<<<< HEAD
-=======
+    database.cpp\
     guest.cpp \
->>>>>>> 9e245129675e5713393453ecfa896038806c7f9d
     guesttable.cpp \
     loginscreen.cpp \
     main.cpp \
     mainwindow.cpp \
     menu.cpp \
     package.cpp \
-    room.cpp \
-    style.cpp
+    style.cpp \
+
 
 HEADERS += \
-<<<<<<< HEAD
     class_room.h \
-    database.h \
-    mainwindow.h
-=======
     database.h \
     guest.h \
     mainwindow.h \
     package.h \
-    room.h
->>>>>>> 9e245129675e5713393453ecfa896038806c7f9d
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -52,5 +43,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    .gitignore \
     HMS.pro.user \
-    LICENSE
+    LICENSE \
+    hotel.jpg \
+    sh.exe.stackdump

@@ -3,6 +3,7 @@
 
 void MainWindow::Action()
 {
+
     QString user_name = " gyushanba";
     // user_name =MainWindow::emailText->text();
     saveAct = new QAction(user_name, this);
@@ -59,6 +60,8 @@ void MainWindow::save()
 }
 void MainWindow::contact()
 {
+    QString StyleSheetBtns =   "QPushButton { color: white; background-color: #1c2c3c; border: solid 5px white; font: 16pt 'Microsoft YaHei UI Light'; font-weight:bold; outline: none; } QPushButton:hover { background-color: #dc2525; border-style: solid; border-width: 3px; border-color: white; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
+
     QWidget *widget = new QWidget;
 
    setCentralWidget(widget);
@@ -75,6 +78,8 @@ void MainWindow::contact()
 }
 void MainWindow::question()
 {
+    QString StyleSheetBtns =   "QPushButton { color: white; background-color: #1c2c3c; border: solid 5px white; font: 16pt 'Microsoft YaHei UI Light'; font-weight:bold; outline: none; } QPushButton:hover { background-color: #dc2525; border-style: solid; border-width: 3px; border-color: white; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
+
     QWidget *widget = new QWidget;
     setCentralWidget(widget);
 
@@ -86,6 +91,11 @@ void MainWindow::question()
     QLabel *q3 = new QLabel();
     QLabel *ans3 = new QLabel();
 
+    QPushButton *dashbutton = new QPushButton("Go To Dashboard");
+    dashbutton->setFixedSize(200,100);
+    dashbutton->setSizePolicy(QSizePolicy::Expanding,QSizePolicy::Preferred);
+    connect(dashbutton, SIGNAL(clicked()),this,SLOT(dashboard()));
+    dashbutton->setStyleSheet(StyleSheetBtns);
 
     //setting font for the questions and answers
     QFont banner("Helvetica",30,QFont::ExtraBold);
@@ -153,7 +163,7 @@ void MainWindow::question()
     layout->addWidget(ans2);
     layout->addWidget(q3);
     layout->addWidget(ans3);
-
+    layout->addWidget(dashbutton);
 
 
     widget->setLayout(layout);

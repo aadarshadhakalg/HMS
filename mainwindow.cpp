@@ -4,15 +4,9 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-    Database database;
-    if(database.connectDB()){
-        db = database.getDB();
-        setWindowTitle("Hotel Management System");
-        homeScreen();  // TO Display Home Screen
-    }
-    else{ // If database connection is not established
-    QMessageBox::warning(this,"Error Connection","Error connecting to Database"); //Displays a popup warning message
-    }
+    setWindowTitle("Hotel Management System");
+    homeScreen();  // TO Display Home Screen
+
 }
 
 // Definition of homescreen()
@@ -40,7 +34,7 @@ void MainWindow::homeScreen(){
     QPushButton *beginButton = new QPushButton("Go To Dashboard");
     beginButton->setStyleSheet("*{background:green;height:30px;}");
     beginButton->adjustSize();
-    connect(beginButton,SIGNAL(clicked()),this,SLOT(loginScreen())); // Triggers loginScreen() method when button is clicked
+    connect(beginButton,SIGNAL(clicked()),this,SLOT(dashboard())); // Triggers loginScreen() method when button is clicked
                                                                      // Navigates to the loginScreen.
 
     //Exit App Button Bottom
