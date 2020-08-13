@@ -21,11 +21,7 @@ void MainWindow::dashboard(){
     rightside->setStyleSheet("*{background:white;}");
 }
 
-void MainWindow::Package(){
-    setWindowTitle("Packages");
-    style();
-    rightside->setStyleSheet("*{background:black;}");
-}
+
 void MainWindow::Bill(){
     setWindowTitle("Billings");
     style();
