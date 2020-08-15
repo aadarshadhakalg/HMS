@@ -17,6 +17,8 @@
 #include <QSizePolicy>
 #include <QSqlTableModel>
 #include <QComboBox>
+#include "package.h"
+#include "database.h"
 
 class QAction;
 class QActionGroup;
@@ -50,7 +52,7 @@ private slots:
     void search();
     void editTable();
     void noEditTable();
-    void Package();
+    void PackageScreen();
     void Bill();
     void Customer();
     void Room();
