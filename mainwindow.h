@@ -55,6 +55,8 @@ private slots:
     void Customer();
     void Room();
     void roombooking();
+    void room1();
+    void room_add();
 
 private:
     //for room booking

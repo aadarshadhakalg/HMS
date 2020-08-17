@@ -23,6 +23,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     menu.cpp \
+    room1.cpp \
+    room_add.cpp \
     roombooking.cpp \
     style.cpp
 

@@ -187,7 +187,7 @@ void MainWindow::roombooking(){
             // GO Back Button
             QPushButton *backButton = new QPushButton("Back");
             backButton->setStyleSheet("*{background:red;height:30px;}");
-            //backButton->adjustSize();
+            backButton->adjustSize();
             connect(backButton,SIGNAL(clicked()),this,SLOT(Room()));
 
             //adding button widgets to buttonlayout
