@@ -1,10 +1,5 @@
 #include "package.h"
 
-Package::Package(QSqlDatabase db)
-{
-    this->db = db;
-}
-
 
 QString Package::getName(){
     return this->name;
@@ -24,4 +19,21 @@ QString Package::getCompany(){
 
 bool Package::isAvailable(){
     return available;
+}
+
+void Package::setName(QString name){
+    this->name = name;
+}
+
+void Package::setDetails(QString details){
+    this->details = details;
+}
+void Package::setCompany(QString company){
+    this->company = company;
+}
+void Package::setPrice(int price){
+    this->price = price;
+}
+void Package::setavailable(bool available){
+    this->available = available;
 }
