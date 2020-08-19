@@ -17,7 +17,6 @@
 #include <QSizePolicy>
 #include <QSqlTableModel>
 #include <QComboBox>
-
 #include "package.h"
 #include "database.h"
 
@@ -56,7 +55,7 @@ private slots:
     void PackageScreen();
     void Bill();
     void Customer();
-    void Room();
+    void Roommain();
 
 private:
     QLineEdit *emailText;
@@ -72,7 +71,6 @@ private:
     QMenu *help;
     QMenu *about;
     QAction *saveAct;
-    QAction *logoutAct;
     QAction *contactAct;
     QAction *QuesAct;
     QFormLayout *main_layout ;

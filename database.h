@@ -7,7 +7,7 @@
 #include <QVariant>
 #include "package.h"
 #include "guest.h"
- //#include "room.h"
+//#include "room.h"
 
 
 class Database
@@ -28,7 +28,7 @@ public:
     void makeAvailable(int id);
     void makeUnavailable(int id);
     void getRooms(Guest guests[]);
-    //void getUsers(Room rooms[]);
+   // void getUsers(Room rooms[]);
 };
 
 #endif // DATABASE_H

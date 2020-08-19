@@ -50,4 +50,9 @@ void MainWindow::Customer(){
     tablelayout->addWidget(guesttable());
 }
 
+void MainWindow::Roommain(){
+    setWindowTitle("Billings");
+    style();
+    rightside->setStyleSheet("*{background:green;}");
+}
 

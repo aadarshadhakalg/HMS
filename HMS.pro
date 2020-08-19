@@ -16,10 +16,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Room.cpp \
-    class_room.cpp \
     dashboard.cpp \
-    database.cpp\
+    database.cpp \
     guest.cpp \
     guesttable.cpp \
     loginscreen.cpp \
@@ -27,24 +25,16 @@ SOURCES += \
     mainwindow.cpp \
     menu.cpp \
     package.cpp \
-    style.cpp \
-
+    room.cpp \
+    style.cpp
 
 HEADERS += \
-    class_room.h \
     database.h \
     guest.h \
     mainwindow.h \
-    package.h \
+    package.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-DISTFILES += \
-    .gitignore \
-    HMS.pro.user \
-    LICENSE \
-    hotel.jpg \
-    sh.exe.stackdump
