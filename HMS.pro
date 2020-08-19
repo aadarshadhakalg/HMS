@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Roommain.cpp \
     dashboard.cpp \
     database.cpp \
     guest.cpp \
@@ -26,13 +27,14 @@ SOURCES += \
     menu.cpp \
     package.cpp \
     room.cpp \
-    style.cpp
+     style.cpp
 
 HEADERS += \
     database.h \
     guest.h \
     mainwindow.h \
-    package.h
+    package.h \
+    room.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

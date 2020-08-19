@@ -7,7 +7,7 @@
 #include <QVariant>
 #include "package.h"
 #include "guest.h"
-//#include "room.h"
+#include "room.h"
 
 
 class Database
