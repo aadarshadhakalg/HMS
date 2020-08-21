@@ -22,6 +22,8 @@ void MainWindow::dashboard(){
 }
 
 
+
+
 void MainWindow::Bill(){
     setWindowTitle("Billings");
     style();

@@ -1,3 +1,4 @@
+
 #include "mainwindow.h"
 
 void MainWindow::Action()
@@ -150,6 +151,7 @@ void MainWindow::question()
 
     QVBoxLayout *layout = new QVBoxLayout;
 
+
     layout->addWidget(faq);
     layout->addWidget(q1);
     layout->addWidget(ans1);
@@ -162,6 +164,8 @@ void MainWindow::question()
 
 
 
-    widget->setLayout(layout);
+
+
+     widget->setLayout(layout);
 
 }
