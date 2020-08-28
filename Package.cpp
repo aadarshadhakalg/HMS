@@ -1,5 +1,6 @@
 #include"mainwindow.h"
-void MainWindow::Package(){
+
+void MainWindow::PackageScreen(){
     setWindowTitle("Packages");
     style();
     //rightside->setStyleSheet("*{background:green;}");
@@ -20,7 +21,7 @@ void MainWindow::Package(){
 
     QLabel *label1 = new QLabel();
     label1->setText("Available");
-    QFont banner1("Helvetica",30,QFont::Bold);
+    QFont banner1("Helvetica",20,QFont::Bold);
     label1->setFont(banner1);
     label1->setFixedHeight(90);
     label1->adjustSize();
@@ -29,7 +30,6 @@ void MainWindow::Package(){
 
     QLabel *label2 = new QLabel();
     label2->setText("Not Available");
-    //QFont banner1("Helvetica",15,QFont::Bold);
     label2->setFont(banner1);
     label2->setFixedHeight(90);
     label2->adjustSize();
@@ -37,50 +37,19 @@ void MainWindow::Package(){
 
 
 
-
     QPushButton* addPackage = new QPushButton("Add Package");
     QPushButton* removePackage = new QPushButton("Remove Package");
-    QPushButton* availableBtn1 = new QPushButton("Package1");
-    QPushButton* availableBtn2 = new QPushButton("Package2");
-    QPushButton* availableBtn3 = new QPushButton("Package3");
-    QPushButton* availableBtn4 = new QPushButton("Package4");
-    QPushButton* notavailableBtn1 = new QPushButton("nopackage1");
-    QPushButton* notavailableBtn2 = new QPushButton("nopackage2");
-    QPushButton* notavailableBtn3 = new QPushButton("nopackage3");
-    QPushButton* notavailableBtn4 = new QPushButton("nopackage4");
+
+
 
     addPackage->setStyleSheet(StyleSheetBtns);
    removePackage->setStyleSheet(StyleSheetBtns);
-    availableBtn1->setStyleSheet(StyleSheetBtns);
-    availableBtn2->setStyleSheet(StyleSheetBtns);
-    availableBtn3->setStyleSheet(StyleSheetBtns);
-    availableBtn4->setStyleSheet(StyleSheetBtns);
-    notavailableBtn1->setStyleSheet(StyleSheetBtns);
-    notavailableBtn2->setStyleSheet(StyleSheetBtns);
-    notavailableBtn3->setStyleSheet(StyleSheetBtns);
-    notavailableBtn4->setStyleSheet(StyleSheetBtns);
 
     addPackage->setFixedSize(300,60);
     removePackage->setFixedSize(300,60);
-    availableBtn1->setFixedSize(300,60);
-    availableBtn2->setFixedSize(300,60);
-    availableBtn3->setFixedSize(300,60);
-    availableBtn4->setFixedSize(300,60);
-    notavailableBtn1->setFixedSize(300,60);
-    notavailableBtn2->setFixedSize(300,60);
-    notavailableBtn3->setFixedSize(300,60);
-    notavailableBtn4->setFixedSize(300,60);
 
     addPackage->adjustSize();
     removePackage->adjustSize();
-    availableBtn1->adjustSize();
-    availableBtn2->adjustSize();
-    availableBtn3->adjustSize();
-    availableBtn4->adjustSize();
-    notavailableBtn1->adjustSize();
-    notavailableBtn2->adjustSize();
-    notavailableBtn3->adjustSize();
-    notavailableBtn4->adjustSize();
 
 
 
@@ -123,35 +92,56 @@ void MainWindow::Package(){
     HLayout1->addWidget(removePackage);
 
     QHBoxLayout *HLayout = new QHBoxLayout();
-    //HLayout->addWidget(nolabel);
     HLayout->addWidget(label1);
-
     HLayout->addWidget(label2);
 
-    QVBoxLayout *Vlayout1 = new QVBoxLayout();
-    Vlayout1->addWidget(availableBtn1);
-    Vlayout1->addWidget(availableBtn2);
-    Vlayout1->addWidget(availableBtn3);
-    Vlayout1->addWidget(availableBtn4);
 
-    QVBoxLayout *Vlayout2 = new QVBoxLayout();
-    Vlayout2->addWidget(notavailableBtn1);
-    Vlayout2->addWidget(notavailableBtn2);
-    Vlayout2->addWidget(notavailableBtn3);
-    Vlayout2->addWidget(notavailableBtn4);
+       QSqlTableModel * amodel = new QSqlTableModel();
+        amodel->setTable("packages");
+        amodel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+        amodel->setParent(this);
+        amodel->select();
+        amodel->setHeaderData(0, Qt::Horizontal, tr("ID"));
+        amodel->setHeaderData(1, Qt::Horizontal, tr("Name"));
+        amodel->setHeaderData(2, Qt::Horizontal, tr("Company"));
+        amodel->setHeaderData(3, Qt::Horizontal, tr("Details"));
+        amodel->setHeaderData(4, Qt::Horizontal, tr("Price"));
+        amodel->setFilter("available = 1");
+        QTableView *availableview = new QTableView();
+        availableview->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
+        availableview->setModel(amodel);
+        availableview->hideColumn(0);
+        availableview->hideColumn(5);
+        availableview->setColumnWidth(3,200);
 
-    QHBoxLayout *HLayout2 = new QHBoxLayout();
-    HLayout2->addLayout(Vlayout1);
-  //  HLayout2->addWidget(nolabel);
-    HLayout2->addLayout(Vlayout2);
+
+
+        QSqlTableModel * nmodel = new QSqlTableModel();
+         nmodel->setTable("packages");
+         nmodel->setEditStrategy(QSqlTableModel::OnManualSubmit);
+         nmodel->setParent(this);
+         nmodel->select();
+         nmodel->setHeaderData(0, Qt::Horizontal, tr("ID"));
+         nmodel->setHeaderData(1, Qt::Horizontal, tr("Name"));
+         nmodel->setHeaderData(2, Qt::Horizontal, tr("Company"));
+         nmodel->setHeaderData(3, Qt::Horizontal, tr("Details"));
+         nmodel->setHeaderData(4, Qt::Horizontal, tr("Price"));
+         nmodel->setFilter("available = 0");
+         QTableView *notavailableview = new QTableView();
+         notavailableview->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
+         notavailableview->setModel(nmodel);
+         notavailableview->hideColumn(0);
+         notavailableview->hideColumn(5);
+         notavailableview->setColumnWidth(3,200);
+
+         QHBoxLayout *HLayout2 = new QHBoxLayout();
+         HLayout2->addWidget(availableview);
+         HLayout2->addWidget(notavailableview);
 
     QVBoxLayout *Vlayout= new QVBoxLayout();
     Vlayout->addLayout(HLayout1);
     Vlayout->addLayout(HLayout);
     Vlayout->addLayout(HLayout2);
-
-
-
 
 
     rightside->setLayout(Vlayout);

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include<QDebug>
+#include "package.h"
 
 void MainWindow::dashboard(){
     Action();
@@ -22,26 +23,21 @@ void MainWindow::dashboard(){
     rightside->setStyleSheet("*{background:white;}");
 }
 
-<<<<<<< HEAD
-void MainWindow::PackageScreen(){
-    setWindowTitle("Packages");
-    style();
+//void MainWindow::PackageScreen(){
+//    setWindowTitle("Packages");
+//    style();
 //    QVBoxLayout *layout = new QVBoxLayout();
-    Database database;
-    database.addPackages("Rafting","Ayush Soft","This is detail",4500,1);
-    Package pkgs[10];
-    database.getAvailablePackages(pkgs);
-    for(Package i : pkgs){
-     qDebug() << i.getName();
-    }
+////    Database database;
+////    database.addPackages("Rafting","Ayush Soft","This is detail",4500,1);
+////    Package pkgs[10];
+////    database.getAvailablePackages(pkgs);
+////    for(Package i : pkgs){
+////     qDebug() << i.getName();
+////    }
 
-    rightside->setStyleSheet("*{background:black;}");
-}
-=======
+//    rightside->setStyleSheet("*{background:black;}");
+//}
 
-
-
->>>>>>> 7caef45cf43433a473565b63c21260f3463ddc12
 void MainWindow::Bill(){
     setWindowTitle("Billings");
     style();

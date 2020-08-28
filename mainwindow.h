@@ -53,6 +53,7 @@ private slots:
     void editTable();
     void noEditTable();
     void PackageScreen();
+//    void Package();
     void Bill();
     void Customer();
     void Room();

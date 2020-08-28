@@ -19,10 +19,9 @@ void MainWindow::Action()
 }
 void MainWindow::MenuItem()
 {
+menuBar()->clear();
 file = menuBar()->addMenu(tr("&File"));
 file->addAction(saveAct);
-
-
 
 help = menuBar()->addMenu(tr("&Help"));
 help->addAction(QuesAct);
@@ -30,7 +29,6 @@ help->addAction(QuesAct);
 about= menuBar()->addMenu(tr("&contact us"));
 about->addAction(contactAct);
 }
-
 
 void MainWindow::save()
 {
