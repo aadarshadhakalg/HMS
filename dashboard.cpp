@@ -22,6 +22,7 @@ void MainWindow::dashboard(){
     rightside->setStyleSheet("*{background:white;}");
 }
 
+<<<<<<< HEAD
 void MainWindow::PackageScreen(){
     setWindowTitle("Packages");
     style();
@@ -36,6 +37,11 @@ void MainWindow::PackageScreen(){
 
     rightside->setStyleSheet("*{background:black;}");
 }
+=======
+
+
+
+>>>>>>> 7caef45cf43433a473565b63c21260f3463ddc12
 void MainWindow::Bill(){
     setWindowTitle("Billings");
     style();
