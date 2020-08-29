@@ -36,8 +36,9 @@ void MainWindow::style(){
     customerBtn->setStyleSheet(StyleSheetBtns);
     exitBtn->setStyleSheet("*{background:white;}");
 
-    connect(roomBtn,SIGNAL(clicked()), this, SLOT(Room()));
-    connect(PackageBtn,SIGNAL(clicked()), this, SLOT(Package()));
+
+    connect(roomBtn,SIGNAL(clicked()), this, SLOT(Roommain()));
+    connect(PackageBtn,SIGNAL(clicked()), this, SLOT(PackageScreen()));
     connect(billBtn,SIGNAL(clicked()), this, SLOT(Bill()));
     connect(customerBtn,SIGNAL(clicked()), this, SLOT(Customer()));
     connect(exitBtn,SIGNAL(clicked()),this,SLOT(close()));

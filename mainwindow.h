@@ -17,6 +17,8 @@
 #include <QSizePolicy>
 #include <QSqlTableModel>
 #include <QComboBox>
+#include "package.h"
+#include "database.h"
 
 class QAction;
 class QActionGroup;
@@ -57,6 +59,8 @@ private slots:
     void roombooking();
     void room1();
     void room_add();
+    void PackageScreen();
+    void Roommain();
 
 private:
     //for room booking
@@ -69,7 +73,6 @@ private:
     //for master control
     QLineEdit *emailText;
     QLineEdit *passwordText;
-
     QWidget *rightside;
     QLineEdit *searchField;
     QPushButton *editButton;

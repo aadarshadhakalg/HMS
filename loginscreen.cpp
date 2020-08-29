@@ -25,6 +25,7 @@ void MainWindow::loginScreen(){
 
     if(db.open()){                                    // Ensures database is connected
     //if database conection is successful displays new window
+
     QWidget *window = new QWidget(this);
     setCentralWidget(window);
     window->setStyleSheet("*{background:white;}");
@@ -120,9 +121,11 @@ void MainWindow::loginScreen(){
     window->setLayout(layout); // Setting layout to main window
 
 
+
     }else{ // If database connection is not established
         QMessageBox::warning(window(),"Error Connection","Error connecting to Database"); //Displays a popup warning message
     }
+
 }
 
 // Defines loginButton_clicked method. This is called when login button is pressed

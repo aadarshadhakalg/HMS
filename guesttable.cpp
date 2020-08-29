@@ -64,13 +64,15 @@ QWidget * MainWindow::guesttable(){
         model->setHeaderData(3, Qt::Horizontal, tr("Email"));
         model->setHeaderData(4, Qt::Horizontal, tr("Contact"));
         model->setHeaderData(5, Qt::Horizontal, tr("Address"));
-        model->setHeaderData(6, Qt::Horizontal, tr("Identity"));
-        model->setHeaderData(7, Qt::Horizontal, tr("Room Type"));
-        model->setHeaderData(8, Qt::Horizontal, tr("Total"));
-        model->setHeaderData(9, Qt::Horizontal, tr("Paid"));
-        model->setHeaderData(10, Qt::Horizontal, tr("Due"));
-        model->setHeaderData(11, Qt::Horizontal, tr("Status"));
-        model->setHeaderData(12, Qt::Horizontal, tr("Registrar"));
+        model->setHeaderData(6, Qt::Horizontal, tr("Checkin"));
+        model->setHeaderData(7, Qt::Horizontal, tr("Checkout"));
+        model->setHeaderData(8, Qt::Horizontal, tr("Identity"));
+        model->setHeaderData(9, Qt::Horizontal, tr("Room Type"));
+        model->setHeaderData(10, Qt::Horizontal, tr("Total"));
+        model->setHeaderData(11, Qt::Horizontal, tr("Paid"));
+        model->setHeaderData(12, Qt::Horizontal, tr("Due"));
+        model->setHeaderData(13, Qt::Horizontal, tr("Status"));
+        model->setHeaderData(14, Qt::Horizontal, tr("Registrar"));
 
         connect(sortby, static_cast<void(QComboBox::*)(int)>(&QComboBox::activated),
             [=](int index){
@@ -85,6 +87,13 @@ QWidget * MainWindow::guesttable(){
                 break;
             case 2:
                 model->setSort(3,Qt::AscendingOrder);
+
+            case 6:
+                model->setSort(6,Qt::AscendingOrder);
+                model->select();
+                break;
+            case 7:
+                model->setSort(7,Qt::AscendingOrder);
                 model->select();
                 break;
             default:
@@ -167,7 +176,7 @@ void MainWindow::search(){
 
 void MainWindow::editTable(){
     model->setEditStrategy(QSqlTableModel::OnFieldChange);
-    QMessageBox::warning(this->searchField,"Edit Enabled","Edit Mode Is Enabled, operate carefully.");
+    QMessageBox::warning(this->searchField,"Edit Enabled","Edit mode is enabled, operate carefully.");
     editButton->hide();
     noEditButton->show();
 }
@@ -175,6 +184,7 @@ void MainWindow::editTable(){
 void MainWindow::noEditTable(){
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     QMessageBox::information(this->searchField,"Edit Enabled","Edit Mode Is Enabled, operate carefully.");
+    QMessageBox::information(this->searchField,"Edit Disabled","Edit mode is disabled, All Changes are saved.");
     noEditButton->hide();
     editButton->show();
 }
