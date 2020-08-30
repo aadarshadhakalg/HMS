@@ -1,6 +1,7 @@
 #ifndef CLASS_ROOM_H
 #define CLASS_ROOM_H
 #include <QSqlDatabase>
+#include <QString>
 
 class Room
 {

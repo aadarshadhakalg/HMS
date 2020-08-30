@@ -10,7 +10,7 @@ void MainWindow::Roommain(){
     label->setFixedHeight(90);
 
     QLabel *label2 = new QLabel();
-    label2->setText("Delux");
+    label2->setText("Deluxe");
     label2->setFont(banner);
     label2->setFixedHeight(90);
 
@@ -18,57 +18,60 @@ void MainWindow::Roommain(){
                              ";}");
     QString StyleSheetBtns =   "QPushButton { color: white; background-color: #1c2c3c; border: solid 5px white; font: 16pt 'Microsoft YaHei UI Light'; font-weight:bold; outline: none; } QPushButton:hover { background-color: #dc2525; border-style: solid; border-width: 3px; border-color: white; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
 
-    QPushButton* roomBtn = new QPushButton("Rooms");
-    QPushButton* PackageBtn = new QPushButton("Packages");
-    QPushButton* billBtn = new QPushButton("Billings");
-    QPushButton* customerBtn = new QPushButton("Records");
-    QPushButton* billBtn1 = new QPushButton("Billings");
-    QPushButton* billBtn2 = new QPushButton("Billings");
-    QPushButton* billBtn3 = new QPushButton("Billings");
-    QPushButton* billBtn4 = new QPushButton("Billings");
+    QPushButton* room1Btn = new QPushButton("Room 1");
+    QPushButton* room2Btn = new QPushButton("Room 2");
+    QPushButton* room3Btn = new QPushButton("Room 3");
+    QPushButton* room4Btn = new QPushButton("Room 4");
+    QPushButton* room5Btn = new QPushButton("Room 5");
+    QPushButton* room6Btn = new QPushButton("Room 6");
+    QPushButton* room7Btn = new QPushButton("Room 7");
+    QPushButton* room8Btn = new QPushButton("Room 8");
 
-    roomBtn->setStyleSheet(StyleSheetBtns);
-    PackageBtn->setStyleSheet(StyleSheetBtns);
-    billBtn->setStyleSheet(StyleSheetBtns);
-    customerBtn->setStyleSheet(StyleSheetBtns);
-    billBtn1->setStyleSheet(StyleSheetBtns);
-    billBtn2->setStyleSheet(StyleSheetBtns);
-    billBtn3->setStyleSheet(StyleSheetBtns);
-    billBtn4->setStyleSheet(StyleSheetBtns);
+    //Book now Button
+    QPushButton *bookbtn = new QPushButton("Book");
+    bookbtn->setStyleSheet("*{background:red;height:30px;}");
 
-
-    roomBtn->setFixedSize(200,120);
-    PackageBtn->setFixedSize(200,120);
-    billBtn->setFixedSize(200,120);
-    customerBtn->setFixedSize(200,120);
-    billBtn1->setFixedSize(200,120);
-    billBtn2->setFixedSize(200,120);
-    billBtn3->setFixedSize(200,120);
-    billBtn4->setFixedSize(200,120);
+    room1Btn->setStyleSheet(StyleSheetBtns);
+    room2Btn->setStyleSheet(StyleSheetBtns);
+    room3Btn->setStyleSheet(StyleSheetBtns);
+    room4Btn->setStyleSheet(StyleSheetBtns);
+    room5Btn->setStyleSheet(StyleSheetBtns);
+    room6Btn->setStyleSheet(StyleSheetBtns);
+    room7Btn->setStyleSheet(StyleSheetBtns);
+    room8Btn->setStyleSheet(StyleSheetBtns);
 
 
-    connect(roomBtn,SIGNAL(clicked()), this, SLOT(Room()));
-    connect(PackageBtn,SIGNAL(clicked()), this, SLOT(Package()));
-    connect(billBtn,SIGNAL(clicked()), this, SLOT(Bill()));
-    connect(customerBtn,SIGNAL(clicked()), this, SLOT(Customer()));
+    room1Btn->setFixedSize(200,120);
+    room2Btn->setFixedSize(200,120);
+    room3Btn->setFixedSize(200,120);
+    room4Btn->setFixedSize(200,120);
+    room5Btn->setFixedSize(200,120);
+    room6Btn->setFixedSize(200,120);
+    room7Btn->setFixedSize(200,120);
+    room8Btn->setFixedSize(200,120);
+
+    connect(room1Btn,SIGNAL(clicked()), this, SLOT(room1()));
+    connect(room2Btn,SIGNAL(clicked()), this, SLOT(Package()));
+    connect(room3Btn,SIGNAL(clicked()), this, SLOT(Bill()));
+    connect(room8Btn,SIGNAL(clicked()), this, SLOT(Customer()));
+    connect(bookbtn,SIGNAL(clicked()), this, SLOT(roombooking()));
 
     QGridLayout *roomtype= new QGridLayout;
     roomtype-> setHorizontalSpacing(30);
-     roomtype-> addWidget(label,0,0,1,4);
+    roomtype-> addWidget(label,0,0,1,4);
 
-    roomtype-> addWidget(roomBtn,1,0,1,1);
-    roomtype-> addWidget(PackageBtn,1,1,1,1);
-    roomtype-> addWidget(billBtn1,1,2,1,1);
-    roomtype-> addWidget(billBtn2,1,3,1,1);
-
-
+    roomtype-> addWidget(room1Btn,1,0,1,1);
+    roomtype-> addWidget(room2Btn,1,1,1,1);
+    roomtype-> addWidget(room3Btn,1,2,1,1);
+    roomtype-> addWidget(room4Btn,1,3,1,1);
 
     roomtype-> addWidget(label2);
 
-    roomtype-> addWidget(billBtn,3,0,1,1);
-    roomtype-> addWidget(customerBtn,3,1,1,1);
-    roomtype-> addWidget(billBtn3,3,2,1,1);
-    roomtype-> addWidget(billBtn4,3,3,1,1);
+    roomtype-> addWidget(room5Btn,3,0,1,1);
+    roomtype-> addWidget(room6Btn,3,1,1,1);
+    roomtype-> addWidget(room7Btn,3,2,1,1);
+    roomtype-> addWidget(room8Btn,3,3,1,1);
+    roomtype-> addWidget(bookbtn,4,3,1,1);
 
 
 

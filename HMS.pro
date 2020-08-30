@@ -27,7 +27,6 @@ SOURCES += \
     mainwindow.cpp \
     menu.cpp \
     room1.cpp \
-    room_add.cpp \
     roombooking.cpp \
     package.cpp \
     room.cpp \

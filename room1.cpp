@@ -54,8 +54,15 @@ void MainWindow::room1(){
             room1_details_formLayout->setColumnStretch(0,1);
             room1_details_form->setLayout(room1_details_formLayout); //room1_details_form layout set
 
+            // GO Back Button
+            QPushButton *backButton = new QPushButton("Back");
+            backButton->setStyleSheet("*{background:red;height:30px;}");
+            backButton->adjustSize();
+            connect(backButton,SIGNAL(clicked()),this,SLOT(Roommain()));
+
             //Adding widgets to room1_layout
             room1_layout->addWidget(room1_label);
             room1_layout->addWidget(room1_details_form);
+            room1_layout->addWidget(backButton);
             window->setLayout(room1_layout);  //room1_layout set to main window
 }

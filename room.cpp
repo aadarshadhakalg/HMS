@@ -1,4 +1,6 @@
 #include "room.h"
+#include "mainwindow.h"
+#include <iostream>
 
 Room::Room()
 {
@@ -34,9 +36,11 @@ QString Room::getRooms(){
     return room_price;
 
 }
-QString Room:: getName(){
-    //return getguest.name();
-}
+/*QString Room:: getName(){
+    return getguest.name();
+}*/
+
+void addUser_details(QString name, QString);
 
 QString Room:: getDetails() {
     if(wifi)

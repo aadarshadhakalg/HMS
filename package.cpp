@@ -1,3 +1,5 @@
+#include "mainwindow.h"
+#include <QProgressDialog>
 #include "package.h"
 
 

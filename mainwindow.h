@@ -52,14 +52,10 @@ private slots:
     void search();
     void editTable();
     void noEditTable();
-    void Package();
     void Bill();
     void Customer();
-    void Room();
     void roombooking();
     void room1();
-    void room_add();
-    void PackageScreen();
     void Roommain();
 
 private:
@@ -69,6 +65,7 @@ private:
     QLineEdit *customer_phone;
     QLineEdit *customer_address;
     QLineEdit *customer_nationality;
+    QLineEdit *package_id;
 
     //for master control
     QLineEdit *emailText;
