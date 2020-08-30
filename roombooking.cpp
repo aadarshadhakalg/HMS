@@ -161,6 +161,14 @@ void MainWindow::roombooking(){
             room_formLayout->setColumnStretch(6,3);
             room_form->setLayout(room_formLayout); //room_form layout set
 
+            if(db.open()) {
+             QSqlQueryModel* qry_model = new QSqlQueryModel();
+            qry_model->setQuery("SELECT * FROM room");
+
+            }
+
+            connect(room1_checkbox,SIGNAL(ischecked()),this,SLOT(totalprice_calculator()));
+
             //price label
             QWidget *price_form = new QWidget(window);
             QGridLayout *price_Layout = new QGridLayout(); // Defines grid layout for price
@@ -168,8 +176,14 @@ void MainWindow::roombooking(){
             QLabel *total_price = new QLabel("Total Price :");
             total_price->setStyleSheet("*{font-weight:bold;font-size:20px;padding:12px;}");
 
+            //calculating the price
+
+
             price_Layout->addWidget(total_price,0,0);
             price_form->setLayout(price_Layout);
+
+
+
 
             //Layout for Buttons
             QWidget *Button_widget = new QWidget(window);
@@ -198,12 +212,10 @@ void MainWindow::roombooking(){
             main_layout->addWidget(room_form);
             main_layout->addWidget(price_form);
             main_layout->addWidget(Button_widget);
-            window->setLayout(main_layout);  //main_layout set to main window
+            window->setLayout(main_layout);  //main_layout set to main window       
 
-
-            //setting to strings
-            QString name = customer_name->text() ;
+            connect(book_nowButton,SIGNAL(clicked(bool)),this,SLOT(bookButton_clicked())); // Calls bookButton_clicked method when button is clicked
 
     }
-    else {QMessageBox::warning(window(),"Database Error","Not connected to database");} // Displays user not found popup}
+    else {QMessageBox::warning(window(),"Database Error","Not connected to database");} // Displays database error popup
 }

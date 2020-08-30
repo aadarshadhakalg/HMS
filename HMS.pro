@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     Room.cpp \
     Roommain.cpp \
+    bookbtn_clicked.cpp \
     dashboard.cpp \
     database.cpp \
     guest.cpp \

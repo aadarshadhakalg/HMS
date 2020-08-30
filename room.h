@@ -13,7 +13,6 @@ public:
     QString getRooms();
     QString getName();
     QString getDetails();
-
 private:
      QString type;
     int no_of_beds;

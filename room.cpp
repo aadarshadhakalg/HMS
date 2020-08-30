@@ -25,9 +25,6 @@ bool Room::IsUnOccupied()
 
 }
 
-
-
-
 QString Room::getRooms(){
     return type;
     return details;
@@ -39,8 +36,6 @@ QString Room::getRooms(){
 /*QString Room:: getName(){
     return getguest.name();
 }*/
-
-void addUser_details(QString name, QString);
 
 QString Room:: getDetails() {
     if(wifi)

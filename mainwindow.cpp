@@ -56,7 +56,6 @@ void MainWindow::homeScreen(){
     layout->addWidget(exitButton);
 
     window->setLayout(layout); // Setting previously defined BoxLayout to main widget
-
 }
 
 MainWindow::~MainWindow()

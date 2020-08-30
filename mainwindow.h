@@ -38,7 +38,6 @@ signals:
     void loggedIn();
     void dbready();
 
-
 // SLOTS
 private slots:
     void loginScreen();
@@ -57,6 +56,8 @@ private slots:
     void roombooking();
     void room1();
     void Roommain();
+    void bookButton_clicked();
+    void totalprice_calculator();
 
 private:
     //for room booking
@@ -66,6 +67,7 @@ private:
     QLineEdit *customer_address;
     QLineEdit *customer_nationality;
     QLineEdit *package_id;
+    int *totalprice;
 
     //for master control
     QLineEdit *emailText;
