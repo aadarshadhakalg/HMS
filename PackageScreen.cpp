@@ -1,4 +1,5 @@
 #include"mainwindow.h"
+#include <QProgressDialog>
 
 void MainWindow::PackageScreen(){
     setWindowTitle("Packages");
@@ -145,4 +146,201 @@ void MainWindow::PackageScreen(){
 
 
     rightside->setLayout(Vlayout);
+
+    connect(addPackage,SIGNAL(clicked()), this, SLOT(addPackage()));
+    connect(removePackage,SIGNAL(clicked()), this, SLOT(removePackage()));
+}
+
+void MainWindow::addPackage(){
+    QWidget *window = new QWidget(this);
+    setCentralWidget(window);
+    window->setStyleSheet("*{background:white;}");
+        QVBoxLayout *main_layout =new QVBoxLayout();  //Defining Verticle Box Layour
+
+
+        QLabel *label = new QLabel(window);
+        label->setText("Package Information");
+        label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+        QFont font("Helvetica",30,QFont::Bold);
+        label->setFont(font);
+        label->show();
+
+
+        //Diaplays Login Form
+
+        QWidget *packageForm = new QWidget(window);
+        QGridLayout *formLayout = new QGridLayout(); // Defines grid layout for loginform
+        formLayout->setColumnMinimumWidth(1,300);
+
+
+
+        //Hint Text
+        QLabel *idHint = new QLabel("ID");
+        idHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+
+        QLabel *nameHint = new QLabel("Name");
+        nameHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+
+        QLabel *companyHint = new QLabel("Company");
+        companyHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+
+        QLabel *detailsHint = new QLabel("Details");
+        detailsHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+
+        QLabel *priceHint = new QLabel("Price");
+        priceHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+
+
+        // Input Forms
+        this->package_id = new QLineEdit();    //this refers to the MainWindow class
+        this->package_name = new QLineEdit();
+        this->package_company = new QLineEdit();
+        this->package_details = new QLineEdit();
+        this->package_price = new QLineEdit();
+
+
+        //font style
+
+         package_id->setFixedHeight(40);
+         package_id->setClearButtonEnabled(true);
+
+
+        package_name->setFixedHeight(40);
+        package_name->setClearButtonEnabled(true);
+
+        package_company->setFixedHeight(40);
+        package_company->setClearButtonEnabled(true);
+
+        package_details->setFixedHeight(40);
+        package_details->setClearButtonEnabled(true);
+
+        package_price->setFixedHeight(40);
+        package_price->setClearButtonEnabled(true);
+
+        // Submit button
+        QPushButton *loginButton = new QPushButton("Submit"); // Displays Login Button
+        loginButton->setStyleSheet("*{background:green;height:30px;}");
+        loginButton->setMaximumWidth(200);
+        loginButton->setObjectName("theLoginButton");
+        loginButton->adjustSize();
+
+        //connect(loginButton,SIGNAL(clicked(bool)),this,SLOT(loginButton_clicked()));
+
+
+
+
+        //Adding widgets in the userForm layout
+        formLayout->addWidget(idHint,0,0);
+        formLayout->addWidget(package_id,0,1);
+
+        formLayout->addWidget(nameHint,1,0);
+        formLayout->addWidget(package_name,1,1);
+
+        formLayout->addWidget(companyHint,2,0);
+        formLayout->addWidget(package_company,2,1);
+
+        formLayout->addWidget(detailsHint,3,0);
+        formLayout->addWidget(package_details,3,1);
+
+        formLayout->addWidget(priceHint,4,0);
+        formLayout->addWidget(package_price,4,1);
+
+        formLayout->setColumnStretch(4,1);
+
+        packageForm->setLayout(formLayout); //userForm layout set
+
+        QPushButton *backButton = new QPushButton("Go Back");
+        backButton->setStyleSheet("*{background:red;height:30px;}");
+        backButton->adjustSize();
+        connect(backButton,SIGNAL(clicked()),this,SLOT(PackageScreen()));
+
+        //Adding widgets to main_layout
+                   main_layout->addWidget(label);
+                   main_layout->addWidget (packageForm);
+                   main_layout->addWidget (loginButton);
+                   main_layout->addWidget(backButton);
+
+                   window->setLayout(main_layout);
+
+
+  }
+
+void MainWindow::removePackage(){
+    QWidget *window = new QWidget(this);
+    setCentralWidget(window);
+    window->setStyleSheet("*{background:white;}");
+        QVBoxLayout *main_layout =new QVBoxLayout();  //Defining Verticle Box Layour
+
+
+        QLabel *label = new QLabel(window);
+        label->setText("Which Package you want to remove? ");
+        label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+        QFont font("Helvetica",30,QFont::Bold);
+        label->setFont(font);
+        label->show();
+
+
+        QWidget *packageForm = new QWidget(window);
+        QGridLayout *formLayout = new QGridLayout(); // Defines grid layout for loginform
+        formLayout->setColumnMinimumWidth(1,300);
+
+
+
+        //Hint Text
+        QLabel *idHint = new QLabel("ID");
+        idHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+
+        QLabel *nameHint = new QLabel("Name");
+        nameHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+
+        // Input Forms
+        this->package_id = new QLineEdit();    //this refers to the MainWindow class
+        this->package_name = new QLineEdit();
+
+        //font style
+
+         package_id->setFixedHeight(40);
+         package_id->setClearButtonEnabled(true);
+
+
+        package_name->setFixedHeight(40);
+        package_name->setClearButtonEnabled(true);
+
+        // Submit button
+        QPushButton *loginButton = new QPushButton("Submit"); // Displays Login Button
+        loginButton->setStyleSheet("*{background:green;height:30px;}");
+        loginButton->setMaximumWidth(200);
+        loginButton->setObjectName("theLoginButton");
+        loginButton->adjustSize();
+
+        //connect(loginButton,SIGNAL(clicked(bool)),this,SLOT(loginButton_clicked()));
+
+        //Adding widgets in the userForm layout
+        formLayout->addWidget(idHint,0,0);
+        formLayout->addWidget(package_id,0,1);
+
+        formLayout->addWidget(nameHint,1,0);
+        formLayout->addWidget(package_name,1,1);
+
+
+         formLayout->setColumnStretch(4,1);
+
+        packageForm->setLayout(formLayout); //userForm layout set
+
+
+        QPushButton *backButton = new QPushButton("Go Back");
+        backButton->setStyleSheet("*{background:red;height:30px;}");
+        backButton->adjustSize();
+        connect(backButton,SIGNAL(clicked()),this,SLOT(PackageScreen()));
+
+        //Adding widgets to main_layout
+                   main_layout->addWidget(label);
+                   main_layout->addWidget (packageForm);
+                   main_layout->addWidget (loginButton);
+                   main_layout->addWidget(backButton);
+
+                   window->setLayout(main_layout);
+
+
+
 }

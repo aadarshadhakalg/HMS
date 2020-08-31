@@ -57,7 +57,8 @@ private slots:
     void Bill();
     void Customer();
     void Room();
-
+    void addPackage();
+    void removePackage();
 private:
     QLineEdit *emailText;
     QLineEdit *passwordText;
@@ -81,6 +82,13 @@ private:
     QLabel *label;
     QSqlDatabase db;
     QSqlTableModel *model;
+
+    //for adding package
+    QLineEdit *package_id;
+    QLineEdit *package_name;
+    QLineEdit *package_company;
+    QLineEdit *package_details;
+    QLineEdit *package_price;
 
 };
 

@@ -23,20 +23,6 @@ void MainWindow::dashboard(){
     rightside->setStyleSheet("*{background:white;}");
 }
 
-//void MainWindow::PackageScreen(){
-//    setWindowTitle("Packages");
-//    style();
-//    QVBoxLayout *layout = new QVBoxLayout();
-////    Database database;
-////    database.addPackages("Rafting","Ayush Soft","This is detail",4500,1);
-////    Package pkgs[10];
-////    database.getAvailablePackages(pkgs);
-////    for(Package i : pkgs){
-////     qDebug() << i.getName();
-////    }
-
-//    rightside->setStyleSheet("*{background:black;}");
-//}
 
 void MainWindow::Bill(){
     setWindowTitle("Billings");

@@ -33,37 +33,37 @@ QSqlDatabase Database::getDB(){
     return db;
 }
 
-void Database::getAvailablePackages(Package packages[]){
-    QSqlQuery query;
-    if(query.exec("SELECT * FROM packages WHERE available = 1")){
-        for(int i = 0; query.next(); i++){
-            Package pkg;
-            pkg.setName(query.value(1).toString());
-            pkg.setCompany(query.value(2).toString());
-            pkg.setDetails(query.value(3).toString());
-            pkg.setPrice(query.value(4).toInt());
-            pkg.setavailable(true);
-            packages[i] = pkg;
-        }
-    }
-}
+//void Database::getAvailablePackages(Package packages[]){
+//    QSqlQuery query;
+//    if(query.exec("SELECT * FROM packages WHERE available = 1")){
+//        for(int i = 0; query.next(); i++){
+//            Package pkg;
+//            pkg.setName(query.value(1).toString());
+//            pkg.setCompany(query.value(2).toString());
+//            pkg.setDetails(query.value(3).toString());
+//            pkg.setPrice(query.value(4).toInt());
+//            pkg.setavailable(true);
+//            packages[i] = pkg;
+//        }
+//    }
+//}
 
 
 
-void Database::getUnavailablePackages(Package packages[]){
-    QSqlQuery query;
-    if(query.exec("SELECT * FROM packages WHERE available = 0")){
-        for(int i = 0; query.next(); i++){
-            Package pkg;
-            pkg.setName(query.value(1).toString());
-            pkg.setCompany(query.value(2).toString());
-            pkg.setDetails(query.value(3).toString());
-            pkg.setPrice(query.value(4).toInt());
-            pkg.setavailable(false);
-            packages[i] = pkg;
-        }
-    }
-}
+//void Database::getUnavailablePackages(Package packages[]){
+//    QSqlQuery query;
+//    if(query.exec("SELECT * FROM packages WHERE available = 0")){
+//        for(int i = 0; query.next(); i++){
+//            Package pkg;
+//            pkg.setName(query.value(1).toString());
+//            pkg.setCompany(query.value(2).toString());
+//            pkg.setDetails(query.value(3).toString());
+//            pkg.setPrice(query.value(4).toInt());
+//            pkg.setavailable(false);
+//            packages[i] = pkg;
+//        }
+//    }
+//}
 
 void Database::addPackages(QString name, QString company, QString details, int price, bool available){
     QSqlQuery query;
