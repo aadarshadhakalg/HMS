@@ -1,15 +1,14 @@
-#include "mainwindow.h"
 #include <QProgressDialog>
 #include <iostream>
 #include "database.h"
 #include "room.h"
-
+#include "mainwindow.h"
+#define service_max 10
 
 // Defining room booking screen //
 
 void MainWindow::roombooking(){
-
-    if(db.open()){              //ensuring database is connected
+    if (db.open()){
     QWidget *window = new QWidget(this);
     setCentralWidget(window);
     window->setStyleSheet("*{background:white;}");
@@ -89,17 +88,10 @@ void MainWindow::roombooking(){
             user_formLayout->setColumnStretch(4,1);
             userForm->setLayout(user_formLayout); //userForm layout set
 
-            //ROOM details label start
-            QLabel *room_label = new QLabel(window);
-            room_label->setText("Rooms");
-            room_label->setAlignment(Qt::AlignHCenter);
-            room_label->setFont(font);
-            room_label->show();
-
             //Diaplays Room details Form
             QWidget *room_form = new QWidget(window);
             QGridLayout *room_formLayout = new QGridLayout(); // Defines grid layout for name
-            room_formLayout->setColumnMinimumWidth(3,400);
+            room_formLayout->setColumnMinimumWidth(1,300);
 
             //Room select
             QLabel *room_select = new QLabel("ROOM:");
@@ -133,6 +125,19 @@ void MainWindow::roombooking(){
             this->package_id = new QLineEdit();
             package_id->setFixedHeight(40);
 
+            //price label
+            QWidget *price_form = new QWidget(window);
+            QGridLayout *price_Layout = new QGridLayout(); // Defines grid layout for price
+            price_Layout->setColumnMinimumWidth(1,300);
+            QLabel *totalprice_label = new QLabel("Total Price :");
+            totalprice_label->setStyleSheet("*{font-weight:bold;font-size:20px;padding:12px;}");
+            display_price = new QLineEdit(0);
+            display_price->setReadOnly(true);
+            display_price->setText(QString::number(totalprice));
+            price_Layout->addWidget(totalprice_label,0,0);
+            price_Layout->addWidget(display_price,0,1);
+            price_form->setLayout(price_Layout);
+
 
             //Adding widgets in the room_FormLayout
             room_formLayout->addWidget(room_select,0,0);
@@ -161,29 +166,82 @@ void MainWindow::roombooking(){
             room_formLayout->setColumnStretch(6,3);
             room_form->setLayout(room_formLayout); //room_form layout set
 
-            if(db.open()) {
-             QSqlQueryModel* qry_model = new QSqlQueryModel();
-            qry_model->setQuery("SELECT * FROM room");
+            int room_price[8], i;
+            QSqlQuery* roomprice_qry = new QSqlQuery();
+            roomprice_qry->exec("SELECT DISTINCT room_price FROM room");
+            for (i=0;roomprice_qry->next();i++){room_price[i] =roomprice_qry->value(0).toInt();}
 
+            int service_charge[service_max];
+            QSqlQuery* serviceprice_qry = new QSqlQuery();
+            serviceprice_qry->exec("SELECT DISTINCT service_price FROM services");//Table name ra column name sacchhaune
+            for(i=0;serviceprice_qry->next();i++){service_charge[i] = serviceprice_qry->value(0).toInt();}
+            /*
+            //yo sabai database ma serial wise cha tesaile yesko index(0,1,2....) change nagarne
+            QSqlQuery* serviceprice_qry = new QSqlQuery();
+            serviceprice_qry->exec("SELECT DISTINCT room_price FROM room");
+            serviceprice_qry->first();
+            breakfast_price = serviceprice_qry->value(0).toInt();
+            serviceprice_qry->next();
+            dinner_price = serviceprice_qry->value(0).toInt();
+            serviceprice_qry->next();
+            lunch_price = serviceprice_qry->value(0).toInt();
+            serviceprice_qry->next();
+            transportation_price = serviceprice_qry->value(0).toInt();
+            serviceprice_qry->next();
+            sim_price = serviceprice_qry->value(0).toInt();
+            serviceprice_qry->last();
+            guide_price = serviceprice_qry->value(0).toInt();
+            */
+/*
+            QSqlQuery* roomavailability_qry = new QSqlQuery();
+            roomavailability_qry->exec("select distinct room_status from room ");
+            roomavailability_qry->first();
+            if(roomavailability_qry->value(0).toString() == '1'){ room1_checkbox->setEnabled(false);}
+            roomavailability_qry->next();
+            if(roomavailability_qry->value(0).toString() == '1'){ room2_checkbox->setEnabled(false);}
+            roomavailability_qry->next();
+            if(roomavailability_qry->value(0).toString() == '1'){ room3_checkbox->setEnabled(false);}
+            roomavailability_qry->next();
+            if(roomavailability_qry->value(0).toString() == '1'){ room4_checkbox->setEnabled(false);}
+            roomavailability_qry->next();
+            if(roomavailability_qry->value(0).toString() == '1'){ room5_checkbox->setEnabled(false);}
+            roomavailability_qry->next();
+            if(roomavailability_qry->value(0).toString() == '1'){ room6_checkbox->setEnabled(false);}
+            roomavailability_qry->next();
+            if(roomavailability_qry->value(0).toString() == '1'){ room7_checkbox->setEnabled(false);}
+            roomavailability_qry->last();
+            if(roomavailability_qry->value(0).toString() == '1'){ room8_checkbox->setEnabled(false);}
+*/
+            if(room1_checkbox->isChecked()) {
+                totalprice_calculator(room_price[0]);
+                display_price->textChanged(QString::number(totalprice));
             }
+            if(room2_checkbox->isChecked()) {
+                totalprice_calculator(room_price[1]);
+                display_price->textChanged(QString::number(totalprice));
+            }
+            if(room3_checkbox->isChecked()) {
+                totalprice_calculator(room_price[2]);
+                display_price->textChanged(QString::number(totalprice));
+            }
+            if(room4_checkbox->isChecked()) {
+                totalprice_calculator(room_price[3]);
+                display_price->textChanged(QString::number(totalprice));
+            }
+            if(room5_checkbox->isChecked()) {
+                totalprice_calculator(room_price[4]);
+                display_price->textChanged(QString::number(totalprice));
+            }
+            if(room6_checkbox->isChecked()) {totalprice_calculator(room_price[5]);}
+            if(room7_checkbox->isChecked()) {totalprice_calculator(room_price[6]);}
+            if(room8_checkbox->isChecked()) {totalprice_calculator(room_price[7]);}
 
-            connect(room1_checkbox,SIGNAL(ischecked()),this,SLOT(totalprice_calculator()));
-
-            //price label
-            QWidget *price_form = new QWidget(window);
-            QGridLayout *price_Layout = new QGridLayout(); // Defines grid layout for price
-            price_Layout->setColumnMinimumWidth(1,400);
-            QLabel *total_price = new QLabel("Total Price :");
-            total_price->setStyleSheet("*{font-weight:bold;font-size:20px;padding:12px;}");
-
-            //calculating the price
-
-
-            price_Layout->addWidget(total_price,0,0);
-            price_form->setLayout(price_Layout);
-
-
-
+            if(breakfast_checkbox->isChecked()) {totalprice_calculator(service_charge[0]);}
+            if(dinner_checkbox->isChecked()) {totalprice_calculator(service_charge[1]);}
+            if(lunch_checkbox->isChecked()) {totalprice_calculator(service_charge[2]);}
+            if(transportation_checkbox->isChecked()) {totalprice_calculator(service_charge[3]);}
+            if(sim_checkbox->isChecked()) {totalprice_calculator(service_charge[4]);}
+            if(guide_checkbox->isChecked()) {totalprice_calculator(service_charge[5]);}
 
             //Layout for Buttons
             QWidget *Button_widget = new QWidget(window);
@@ -200,22 +258,20 @@ void MainWindow::roombooking(){
             connect(backButton,SIGNAL(clicked()),this,SLOT(Roommain()));
 
             //adding button widgets to buttonlayout
-            buttonLayout->addWidget(backButton,0,Qt::AlignLeft);
-            buttonLayout->addWidget(book_nowButton,0,1,Qt::AlignRight);
+            buttonLayout->addWidget(backButton,0,0,Qt::AlignLeft);
+            buttonLayout->addWidget(book_nowButton,0,3,Qt::AlignRight);
             buttonLayout->setColumnStretch(2,2);
             Button_widget->setLayout(buttonLayout); //Adding Layout to Button_widget
 
             //Adding widgets to main_layout
             main_layout->addWidget(user_label);
             main_layout->addWidget(userForm);
-            main_layout->addWidget(room_label);
             main_layout->addWidget(room_form);
             main_layout->addWidget(price_form);
             main_layout->addWidget(Button_widget);
             window->setLayout(main_layout);  //main_layout set to main window       
 
             connect(book_nowButton,SIGNAL(clicked(bool)),this,SLOT(bookButton_clicked())); // Calls bookButton_clicked method when button is clicked
-
-    }
-    else {QMessageBox::warning(window(),"Database Error","Not connected to database");} // Displays database error popup
+        }
+    else {QMessageBox::warning(window(),"Database Error 1","Not connected to database");}
 }

@@ -16,12 +16,13 @@ void MainWindow::loginScreen(){
     // Database Password: password
 
 
-    db = QSqlDatabase::addDatabase("QMYSQL"); // Initializing Database, QMYSQL is MySQL database driver for QT.
+   /* db = QSqlDatabase::addDatabase("QMYSQL"); // Initializing Database, QMYSQL is MySQL database driver for QT.
     db.setHostName("hms.cxsp6l8xtyqr.us-east-1.rds.amazonaws.com"); // Setting hostname
     db.setPort(3306); // setting port
     db.setDatabaseName("hms"); // setting database name
     db.setUserName("hms"); //setting username
     db.setPassword("password"); //setting password
+    */
 
     if(db.open()){                                    // Ensures database is connected
     //if database conection is successful displays new window

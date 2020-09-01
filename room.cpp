@@ -1,87 +1,58 @@
+#include "room.h"
+#include <QProgressDialog>
+#include <iostream>
 #include "mainwindow.h"
-void MainWindow::Room(){
-    setWindowTitle("Room");
-    style();
-
-    QLabel *label = new QLabel();
-    label->setText("Common");
-    QFont banner("Helvetica",20,QFont::Bold);
-    label->setFont(banner);
-    label->setFixedHeight(90);
-
-    QLabel *label2 = new QLabel();
-    label2->setText("Deluxe");
-    label2->setFont(banner);
-    label2->setFixedHeight(90);
+#include "database.h"
 
 
-    rightside->setStyleSheet("*{background:white"
-                             ";}");
-    QString StyleSheetBtns =   "QPushButton { color: white; background-color: #1c2c3c; border: solid 5px white; font: 16pt 'Microsoft YaHei UI Light'; font-weight:bold; outline: none; } QPushButton:hover { background-color: #dc2525; border-style: solid; border-width: 3px; border-color: white; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
+// Defining //
 
-    QPushButton* roomBtn = new QPushButton("Room");
-    QPushButton* PackageBtn = new QPushButton("Packages");
-    QPushButton* billBtn = new QPushButton("Billings");
-    QPushButton* customerBtn = new QPushButton("Records");
-    QPushButton* billBtn1 = new QPushButton("Billings");
-    QPushButton* billBtn2 = new QPushButton("Billings");
-    QPushButton* billBtn3 = new QPushButton("Billings");
-    QPushButton* bookbtn = new QPushButton("Book Now");
-    //Add button
-    QPushButton* addbtn = new QPushButton("Add Room");
+void MainWindow::bookButton_clicked(){
 
-    roomBtn->setStyleSheet(StyleSheetBtns);
-    PackageBtn->setStyleSheet(StyleSheetBtns);
-    billBtn->setStyleSheet(StyleSheetBtns);
-    customerBtn->setStyleSheet(StyleSheetBtns);
-    billBtn1->setStyleSheet(StyleSheetBtns);
-    billBtn2->setStyleSheet(StyleSheetBtns);
-    billBtn3->setStyleSheet(StyleSheetBtns);
-    addbtn->setStyleSheet(StyleSheetBtns);
-    bookbtn->setStyleSheet(StyleSheetBtns);
+    QString name,email,address,nationality,phone;
+    email = MainWindow::customer_email->text(); // fetch input text from email input field of loginscreen
+    name = MainWindow::customer_name->text();  // fetch input text from password input field of loginscreen
+    address = MainWindow::customer_address->text();
+    nationality = MainWindow::customer_nationality->text();
+    phone = MainWindow::customer_phone->text();
 
+    QSqlQuery qry;
+    qry.prepare("INSERT INTO hms.guests (name, email, contact, address, identity)"
+                "VALUES (?,?,?,?,?);");
+    qry.addBindValue(name);
+    qry.addBindValue(email);
+    qry.addBindValue(phone);
+    qry.addBindValue(address);
+    qry.addBindValue(nationality);
+    qry.exec();
 
-
-    roomBtn->setFixedSize(200,120);
-    PackageBtn->setFixedSize(200,120);
-    billBtn->setFixedSize(200,120);
-    customerBtn->setFixedSize(200,120);
-    billBtn1->setFixedSize(200,120);
-    billBtn2->setFixedSize(200,120);
-    billBtn3->setFixedSize(200,120);
-    addbtn->setFixedSize(200,120);
-    bookbtn->setFixedSize(200,120);
-
-
-    connect(roomBtn,SIGNAL(clicked()), this, SLOT(room1()));
-    connect(PackageBtn,SIGNAL(clicked()), this, SLOT(Package()));
-    connect(billBtn,SIGNAL(clicked()), this, SLOT(Bill()));
-    connect(customerBtn,SIGNAL(clicked()), this, SLOT(Customer()));
-
-    QGridLayout *roomtype= new QGridLayout;
-    roomtype-> setHorizontalSpacing(30);
-     roomtype-> addWidget(label,0,0,1,4);
-
-    roomtype-> addWidget(roomBtn,1,0,1,1);
-    roomtype-> addWidget(PackageBtn,1,1,1,1);
-    roomtype-> addWidget(billBtn1,1,2,1,1);
-    roomtype-> addWidget(billBtn2,1,3,1,1);
-
-    roomtype-> addWidget(label2);
-
-    roomtype-> addWidget(billBtn,3,0,1,1);
-    roomtype-> addWidget(customerBtn,3,1,1,1);
-    roomtype-> addWidget(billBtn3,3,2,1,1);
-    roomtype-> addWidget(addbtn,4,0,1,1);
-    roomtype-> addWidget(bookbtn,4,3,1,1);
-
-
-
-
-    rightside->setLayout(roomtype);
-
-    connect(bookbtn,SIGNAL(clicked()),this,SLOT(roombooking()));
-    connect(addbtn,SIGNAL(clicked()),this,SLOT(room_add()));
-
-
+    if(!qry.exec())
+    {
+        QMessageBox::warning(window(),"Database Error2","Not connected to database");
+    } // Displays database error popup
 }
+
+
+
+void MainWindow::totalprice_calculator(int price){
+    totalprice += price;
+    display_price->setText(QString::number(totalprice));
+    display_price->textChanged(QString::number(totalprice));
+ }//total price ani paid amount/due amount bhanne book button click garisakepachi dialog box ma aaune banaune
+
+/*void package_getter(){
+    int i = 0,j=0, k[10];
+    k[0] = 0;
+    for(//QLineEdit ko text purai samma loop){
+        i++;
+        QString a = a + QString b //yesma operator overloading garna milcha.. duita qstring + garda qstring jodera int return garne
+        if(//comma ayo bhane){      //jasti QString a = '1' QString b = '2' then a + b = 12
+        k[j+1] = i;
+        j++;
+        }
+    }
+    for(i=0;i<j+1;i++){
+           for(l=0;l<k[j+1];l++){}
+    }
+}*/
+

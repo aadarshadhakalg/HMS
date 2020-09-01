@@ -2,17 +2,11 @@
 #define CLASS_ROOM_H
 #include <QSqlDatabase>
 #include <QString>
-
 class Room
 {
 public:
     Room();
-    void Checkin() ;
-    void Checkout() ;
     bool IsUnOccupied() ;
-    QString getRooms();
-    QString getName();
-    QString getDetails();
 private:
      QString type;
     int no_of_beds;

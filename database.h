@@ -27,8 +27,8 @@ public:
     void removePackages(int id);
     void makeAvailable(int id);
     void makeUnavailable(int id);
-    void getRooms(Guest guests[]);
-    void getUsers(Room rooms[]);
+
+
 };
 
 #endif // DATABASE_H

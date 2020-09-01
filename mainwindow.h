@@ -34,6 +34,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void totalprice_calculator(int);
+    int totalprice = 0 ;
+    QLineEdit* display_price;
+    int roomBtn_select;
+
 signals:
     void loggedIn();
     void dbready();
@@ -53,11 +58,11 @@ private slots:
     void noEditTable();
     void Bill();
     void Customer();
+    void PackageScreen();
     void roombooking();
-    void room1();
     void Roommain();
     void bookButton_clicked();
-    void totalprice_calculator();
+    void room();
 
 private:
     //for room booking
@@ -67,7 +72,7 @@ private:
     QLineEdit *customer_address;
     QLineEdit *customer_nationality;
     QLineEdit *package_id;
-    int *totalprice;
+    QSqlTableModel *qrymodel;
 
     //for master control
     QLineEdit *emailText;
@@ -92,7 +97,6 @@ private:
     QLabel *label;
     QSqlDatabase db;
     QSqlTableModel *model;
-
 };
 
 #endif // MAINWINDOW_H

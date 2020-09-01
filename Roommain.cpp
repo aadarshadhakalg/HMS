@@ -50,10 +50,23 @@ void MainWindow::Roommain(){
     room7Btn->setFixedSize(200,120);
     room8Btn->setFixedSize(200,120);
 
-    connect(room1Btn,SIGNAL(clicked()), this, SLOT(room1()));
-    connect(room2Btn,SIGNAL(clicked()), this, SLOT(Package()));
-    connect(room3Btn,SIGNAL(clicked()), this, SLOT(Bill()));
-    connect(room8Btn,SIGNAL(clicked()), this, SLOT(Customer()));
+    if(room1Btn->isChecked()){roomBtn_select = '1'; }
+    if(room2Btn->isChecked()){roomBtn_select = '2'; }
+    if(room3Btn->isChecked()){roomBtn_select = '3'; }
+    if(room4Btn->isChecked()){roomBtn_select = '4'; }
+    if(room5Btn->isChecked()){roomBtn_select = '5'; }
+    if(room6Btn->isChecked()){roomBtn_select = '6'; }
+    if(room7Btn->isChecked()){roomBtn_select = '7'; }
+    if(room8Btn->isChecked()){roomBtn_select = '8'; }
+
+    connect(room1Btn,SIGNAL(clicked()), this, SLOT(room()));
+    connect(room2Btn,SIGNAL(clicked()), this, SLOT(room()));
+    connect(room3Btn,SIGNAL(clicked()), this, SLOT(room()));
+    connect(room4Btn,SIGNAL(clicked()), this, SLOT(room()));
+    connect(room5Btn,SIGNAL(clicked()), this, SLOT(room()));
+    connect(room6Btn,SIGNAL(clicked()), this, SLOT(room()));
+    connect(room7Btn,SIGNAL(clicked()), this, SLOT(room()));
+    connect(room8Btn,SIGNAL(clicked()), this, SLOT(room()));
     connect(bookbtn,SIGNAL(clicked()), this, SLOT(roombooking()));
 
     QGridLayout *roomtype= new QGridLayout;
