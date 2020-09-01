@@ -24,7 +24,7 @@ public:
     void getAvailablePackages(Package activepackages[]);
     void getUnavailablePackages(Package inactivepackages[]);
     void addPackages(QString name, QString company, QString details, int price, bool available);
-    void removePackages(int id);
+    bool removePackages(int id);
     void makeAvailable(int id);
     void makeUnavailable(int id);
     void getRooms(Guest guests[]);

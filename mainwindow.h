@@ -59,6 +59,11 @@ private slots:
     void Room();
     void addPackage();
     void removePackage();
+    void sendAddRequest();
+    void sendRemoveRequest();
+
+
+
 private:
     QLineEdit *emailText;
     QLineEdit *passwordText;
@@ -85,10 +90,12 @@ private:
 
     //for adding package
     QLineEdit *package_id;
+    QCheckBox *package_available;
     QLineEdit *package_name;
     QLineEdit *package_company;
     QLineEdit *package_details;
     QLineEdit *package_price;
+    QLineEdit *package_edit;
 
 };
 

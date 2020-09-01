@@ -77,3 +77,14 @@ void Database::addPackages(QString name, QString company, QString details, int p
     query.bindValue(":available",avail);
     query.exec();
 }
+
+bool Database::removePackages(int id){
+    QSqlQuery query;
+    query.prepare("DELETE FROM packages WHERE id=:id");
+    query.bindValue(":id", id);
+    if(query.exec()){
+        return true;
+    }else {
+    return false;
+}
+}

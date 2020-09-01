@@ -1,5 +1,7 @@
 #include"mainwindow.h"
 #include <QProgressDialog>
+#include <QDebug>
+#include <QCheckBox>
 
 void MainWindow::PackageScreen(){
     setWindowTitle("Packages");
@@ -53,40 +55,6 @@ void MainWindow::PackageScreen(){
     removePackage->adjustSize();
 
 
-
-    /*QHBoxLayout *HLayout = new QHBoxLayout();
-       HLayout->addWidget(label1);
-       HLayout->addWidget(label2);
-
-     QHBoxLayout *HLayout1 = new QHBoxLayout();
-     HLayout->addWidget(availableBtn1);
-     HLayout->addWidget(notavailableBtn1);
-
-     QHBoxLayout *HLayout2 =new QHBoxLayout();
-     HLayout->addWidget(availableBtn2);
-     HLayout->addWidget(notavailableBtn2);
-
-     QHBoxLayout *HLayout3 = new QHBoxLayout();
-     HLayout->addWidget(availableBtn3);
-     HLayout->addWidget(notavailableBtn3);
-
-     QHBoxLayout *HLayout4 = new QHBoxLayout();
-     HLayout->addWidget(availableBtn4);
-     HLayout->addWidget(notavailableBtn4);
-
-
-
-       QVBoxLayout *mainLayout = new QVBoxLayout();
-
-       mainLayout->addWidget(label);
-       mainLayout->addLayout(HLayout);
-       mainLayout->addWidget(label2);
-       mainLayout->addLayout(HLayout1);
-       mainLayout->addLayout(HLayout2);
-       mainLayout->addLayout(HLayout3);
-       mainLayout->addLayout(HLayout4);
-
-*/
     QHBoxLayout *HLayout1 = new QHBoxLayout();
     HLayout1->addWidget(addPackage);
     HLayout1->addWidget(label);
@@ -111,9 +79,9 @@ void MainWindow::PackageScreen(){
         QTableView *availableview = new QTableView();
         availableview->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
         availableview->setModel(amodel);
-        availableview->hideColumn(0);
+//        availableview->hideColumn(0);
         availableview->hideColumn(5);
-        availableview->setColumnWidth(3,200);
+        availableview->setColumnWidth(3,170);
 
 
 
@@ -131,9 +99,9 @@ void MainWindow::PackageScreen(){
          QTableView *notavailableview = new QTableView();
          notavailableview->setSizePolicy(QSizePolicy::Preferred,QSizePolicy::Preferred);
          notavailableview->setModel(nmodel);
-         notavailableview->hideColumn(0);
+//         notavailableview->hideColumn(0);
          notavailableview->hideColumn(5);
-         notavailableview->setColumnWidth(3,200);
+         notavailableview->setColumnWidth(3,170);
 
          QHBoxLayout *HLayout2 = new QHBoxLayout();
          HLayout2->addWidget(availableview);
@@ -150,6 +118,7 @@ void MainWindow::PackageScreen(){
     connect(addPackage,SIGNAL(clicked()), this, SLOT(addPackage()));
     connect(removePackage,SIGNAL(clicked()), this, SLOT(removePackage()));
 }
+
 
 void MainWindow::addPackage(){
     QWidget *window = new QWidget(this);
@@ -175,7 +144,7 @@ void MainWindow::addPackage(){
 
 
         //Hint Text
-        QLabel *idHint = new QLabel("ID");
+        QLabel *idHint = new QLabel("Available");
         idHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
 
         QLabel *nameHint = new QLabel("Name");
@@ -191,18 +160,19 @@ void MainWindow::addPackage(){
         priceHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
 
 
-        // Input Forms
-        this->package_id = new QLineEdit();    //this refers to the MainWindow class
-        this->package_name = new QLineEdit();
+        // Input Forms   
+        this->package_name = new QLineEdit(); //this refers to the MainWindow class
         this->package_company = new QLineEdit();
         this->package_details = new QLineEdit();
         this->package_price = new QLineEdit();
+        package_price->setValidator( new QIntValidator(0, 100000, this) );
+        this->package_available = new QCheckBox();
 
 
         //font style
 
-         package_id->setFixedHeight(40);
-         package_id->setClearButtonEnabled(true);
+//         package_id->setFixedHeight(40);
+//         package_id->setClearButtonEnabled(true);
 
 
         package_name->setFixedHeight(40);
@@ -218,20 +188,21 @@ void MainWindow::addPackage(){
         package_price->setClearButtonEnabled(true);
 
         // Submit button
-        QPushButton *loginButton = new QPushButton("Submit"); // Displays Login Button
-        loginButton->setStyleSheet("*{background:green;height:30px;}");
-        loginButton->setMaximumWidth(200);
-        loginButton->setObjectName("theLoginButton");
-        loginButton->adjustSize();
 
-        //connect(loginButton,SIGNAL(clicked(bool)),this,SLOT(loginButton_clicked()));
+        QPushButton *submitButton = new QPushButton("Submit"); // Displays Login Button
+        submitButton->setStyleSheet("*{background:green;height:30px;}");
+        submitButton->setMaximumWidth(200);
+        submitButton->setObjectName("theLoginButton");
+        submitButton->adjustSize();
+
+        connect(submitButton,SIGNAL(clicked(bool)),this,SLOT(sendAddRequest()));
 
 
 
 
         //Adding widgets in the userForm layout
         formLayout->addWidget(idHint,0,0);
-        formLayout->addWidget(package_id,0,1);
+        formLayout->addWidget(package_available,0,1);
 
         formLayout->addWidget(nameHint,1,0);
         formLayout->addWidget(package_name,1,1);
@@ -257,7 +228,7 @@ void MainWindow::addPackage(){
         //Adding widgets to main_layout
                    main_layout->addWidget(label);
                    main_layout->addWidget (packageForm);
-                   main_layout->addWidget (loginButton);
+                   main_layout->addWidget (submitButton);
                    main_layout->addWidget(backButton);
 
                    window->setLayout(main_layout);
@@ -290,21 +261,13 @@ void MainWindow::removePackage(){
         QLabel *idHint = new QLabel("ID");
         idHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
 
-        QLabel *nameHint = new QLabel("Name");
-        nameHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
-
         // Input Forms
         this->package_id = new QLineEdit();    //this refers to the MainWindow class
-        this->package_name = new QLineEdit();
 
         //font style
 
          package_id->setFixedHeight(40);
          package_id->setClearButtonEnabled(true);
-
-
-        package_name->setFixedHeight(40);
-        package_name->setClearButtonEnabled(true);
 
         // Submit button
         QPushButton *loginButton = new QPushButton("Submit"); // Displays Login Button
@@ -313,15 +276,11 @@ void MainWindow::removePackage(){
         loginButton->setObjectName("theLoginButton");
         loginButton->adjustSize();
 
-        //connect(loginButton,SIGNAL(clicked(bool)),this,SLOT(loginButton_clicked()));
+        connect(loginButton,SIGNAL(clicked(bool)),this,SLOT(sendRemoveRequest()));
 
         //Adding widgets in the userForm layout
         formLayout->addWidget(idHint,0,0);
         formLayout->addWidget(package_id,0,1);
-
-        formLayout->addWidget(nameHint,1,0);
-        formLayout->addWidget(package_name,1,1);
-
 
          formLayout->setColumnStretch(4,1);
 
@@ -343,4 +302,37 @@ void MainWindow::removePackage(){
 
 
 
+}
+
+void MainWindow::sendAddRequest(){
+    Database database;
+    bool ok;
+    int num = package_price->text().toInt(&ok);
+    if (ok) {
+      database.addPackages(package_name->text(),package_company->text(),package_details->text(),num,package_available->isChecked());
+      package_name->clear();
+      package_price->clear();
+      package_company->clear();
+      package_details->clear();
+      package_available->setChecked(0);
+      QMessageBox::information(this,"Successfull!","Package Added Success Fully");
+    }else {
+    QMessageBox::warning(this,"Unsuccessfull!","Can't add packages, Please check you have filled every field correctly");
+    }
+
+}
+
+void MainWindow::sendRemoveRequest(){
+    Database database;
+    bool ok;
+    int num = package_id->text().toInt(&ok);
+    if(ok){
+        if(database.removePackages(num)){
+         QMessageBox::information(this,"Successfull!","Package Removed Successfully");
+        }else {
+            QMessageBox::warning(this,"Unsuccessfull!","Can't connect to database! Check Internet connection and Try Again!");
+            }
+    }else{
+    QMessageBox::warning(this,"Invalid Package ID!","Please enter valid package ID!");
+    }
 }
