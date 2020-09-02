@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+
 void MainWindow::Roommain(){
     setWindowTitle("Room");
     style();
@@ -50,22 +51,14 @@ void MainWindow::Roommain(){
     room7Btn->setFixedSize(200,120);
     room8Btn->setFixedSize(200,120);
 
-    room1Btn->setCheckable(true);
-    room2Btn->setCheckable(true);
-    room3Btn->setCheckable(true);
-    room4Btn->setCheckable(true);
-    room5Btn->setCheckable(true);
-    room6Btn->setCheckable(true);
-    room7Btn->setCheckable(true);
-    room8Btn->setCheckable(true);
-    if(room1Btn->isChecked()){roomBtn_select = 1; }
-    if(room2Btn->isChecked()){roomBtn_select = 2; }
-    if(room3Btn->isChecked()){roomBtn_select = 3; }
-    if(room4Btn->isChecked()){roomBtn_select = 4; }
-    if(room5Btn->isChecked()){roomBtn_select = 5; }
-    if(room6Btn->isChecked()){roomBtn_select = 6; }
-    if(room7Btn->isChecked()){roomBtn_select = 7; }
-    if(room8Btn->isChecked()){roomBtn_select = 8; }
+    connect(room1Btn,SIGNAL(clicked()), this, SLOT(room1()));
+    connect(room2Btn,SIGNAL(clicked()), this, SLOT(room2()));
+    connect(room3Btn,SIGNAL(clicked()), this, SLOT(room3()));
+    connect(room4Btn,SIGNAL(clicked()), this, SLOT(room4()));
+    connect(room5Btn,SIGNAL(clicked()), this, SLOT(room5()));
+    connect(room6Btn,SIGNAL(clicked()), this, SLOT(room6()));
+    connect(room7Btn,SIGNAL(clicked()), this, SLOT(room7()));
+    connect(room8Btn,SIGNAL(clicked()), this, SLOT(room8()));
 
     connect(room1Btn,SIGNAL(clicked()), this, SLOT(room()));
     connect(room2Btn,SIGNAL(clicked()), this, SLOT(room()));

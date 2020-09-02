@@ -64,6 +64,15 @@ private slots:
     void Roommain();
     void bookButton_clicked();
     void room();
+    //slots for room details
+    void room1();
+    void room2();
+    void room3();
+    void room4();
+    void room5();
+    void room6();
+    void room7();
+    void room8();
 
 private:
     //for room booking

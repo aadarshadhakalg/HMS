@@ -220,8 +220,7 @@ void MainWindow::roombooking(){
             //Adding widgets to main_layout
             main_layout->addWidget(user_label);
             main_layout->addWidget(userForm);
-            main_layout->addWidget(room_form);
-            main_layout->addWidget(price_form);
+            main_layout->addWidget(room_form);           
             main_layout->addWidget(Button_widget);
             window->setLayout(main_layout);  //main_layout set to main window       
 

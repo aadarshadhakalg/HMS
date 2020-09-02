@@ -5,6 +5,15 @@
 
 // Defining room booking screen //
 
+void MainWindow::room1(){roomBtn_select = 1;}
+void MainWindow::room2(){roomBtn_select = 2;}
+void MainWindow::room3(){roomBtn_select = 3;}
+void MainWindow::room4(){roomBtn_select = 4;}
+void MainWindow::room5(){roomBtn_select = 5;}
+void MainWindow::room6(){roomBtn_select = 6;}
+void MainWindow::room7(){roomBtn_select = 7;}
+void MainWindow::room8(){roomBtn_select = 8;}
+
 void MainWindow::room(){
     if(db.open()){
     QWidget* window = new QWidget();
@@ -27,7 +36,7 @@ void MainWindow::room(){
             int i;
 
             if(roomBtn_select == 1){ //yo connect bhako chaina hola
-            room_query.prepare("SELECT * FROM room WHERE room_no = 1"); //milecha ki chaina check garna parcha
+            room_query.prepare("SELECT * FROM room WHERE room_no = 1");
             room_query.exec();
             room_query.next();
             for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
@@ -111,13 +120,13 @@ void MainWindow::room(){
             room_details_formLayout->addWidget(room_num,0,0,1,1);
             room_details_formLayout->addWidget(room_num_is,0,1,1,1);
             room_details_formLayout->addWidget(room_typ,1,0,1,1);
-            room_details_formLayout->addWidget(room_type_is,1,1);
-            room_details_formLayout->addWidget(room_detail,2,0);
-            room_details_formLayout->addWidget(details,2,1);
-            room_details_formLayout->addWidget(room_prc,3,0);
-            room_details_formLayout->addWidget(price,3,1);
-            room_details_formLayout->addWidget(room_available,4,0);
-            room_details_formLayout->addWidget(availability,4,1);
+            room_details_formLayout->addWidget(room_type_is,1,1,1,1);
+            room_details_formLayout->addWidget(room_detail,2,0,1,1);
+            room_details_formLayout->addWidget(details,2,1,1,1);
+            room_details_formLayout->addWidget(room_prc,3,0,1,1);
+            room_details_formLayout->addWidget(price,3,1,1,1);
+            room_details_formLayout->addWidget(room_available,4,0,1,1);
+            room_details_formLayout->addWidget(availability,4,1,1,1);
 
             room_details_formLayout->setColumnStretch(4,1);
             room_details_form->setLayout(room_details_formLayout); //room_details_form layout set
