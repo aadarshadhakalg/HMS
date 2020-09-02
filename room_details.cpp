@@ -1,14 +1,16 @@
 #include "mainwindow.h"
-#include <QProgressDialog>
+#include <QMessageBox>
 #include <iostream>
+
 
 // Defining room booking screen //
 
 void MainWindow::room(){
-    QWidget *window = new QWidget();
+    if(db.open()){
+    QWidget* window = new QWidget();
     setCentralWidget(window);
     window->setStyleSheet("*{background:white;}");
-        QHBoxLayout *room_layout =new QHBoxLayout();  //Defining horizontal Box Layout
+        QVBoxLayout *room_layout =new QVBoxLayout();  //Defining vertical Box Layout
 
             //Displays Room Details Text At Center
 
@@ -20,147 +22,56 @@ void MainWindow::room(){
             room_label->setFixedHeight(100);
             room_label->show();
 
-            QSqlQuery* room_query;
-            QString room_number;
-            QString room_type;
-            QString room_details;
-            QString room_price;
-            QString room_availability_check;
-            QString room_availability;
-            if(roomBtn_select == 1){
-            room_query->exec("SELECT * FROM room WHERE id = 'roomBtn_select'"); //milecha ki chaina check garna parcha
+            QString room[5];
+            QSqlQuery room_query(db);
+            int i;
 
-            room_query->first();
-            room_number = room_query->value(0).toString();
-            room_query->next();
-            room_type = room_query->value(0).toString();
-            room_query->next();
-            room_details = room_query->value(0).toString();
-            room_query->next();
-            room_price = room_query->value(0).toString();
-            room_query->next();
-            room_availability_check = room_query->value(0).toString();
-            if(room_availability_check == '1'){room_availability = "Occupied";            }
-            else{room_availability = "Unoccupied";}
-            }
-
+            if(roomBtn_select == 1){ //yo connect bhako chaina hola
+            room_query.prepare("SELECT * FROM room WHERE room_no = 1"); //milecha ki chaina check garna parcha
+            room_query.exec();
+            room_query.next();
+            for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
+           }
             if(roomBtn_select == 2){
-            room_query->exec("SELECT * FROM room WHERE id = 'roomBtn_select'"); //milecha ki chaina check garna parcha
-
-            room_query->first();
-            room_number = room_query->value(0).toString();
-            room_query->next();
-            room_type = room_query->value(0).toString();
-            room_query->next();
-            room_details = room_query->value(0).toString();
-            room_query->next();
-            room_price = room_query->value(0).toString();
-            room_query->next();
-            room_availability_check = room_query->value(0).toString();
-            if(room_availability_check == '1'){room_availability = "Occupied";            }
-            else{room_availability = "Unoccupied";}
-            }
+            room_query.exec("SELECT * FROM room WHERE room_no = 2"); //milecha ki chaina check garna parcha
+            room_query.next();
+            for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
+           }
 
             if(roomBtn_select == 3){
-            room_query->exec("SELECT * FROM room WHERE id = 'roomBtn_select'"); //milecha ki chaina check garna parcha
-
-            room_query->first();
-            room_number = room_query->value(0).toString();
-            room_query->next();
-            room_type = room_query->value(0).toString();
-            room_query->next();
-            room_details = room_query->value(0).toString();
-            room_query->next();
-            room_price = room_query->value(0).toString();
-            room_query->next();
-            room_availability_check = room_query->value(0).toString();
-            if(room_availability_check == '1'){room_availability = "Occupied";            }
-            else{room_availability = "Unoccupied";}
+            room_query.exec("SELECT * FROM room WHERE room_no = 3"); //milecha ki chaina check garna parcha
+            room_query.next();
+            for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
             }
 
             if(roomBtn_select == 4){
-            room_query->exec("SELECT * FROM room WHERE id = 'roomBtn_select'"); //milecha ki chaina check garna parcha
-
-            room_query->first();
-            room_number = room_query->value(0).toString();
-            room_query->next();
-            room_type = room_query->value(0).toString();
-            room_query->next();
-            room_details = room_query->value(0).toString();
-            room_query->next();
-            room_price = room_query->value(0).toString();
-            room_query->next();
-            room_availability_check = room_query->value(0).toString();
-            if(room_availability_check == '1'){room_availability = "Occupied";            }
-            else{room_availability = "Unoccupied";}
-            }
+            room_query.exec("SELECT * FROM room WHERE room_no = 4"); //milecha ki chaina check garna parcha
+            room_query.next();
+            for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
+           }
 
             if(roomBtn_select == 5){
-            room_query->exec("SELECT * FROM room WHERE id = 'roomBtn_select'"); //milecha ki chaina check garna parcha
-
-            room_query->first();
-            room_number = room_query->value(0).toString();
-            room_query->next();
-            room_type = room_query->value(0).toString();
-            room_query->next();
-            room_details = room_query->value(0).toString();
-            room_query->next();
-            room_price = room_query->value(0).toString();
-            room_query->next();
-            room_availability_check = room_query->value(0).toString();
-            if(room_availability_check == '1'){room_availability = "Occupied";            }
-            else{room_availability = "Unoccupied";}
+            room_query.exec("SELECT * FROM room WHERE room_no = 5"); //milecha ki chaina check garna parcha
+            room_query.next();
+            for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
             }
 
             if(roomBtn_select == 6){
-            room_query->exec("SELECT * FROM room WHERE id = 'roomBtn_select'"); //milecha ki chaina check garna parcha
-
-            room_query->first();
-            room_number = room_query->value(0).toString();
-            room_query->next();
-            room_type = room_query->value(0).toString();
-            room_query->next();
-            room_details = room_query->value(0).toString();
-            room_query->next();
-            room_price = room_query->value(0).toString();
-            room_query->next();
-            room_availability_check = room_query->value(0).toString();
-            if(room_availability_check == '1'){room_availability = "Occupied";            }
-            else{room_availability = "Unoccupied";}
-            }
+            room_query.exec("SELECT * FROM room WHERE room_no = 6"); //milecha ki chaina check garna parcha
+            room_query.next();
+            for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
+           }
 
             if(roomBtn_select == 7){
-            room_query->exec("SELECT * FROM room WHERE id = 'roomBtn_select'"); //milecha ki chaina check garna parcha
-
-            room_query->first();
-            room_number = room_query->value(0).toString();
-            room_query->next();
-            room_type = room_query->value(0).toString();
-            room_query->next();
-            room_details = room_query->value(0).toString();
-            room_query->next();
-            room_price = room_query->value(0).toString();
-            room_query->next();
-            room_availability_check = room_query->value(0).toString();
-            if(room_availability_check == '1'){room_availability = "Occupied";            }
-            else{room_availability = "Unoccupied";}
-            }
+            room_query.exec("SELECT * FROM room WHERE room_no = 7"); //milecha ki chaina check garna parcha
+            room_query.next();
+            for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
+           }
 
             if(roomBtn_select == 8){
-            room_query->exec("SELECT * FROM room WHERE id = 'roomBtn_select'"); //milecha ki chaina check garna parcha
-
-            room_query->first();
-            room_number = room_query->value(0).toString();
-            room_query->next();
-            room_type = room_query->value(0).toString();
-            room_query->next();
-            room_details = room_query->value(0).toString();
-            room_query->next();
-            room_price = room_query->value(0).toString();
-            room_query->next();
-            room_availability_check = room_query->value(0).toString();
-            if(room_availability_check == '1'){room_availability = "Occupied";            }
-            else{room_availability = "Unoccupied";}
+            room_query.exec("SELECT * FROM room WHERE room_no = 8"); //milecha ki chaina check garna parcha
+            room_query.next();
+            for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
             }
 
             QWidget *room_details_form = new QWidget(window);
@@ -171,29 +82,28 @@ void MainWindow::room(){
             //Hint Text
             QLabel *room_num = new QLabel("Room Number:");
             room_num->setStyleSheet("*{font-weight:bold;font-size:20px;padding:10px;}");
-            QLabel *room_num_is = new QLabel(QString(room_number));
+            QLabel *room_num_is = new QLabel(room[0]);
             room_num_is->setStyleSheet("*{font-size:20px;padding:10px;}");
 
             QLabel *room_typ = new QLabel("Room Type:");
             room_typ->setStyleSheet("*{font-weight:bold;font-size:20px;padding:10px;}");
-            QLabel *room_type_is = new QLabel(QString(room_type));
+            QLabel *room_type_is = new QLabel(room[1]);
             room_type_is->setStyleSheet("*{font-size:20px;padding:10px;}");
 
             QLabel *room_detail = new QLabel("Details:");
             room_detail->setStyleSheet("*{font-weight:bold;font-size:20px;padding:10px;}");
-            QLabel *details = new QLabel(QString(room_details));
-            details->setFixedWidth(100);
+            QLabel *details = new QLabel(room[2]);
             details->setStyleSheet("*{font-size:20px;padding:10px;}");
 
             QLabel *room_prc = new QLabel("Price:");
             room_prc->setStyleSheet("*{font-weight:bold;font-size:20px;padding:10px;}");
-            QLabel *price = new QLabel(QString(room_price));
+            QLabel *price = new QLabel(room[3]);
             price->setStyleSheet("*{font-size:20px;padding:10px;}");
 
 
             QLabel *room_available = new QLabel("Availability:");
             room_available->setStyleSheet("*{font-weight:bold;font-size:20px;padding:10px;}");
-            QLabel *availability = new QLabel(QString(room_availability));
+            QLabel *availability = new QLabel(room[4]);
             availability->setStyleSheet("*{font-size:20px;padding:10px;}");
 
 
@@ -209,7 +119,7 @@ void MainWindow::room(){
             room_details_formLayout->addWidget(room_available,4,0);
             room_details_formLayout->addWidget(availability,4,1);
 
-            room_details_formLayout->setColumnStretch(0,1);
+            room_details_formLayout->setColumnStretch(4,1);
             room_details_form->setLayout(room_details_formLayout); //room_details_form layout set
 
             // GO Back Button
@@ -223,5 +133,6 @@ void MainWindow::room(){
             room_layout->addWidget(room_details_form);
             room_layout->addWidget(backButton);
             window->setLayout(room_layout);  //room_layout set to main window
-
+    }
+    else{QMessageBox::warning(window(),"Database Error 1","Not connected to database");}
 }

@@ -3,27 +3,32 @@
 #include <iostream>
 #include "mainwindow.h"
 #include "database.h"
+#include <QDateTime>
 
 
 // Defining //
 
 void MainWindow::bookButton_clicked(){
 
-    QString name,email,address,nationality,phone;
+    QString name,email,address,nationality,phone,date;
     email = MainWindow::customer_email->text(); // fetch input text from email input field of loginscreen
     name = MainWindow::customer_name->text();  // fetch input text from password input field of loginscreen
     address = MainWindow::customer_address->text();
     nationality = MainWindow::customer_nationality->text();
     phone = MainWindow::customer_phone->text();
+    date = QDate::currentDate().toString("dd.mm.yyyy");
+    QDateTime checkin = QDateTime::currentDateTime();
+
 
     QSqlQuery qry;
-    qry.prepare("INSERT INTO hms.guests (name, email, contact, address, identity)"
-                "VALUES (?,?,?,?,?);");
+    qry.prepare("INSERT INTO hms.guests (name, email, contact, address, identity, checkin)"
+                "VALUES (?,?,?,?,?,?);");
     qry.addBindValue(name);
     qry.addBindValue(email);
     qry.addBindValue(phone);
     qry.addBindValue(address);
     qry.addBindValue(nationality);
+    qry.addBindValue(checkin);
     qry.exec();
 
     if(!qry.exec())

@@ -16,6 +16,7 @@
 #include <QtWidgets>
 #include <QSizePolicy>
 #include <QSqlTableModel>
+#include <QSqlQuery>
 #include <QComboBox>
 #include "package.h"
 #include "database.h"

@@ -16,7 +16,7 @@ void MainWindow::Roommain(){
 
     rightside->setStyleSheet("*{background:white"
                              ";}");
-    QString StyleSheetBtns =   "QPushButton { color: white; background-color: #1c2c3c; border: solid 5px white; font: 16pt 'Microsoft YaHei UI Light'; font-weight:bold; outline: none; } QPushButton:hover { background-color: #dc2525; border-style: solid; border-width: 3px; border-color: white; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
+    QString StyleSheetBtns = "QPushButton { color: white; background-color: #1c2c3c; border: solid 5px white; font: 16pt 'Microsoft YaHei UI Light'; font-weight:bold; outline: none; } QPushButton:hover { background-color: #dc2525; border-style: solid; border-width: 3px; border-color: white; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
 
     QPushButton* room1Btn = new QPushButton("Room 1");
     QPushButton* room2Btn = new QPushButton("Room 2");
@@ -50,14 +50,22 @@ void MainWindow::Roommain(){
     room7Btn->setFixedSize(200,120);
     room8Btn->setFixedSize(200,120);
 
-    if(room1Btn->isChecked()){roomBtn_select = '1'; }
-    if(room2Btn->isChecked()){roomBtn_select = '2'; }
-    if(room3Btn->isChecked()){roomBtn_select = '3'; }
-    if(room4Btn->isChecked()){roomBtn_select = '4'; }
-    if(room5Btn->isChecked()){roomBtn_select = '5'; }
-    if(room6Btn->isChecked()){roomBtn_select = '6'; }
-    if(room7Btn->isChecked()){roomBtn_select = '7'; }
-    if(room8Btn->isChecked()){roomBtn_select = '8'; }
+    room1Btn->setCheckable(true);
+    room2Btn->setCheckable(true);
+    room3Btn->setCheckable(true);
+    room4Btn->setCheckable(true);
+    room5Btn->setCheckable(true);
+    room6Btn->setCheckable(true);
+    room7Btn->setCheckable(true);
+    room8Btn->setCheckable(true);
+    if(room1Btn->isChecked()){roomBtn_select = 1; }
+    if(room2Btn->isChecked()){roomBtn_select = 2; }
+    if(room3Btn->isChecked()){roomBtn_select = 3; }
+    if(room4Btn->isChecked()){roomBtn_select = 4; }
+    if(room5Btn->isChecked()){roomBtn_select = 5; }
+    if(room6Btn->isChecked()){roomBtn_select = 6; }
+    if(room7Btn->isChecked()){roomBtn_select = 7; }
+    if(room8Btn->isChecked()){roomBtn_select = 8; }
 
     connect(room1Btn,SIGNAL(clicked()), this, SLOT(room()));
     connect(room2Btn,SIGNAL(clicked()), this, SLOT(room()));

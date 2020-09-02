@@ -125,20 +125,6 @@ void MainWindow::roombooking(){
             this->package_id = new QLineEdit();
             package_id->setFixedHeight(40);
 
-            //price label
-            QWidget *price_form = new QWidget(window);
-            QGridLayout *price_Layout = new QGridLayout(); // Defines grid layout for price
-            price_Layout->setColumnMinimumWidth(1,300);
-            QLabel *totalprice_label = new QLabel("Total Price :");
-            totalprice_label->setStyleSheet("*{font-weight:bold;font-size:20px;padding:12px;}");
-            display_price = new QLineEdit(0);
-            display_price->setReadOnly(true);
-            display_price->setText(QString::number(totalprice));
-            price_Layout->addWidget(totalprice_label,0,0);
-            price_Layout->addWidget(display_price,0,1);
-            price_form->setLayout(price_Layout);
-
-
             //Adding widgets in the room_FormLayout
             room_formLayout->addWidget(room_select,0,0);
 
@@ -167,71 +153,39 @@ void MainWindow::roombooking(){
             room_form->setLayout(room_formLayout); //room_form layout set
 
             int room_price[8], i;
-            QSqlQuery* roomprice_qry = new QSqlQuery();
-            roomprice_qry->exec("SELECT DISTINCT room_price FROM room");
-            for (i=0;roomprice_qry->next();i++){room_price[i] =roomprice_qry->value(0).toInt();}
+            QSqlQuery roomprice_qry(db);
+            roomprice_qry.exec("SELECT room_price FROM room");
+            for (i=0;roomprice_qry.next();i++){room_price[i] =roomprice_qry.value(0).toInt();}
 
             int service_charge[service_max];
-            QSqlQuery* serviceprice_qry = new QSqlQuery();
-            serviceprice_qry->exec("SELECT DISTINCT service_price FROM services");//Table name ra column name sacchhaune
-            for(i=0;serviceprice_qry->next();i++){service_charge[i] = serviceprice_qry->value(0).toInt();}
-            /*
-            //yo sabai database ma serial wise cha tesaile yesko index(0,1,2....) change nagarne
-            QSqlQuery* serviceprice_qry = new QSqlQuery();
-            serviceprice_qry->exec("SELECT DISTINCT room_price FROM room");
-            serviceprice_qry->first();
-            breakfast_price = serviceprice_qry->value(0).toInt();
-            serviceprice_qry->next();
-            dinner_price = serviceprice_qry->value(0).toInt();
-            serviceprice_qry->next();
-            lunch_price = serviceprice_qry->value(0).toInt();
-            serviceprice_qry->next();
-            transportation_price = serviceprice_qry->value(0).toInt();
-            serviceprice_qry->next();
-            sim_price = serviceprice_qry->value(0).toInt();
-            serviceprice_qry->last();
-            guide_price = serviceprice_qry->value(0).toInt();
-            */
-/*
-            QSqlQuery* roomavailability_qry = new QSqlQuery();
-            roomavailability_qry->exec("select distinct room_status from room ");
-            roomavailability_qry->first();
-            if(roomavailability_qry->value(0).toString() == '1'){ room1_checkbox->setEnabled(false);}
-            roomavailability_qry->next();
-            if(roomavailability_qry->value(0).toString() == '1'){ room2_checkbox->setEnabled(false);}
-            roomavailability_qry->next();
-            if(roomavailability_qry->value(0).toString() == '1'){ room3_checkbox->setEnabled(false);}
-            roomavailability_qry->next();
-            if(roomavailability_qry->value(0).toString() == '1'){ room4_checkbox->setEnabled(false);}
-            roomavailability_qry->next();
-            if(roomavailability_qry->value(0).toString() == '1'){ room5_checkbox->setEnabled(false);}
-            roomavailability_qry->next();
-            if(roomavailability_qry->value(0).toString() == '1'){ room6_checkbox->setEnabled(false);}
-            roomavailability_qry->next();
-            if(roomavailability_qry->value(0).toString() == '1'){ room7_checkbox->setEnabled(false);}
-            roomavailability_qry->last();
-            if(roomavailability_qry->value(0).toString() == '1'){ room8_checkbox->setEnabled(false);}
-*/
-            if(room1_checkbox->isChecked()) {
-                totalprice_calculator(room_price[0]);
-                display_price->textChanged(QString::number(totalprice));
-            }
-            if(room2_checkbox->isChecked()) {
-                totalprice_calculator(room_price[1]);
-                display_price->textChanged(QString::number(totalprice));
-            }
-            if(room3_checkbox->isChecked()) {
-                totalprice_calculator(room_price[2]);
-                display_price->textChanged(QString::number(totalprice));
-            }
-            if(room4_checkbox->isChecked()) {
-                totalprice_calculator(room_price[3]);
-                display_price->textChanged(QString::number(totalprice));
-            }
-            if(room5_checkbox->isChecked()) {
-                totalprice_calculator(room_price[4]);
-                display_price->textChanged(QString::number(totalprice));
-            }
+            QSqlQuery serviceprice_qry(db);
+            serviceprice_qry.exec("SELECT service_price FROM services");//Table name ra column name sacchhaune
+            for(i=0;serviceprice_qry.next();i++){service_charge[i] = serviceprice_qry.value(0).toInt();}//database ko table aanusar serial wise data aaucha
+
+            QSqlQuery roomavailability_qry(db);
+            roomavailability_qry.exec("select room_status from room");
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room1_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room2_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room3_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room4_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room5_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room6_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room7_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room8_checkbox->setEnabled(false);}
+
+            if(room1_checkbox->isChecked()) {totalprice_calculator(room_price[0]);}
+            if(room2_checkbox->isChecked()) {totalprice_calculator(room_price[1]);}
+            if(room3_checkbox->isChecked()) {totalprice_calculator(room_price[2]);}
+            if(room4_checkbox->isChecked()) {totalprice_calculator(room_price[3]);}
+            if(room5_checkbox->isChecked()) {totalprice_calculator(room_price[4]);}
             if(room6_checkbox->isChecked()) {totalprice_calculator(room_price[5]);}
             if(room7_checkbox->isChecked()) {totalprice_calculator(room_price[6]);}
             if(room8_checkbox->isChecked()) {totalprice_calculator(room_price[7]);}
