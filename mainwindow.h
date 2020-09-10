@@ -73,6 +73,11 @@ private slots:
     void room6();
     void room7();
     void room8();
+    void Room();
+    void addPackage();
+    void removePackage();
+    void sendAddRequest();
+    void sendRemoveRequest();
 
 private:
     //for room booking
@@ -81,7 +86,6 @@ private:
     QLineEdit *customer_phone;
     QLineEdit *customer_address;
     QLineEdit *customer_nationality;
-    QLineEdit *package_id;
     QSqlTableModel *qrymodel;
 
     //for master control
@@ -107,6 +111,15 @@ private:
     QLabel *label;
     QSqlDatabase db;
     QSqlTableModel *model;
+
+    //for adding package
+    QLineEdit *package_id;
+    QCheckBox *package_available;
+    QLineEdit *package_name;
+    QLineEdit *package_company;
+    QLineEdit *package_details;
+    QLineEdit *package_price;
+    QLineEdit *package_edit;
 };
 
 #endif // MAINWINDOW_H

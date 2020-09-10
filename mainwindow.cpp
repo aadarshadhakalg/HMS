@@ -13,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     else{ // If database connection is not established
     QMessageBox::warning(this,"Error Connection","Error connecting to Database"); //Displays a popup warning message
     }
+//    homeScreen();
 }
-
 // Definition of homescreen()
 
 void MainWindow::homeScreen(){

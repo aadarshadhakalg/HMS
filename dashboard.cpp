@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include<QDebug>
+#include "package.h"
 
 void MainWindow::dashboard(){
     Action();

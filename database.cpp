@@ -77,3 +77,42 @@ void Database::addPackages(QString name, QString company, QString details, int p
     query.bindValue(":available",avail);
     query.exec();
 }
+
+bool Database::removePackages(int id){
+    QSqlQuery query;
+    query.prepare("DELETE FROM packages WHERE id=:id");
+    query.bindValue(":id", id);
+    if(query.exec()){
+        return true;
+    }else {
+    return false;
+}
+}
+
+Package Database::getPackageByID(int id){
+    Package pkg;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM packages WHERE id=:id");
+    query.bindValue(":id", id);
+    if(query.exec()){
+            pkg.setName(query.value(1).toString());
+            pkg.setCompany(query.value(2).toString());
+            pkg.setDetails(query.value(3).toString());
+            pkg.setPrice(query.value(4).toInt());
+            pkg.setavailable(false);
+    }
+    return pkg;
+}
+
+
+// TO Get Package Price
+// Create Database instance          Database db;
+// Get Package,                      Package pkg = db.getPackageByID(PASS ID OF PACKAGE YOU WANT TO GET DETAIL);
+// This returns package and saves it in pkg variable
+// Get package details by tapping in to packages methods like :
+
+// pkg.getName;   Returns Qstring;
+// pkg.getDetails; Returns Qstring;
+// pkg.getPrice; Returns double;
+// pkg.isAvailable; Returns bool;
+// pkg.setCompany; Returns Qstring;
