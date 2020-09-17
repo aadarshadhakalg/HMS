@@ -28,6 +28,10 @@ public:
     Package getPackageByID(int id);
     void getRooms(Guest guests[]);
     void getUsers(Room rooms[]);
+
+    Guest getGuestDetailByRoomNo(int no);
+    bool guestCheckOut(int id);
+    bool payAmount(int amount, int id);
 };
 
 #endif // DATABASE_H

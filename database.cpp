@@ -1,5 +1,5 @@
 #include "database.h"
-
+#include "QDebug"
 //Database::Database()
 //{
 
@@ -116,3 +116,80 @@ Package Database::getPackageByID(int id){
 // pkg.getPrice; Returns double;
 // pkg.isAvailable; Returns bool;
 // pkg.setCompany; Returns Qstring;
+
+
+
+
+
+Guest Database::getGuestDetailByRoomNo(int no){
+    Guest guest;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM guests WHERE room_no=:no and status='Active'");
+    query.bindValue(":no", no);
+    if(query.exec()){
+        guest.setID(query.value(0).toInt());
+        guest.setRoomNo(query.value(1).toInt());
+        guest.setName(query.value(2).toString());
+        guest.setEmail(query.value(3).toString());
+        guest.setContact(query.value(4).toString());
+        guest.setAddress(query.value(5).toString());
+        guest.setCheckin(query.value(6).toString());
+        guest.setCheckout(query.value(7).toString());
+        guest.setIdentity(query.value(8).toString());
+        guest.setRoomType(query.value(9).toString());
+        guest.setTotalAmount(query.value(10).toInt());
+        guest.setPaidAmount(query.value(11).toInt());
+        guest.setDueAmount(query.value(12).toInt());
+        guest.setStatus(query.value(13).toString());
+        guest.setPackages(query.value(14).toString());
+
+    }
+    return guest;
+}
+
+
+bool Database::guestCheckOut(int id){
+    QSqlQuery query;
+    query.prepare("UPDATE guests SET status='InActive' WHERE id=:id");
+    query.bindValue(":id",id);
+    if(query.exec()){
+        return true;
+    }else {
+        return false;
+    }
+}
+
+
+bool Database::payAmount(int amount, int id){
+    QSqlQuery query;
+    int ta, pa, da;
+    query.prepare("SELECT * FROM guests where id=:id");
+    query.bindValue(":id",id);
+    if(query.exec()){
+        ta = query.value(10).toInt();
+        pa = query.value(11).toInt();
+        da = query.value(12).toInt();
+
+        if((pa + amount) > ta){
+            return false;
+        }else{
+            query.prepare("UPDATE guests SET paid_amount=:npa and due_amount=:nda WHERE id=:id");
+            query.bindValue(":npa",pa+amount);
+            query.bindValue(":nda",da-amount);
+            query.bindValue(":id",id);
+            if(query.exec()){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+    }else{
+        return false;
+    }
+}
+
+
+
+
+

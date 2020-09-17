@@ -73,7 +73,6 @@ private slots:
     void room6();
     void room7();
     void room8();
-    void Room();
     void addPackage();
     void removePackage();
     void sendAddRequest();
