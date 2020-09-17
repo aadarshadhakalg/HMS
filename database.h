@@ -32,6 +32,7 @@ public:
     Guest getGuestDetailByRoomNo(int no);
     bool guestCheckOut(int id);
     bool payAmount(int amount, int id);
+    bool isCheckOutAble(int id);
 };
 
 #endif // DATABASE_H

@@ -147,6 +147,13 @@ Guest Database::getGuestDetailByRoomNo(int no){
     return guest;
 }
 
+// Database db;
+// Guest guest = db.getGuestDetailByRoomNo(room_no);
+//
+// guest.getName()           returns guest name
+// guest.getEmail()          for email
+// guest.getAddress          for Address
+// and similarly other
 
 bool Database::guestCheckOut(int id){
     QSqlQuery query;
@@ -158,6 +165,28 @@ bool Database::guestCheckOut(int id){
         return false;
     }
 }
+
+// Database db;
+// db.guestCheckOut(guest_id);
+
+bool Database::isCheckOutAble(int id){
+    QSqlQuery query;
+    query.prepare("SELECT due_amount FROM guests where if=:id");
+    query.bindValue(":id",id);
+    if(query.exec()){
+        int da = query.value(0).toInt();
+        if(da == 0){
+            return true;
+        }else{
+            return false;
+        }
+    }else{
+        return false;
+    }
+}
+
+// Database db;
+// db.isCheckOutAble(guest_id);
 
 
 bool Database::payAmount(int amount, int id){
@@ -183,13 +212,13 @@ bool Database::payAmount(int amount, int id){
                 return false;
             }
         }
-
     }else{
         return false;
     }
 }
 
 
-
+// Database db;
+// db.payAmount(amount to pay);
 
 
