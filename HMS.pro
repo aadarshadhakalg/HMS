@@ -21,6 +21,7 @@ SOURCES += \
     Roommain.cpp \
     dashboard.cpp \
     database.cpp \
+    dialogbox_price.cpp \
     guest.cpp \
     guesttable.cpp \
     loginscreen.cpp \
@@ -37,6 +38,7 @@ SOURCES += \
 
 HEADERS += \
     database.h \
+    dialogbox_price.h \
     guest.h \
     mainwindow.h \
     package.h \

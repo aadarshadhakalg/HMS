@@ -1,7 +1,4 @@
-#include <QProgressDialog>
-#include <iostream>
 #include "database.h"
-#include "room.h"
 #include "mainwindow.h"
 #define service_max 10
 
@@ -97,7 +94,7 @@ void MainWindow::roombooking(){
             QLabel *room_select = new QLabel("ROOM:");
             room_select->setStyleSheet("*{font-weight:bold;font-size:20px;padding:12px;}");
 
-            //Room select check box
+            //Room select check box from mainwindow
             QCheckBox *room1_checkbox = new QCheckBox("Room 1");
             QCheckBox *room2_checkbox = new QCheckBox("Room 2");
             QCheckBox *room3_checkbox = new QCheckBox("Room 3");
@@ -106,6 +103,25 @@ void MainWindow::roombooking(){
             QCheckBox *room6_checkbox = new QCheckBox("Room 6");
             QCheckBox *room7_checkbox = new QCheckBox("Room 7");
             QCheckBox *room8_checkbox = new QCheckBox("Room 8");
+
+            QSqlQuery roomavailability_qry(db);
+            roomavailability_qry.exec("select room_status from room");
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room1_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room2_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room3_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room4_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room5_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room6_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room7_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room8_checkbox->setEnabled(false);}
 
             //Additional service select
             QLabel *service_select = new QLabel("SERVICES:");
@@ -124,6 +140,7 @@ void MainWindow::roombooking(){
             packageHint->setStyleSheet("*{font-weight:bold;font-size:18px;padding:10px;}");
             this->package_id = new QLineEdit();
             package_id->setFixedHeight(40);
+            package_price_adder(package_id->text().toStdString());
 
             //Adding widgets in the room_FormLayout
             room_formLayout->addWidget(room_select,0,0);
@@ -159,30 +176,14 @@ void MainWindow::roombooking(){
 
             int service_charge[service_max];
             QSqlQuery serviceprice_qry(db);
-            serviceprice_qry.exec("SELECT service_price FROM services");//Table name ra column name sacchhaune
+            serviceprice_qry.exec("SELECT service_price FROM services");
             for(i=0;serviceprice_qry.next();i++){service_charge[i] = serviceprice_qry.value(0).toInt();}//database ko table aanusar serial wise data aaucha
 
-            QSqlQuery roomavailability_qry(db);
-            roomavailability_qry.exec("select room_status from room");
-            roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room1_checkbox->setEnabled(false);}
-            roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room2_checkbox->setEnabled(false);}
-            roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room3_checkbox->setEnabled(false);}
-            roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room4_checkbox->setEnabled(false);}
-            roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room5_checkbox->setEnabled(false);}
-            roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room6_checkbox->setEnabled(false);}
-            roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room7_checkbox->setEnabled(false);}
-            roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room8_checkbox->setEnabled(false);}
 
-            if(room1_checkbox->isChecked()) {totalprice_calculator(room_price[0]);}
-            if(room2_checkbox->isChecked()) {totalprice_calculator(room_price[1]);}
+            /*if(room1_checkbox->isChecked()) {totalprice_calculator(room_price[0]);}*/
+            if(room1_checkbox->isChecked()) {connect(room1_checkbox,SIGNAL(clicked(bool)),this,SLOT(totalprice_display(room_price[0])));}
+            /*if(room2_checkbox->isChecked()) {totalprice_calculator(room_price[1]);}*/
+            if(room1_checkbox->isChecked()) {connect(room2_checkbox,SIGNAL(clicked(bool)),this,SLOT(totalprice_display(room_price[1])));}
             if(room3_checkbox->isChecked()) {totalprice_calculator(room_price[2]);}
             if(room4_checkbox->isChecked()) {totalprice_calculator(room_price[3]);}
             if(room5_checkbox->isChecked()) {totalprice_calculator(room_price[4]);}
@@ -196,6 +197,18 @@ void MainWindow::roombooking(){
             if(transportation_checkbox->isChecked()) {totalprice_calculator(service_charge[3]);}
             if(sim_checkbox->isChecked()) {totalprice_calculator(service_charge[4]);}
             if(guide_checkbox->isChecked()) {totalprice_calculator(service_charge[5]);}
+
+            //for price
+            QWidget *priceForm = new QWidget(window);
+            QGridLayout *price_formLayout = new QGridLayout(); // Defines grid layout for name
+            price_formLayout->setColumnMinimumWidth(1,300);
+            QLabel* price_label = new QLabel;
+            price_label->setText("Total price:");
+            display_price->setReadOnly(true);
+            price_formLayout->addWidget(price_label,0,0);
+            price_formLayout->addWidget(display_price,0,1);
+            price_formLayout->setColumnStretch(0,1);
+            priceForm->setLayout(price_formLayout);
 
             //Layout for Buttons
             QWidget *Button_widget = new QWidget(window);
@@ -220,11 +233,13 @@ void MainWindow::roombooking(){
             //Adding widgets to main_layout
             main_layout->addWidget(user_label);
             main_layout->addWidget(userForm);
-            main_layout->addWidget(room_form);           
+            main_layout->addWidget(room_form);
+            main_layout->addWidget(priceForm);
             main_layout->addWidget(Button_widget);
             window->setLayout(main_layout);  //main_layout set to main window       
 
             connect(book_nowButton,SIGNAL(clicked(bool)),this,SLOT(bookButton_clicked())); // Calls bookButton_clicked method when button is clicked
+            /*connect(book_nowButton,SIGNAL(clicked(bool)),this,SLOT(dialogbox_price()));*/
         }
     else {QMessageBox::warning(window(),"Database Error 1","Not connected to database");}
 }

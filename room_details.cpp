@@ -1,10 +1,7 @@
 #include "mainwindow.h"
 #include <QMessageBox>
-#include <iostream>
-
 
 // Defining room booking screen //
-
 void MainWindow::room1(){roomBtn_select = 1;}
 void MainWindow::room2(){roomBtn_select = 2;}
 void MainWindow::room3(){roomBtn_select = 3;}
@@ -14,7 +11,7 @@ void MainWindow::room6(){roomBtn_select = 6;}
 void MainWindow::room7(){roomBtn_select = 7;}
 void MainWindow::room8(){roomBtn_select = 8;}
 
-void MainWindow::room(){
+void MainWindow::room_details(){
     if(db.open()){
     QWidget* window = new QWidget();
     setCentralWidget(window);
@@ -31,54 +28,54 @@ void MainWindow::room(){
             room_label->setFixedHeight(100);
             room_label->show();
 
-            QString room[5];
             QSqlQuery room_query(db);
             int i;
 
-            if(roomBtn_select == 1){ //yo connect bhako chaina hola
+            //connecting button and executing query
+            if(roomBtn_select == 1){
             room_query.prepare("SELECT * FROM room WHERE room_no = 1");
             room_query.exec();
             room_query.next();
             for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
            }
             if(roomBtn_select == 2){
-            room_query.exec("SELECT * FROM room WHERE room_no = 2"); //milecha ki chaina check garna parcha
+            room_query.exec("SELECT * FROM room WHERE room_no = 2");
             room_query.next();
             for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
            }
 
             if(roomBtn_select == 3){
-            room_query.exec("SELECT * FROM room WHERE room_no = 3"); //milecha ki chaina check garna parcha
+            room_query.exec("SELECT * FROM room WHERE room_no = 3");
             room_query.next();
             for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
             }
 
             if(roomBtn_select == 4){
-            room_query.exec("SELECT * FROM room WHERE room_no = 4"); //milecha ki chaina check garna parcha
+            room_query.exec("SELECT * FROM room WHERE room_no = 4");
             room_query.next();
             for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
            }
 
             if(roomBtn_select == 5){
-            room_query.exec("SELECT * FROM room WHERE room_no = 5"); //milecha ki chaina check garna parcha
+            room_query.exec("SELECT * FROM room WHERE room_no = 5");
             room_query.next();
             for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
             }
 
             if(roomBtn_select == 6){
-            room_query.exec("SELECT * FROM room WHERE room_no = 6"); //milecha ki chaina check garna parcha
+            room_query.exec("SELECT * FROM room WHERE room_no = 6");
             room_query.next();
             for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
            }
 
             if(roomBtn_select == 7){
-            room_query.exec("SELECT * FROM room WHERE room_no = 7"); //milecha ki chaina check garna parcha
+            room_query.exec("SELECT * FROM room WHERE room_no = 7");
             room_query.next();
             for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
            }
 
             if(roomBtn_select == 8){
-            room_query.exec("SELECT * FROM room WHERE room_no = 8"); //milecha ki chaina check garna parcha
+            room_query.exec("SELECT * FROM room WHERE room_no = 8");
             room_query.next();
             for(i=0;i<5;i++){room[i] = room_query.value(i).toString();}
             }

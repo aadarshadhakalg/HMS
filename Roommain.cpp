@@ -60,14 +60,14 @@ void MainWindow::Roommain(){
     connect(room7Btn,SIGNAL(clicked()), this, SLOT(room7()));
     connect(room8Btn,SIGNAL(clicked()), this, SLOT(room8()));
 
-    connect(room1Btn,SIGNAL(clicked()), this, SLOT(room()));
-    connect(room2Btn,SIGNAL(clicked()), this, SLOT(room()));
-    connect(room3Btn,SIGNAL(clicked()), this, SLOT(room()));
-    connect(room4Btn,SIGNAL(clicked()), this, SLOT(room()));
-    connect(room5Btn,SIGNAL(clicked()), this, SLOT(room()));
-    connect(room6Btn,SIGNAL(clicked()), this, SLOT(room()));
-    connect(room7Btn,SIGNAL(clicked()), this, SLOT(room()));
-    connect(room8Btn,SIGNAL(clicked()), this, SLOT(room()));
+    connect(room1Btn,SIGNAL(clicked()), this, SLOT(room_details()));
+    connect(room2Btn,SIGNAL(clicked()), this, SLOT(room_details()));
+    connect(room3Btn,SIGNAL(clicked()), this, SLOT(room_details()));
+    connect(room4Btn,SIGNAL(clicked()), this, SLOT(room_details()));
+    connect(room5Btn,SIGNAL(clicked()), this, SLOT(room_details()));
+    connect(room6Btn,SIGNAL(clicked()), this, SLOT(room_details()));
+    connect(room7Btn,SIGNAL(clicked()), this, SLOT(room_details()));
+    connect(room8Btn,SIGNAL(clicked()), this, SLOT(room_details()));
     connect(bookbtn,SIGNAL(clicked()), this, SLOT(roombooking()));
 
     QGridLayout *roomtype= new QGridLayout;

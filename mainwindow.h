@@ -20,12 +20,14 @@
 #include <QComboBox>
 #include "package.h"
 #include "database.h"
+#include <sstream>
+#include <string>
+#include <vector>
 
 class QAction;
 class QActionGroup;
 class QLabel;
 class QMenu;
-
 
 class MainWindow : public QMainWindow
 {
@@ -35,10 +37,12 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void package_price_adder(std::string);
     void totalprice_calculator(int);
-    int totalprice = 0 ;
+    int totalprice = 0;
     QLineEdit* display_price;
-    int roomBtn_select;
+    int roomBtn_select;//for room details showing
+    QString room[5];
 
 signals:
     void loggedIn();
@@ -63,7 +67,9 @@ private slots:
     void roombooking();
     void Roommain();
     void bookButton_clicked();
-    void room();
+    void room_details();
+
+    void totalprice_display(int);
     //slots for room details
     void room1();
     void room2();
@@ -73,7 +79,6 @@ private slots:
     void room6();
     void room7();
     void room8();
-
 private:
     //for room booking
     QLineEdit *customer_name;
@@ -83,6 +88,15 @@ private:
     QLineEdit *customer_nationality;
     QLineEdit *package_id;
     QSqlTableModel *qrymodel;
+
+    QCheckBox *room1_checkbox;
+    QCheckBox *room2_checkbox;
+    QCheckBox *room3_checkbox;
+    QCheckBox *room4_checkbox;
+    QCheckBox *room5_checkbox;
+    QCheckBox *room6_checkbox;
+    QCheckBox *room7_checkbox;
+    QCheckBox *room8_checkbox;
 
     //for master control
     QLineEdit *emailText;
