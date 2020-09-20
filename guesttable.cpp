@@ -165,7 +165,7 @@ QWidget * MainWindow::guesttable(){
 void MainWindow::search(){
     QString query = searchField->text();
     if(query!= NULL){
-    model->setFilter("name='"+query+"' or contact='"+query+"' or address='"+query+"' or email='"+query+"'");
+    model->setFilter("name='"+query+"' or contact='"+query+"' or address='"+query+"' or email='"+query+"' or room_no ='"+query+"'");
     model->select();
     }else{
     model->setFilter(NULL);

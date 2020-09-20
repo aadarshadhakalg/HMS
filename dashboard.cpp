@@ -25,7 +25,10 @@ void MainWindow::dashboard(){
 void MainWindow::Bill(){
     setWindowTitle("Billings");
     style();
-    rightside->setStyleSheet("*{background:green;}");
+    QVBoxLayout *tablelayout = new QVBoxLayout();
+    rightside->setLayout(tablelayout);
+    rightside->setStyleSheet("*{background:white;}");
+    tablelayout->addWidget(showbill());
 }
 void MainWindow::Customer(){
     setWindowTitle("Guests Records");

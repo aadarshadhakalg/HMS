@@ -55,6 +55,7 @@ private slots:
     void question();
     void style();
     void search();
+    void searchroom();
     void editTable();
     void noEditTable();
     void Bill();
@@ -92,6 +93,7 @@ private:
     QPushButton *editButton;
     QPushButton *noEditButton;
     QWidget *guesttable();
+    QWidget *showbill();
     void Action();
     void MenuItem();
     QMenu *file;
@@ -107,6 +109,7 @@ private:
     QLabel *label;
     QSqlDatabase db;
     QSqlTableModel *model;
+    QVBoxLayout *billlayout;
 };
 
 #endif // MAINWINDOW_H

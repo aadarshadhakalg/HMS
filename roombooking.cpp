@@ -1,7 +1,6 @@
 #include <QProgressDialog>
 #include <iostream>
 #include "database.h"
-#include "room.h"
 #include "mainwindow.h"
 #define service_max 10
 
@@ -181,14 +180,14 @@ void MainWindow::roombooking(){
             roomavailability_qry.next();
             if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room8_checkbox->setEnabled(false);}
 
-            if(room1_checkbox->isChecked()) {totalprice_calculator(room_price[0]);}
-            if(room2_checkbox->isChecked()) {totalprice_calculator(room_price[1]);}
-            if(room3_checkbox->isChecked()) {totalprice_calculator(room_price[2]);}
-            if(room4_checkbox->isChecked()) {totalprice_calculator(room_price[3]);}
-            if(room5_checkbox->isChecked()) {totalprice_calculator(room_price[4]);}
-            if(room6_checkbox->isChecked()) {totalprice_calculator(room_price[5]);}
-            if(room7_checkbox->isChecked()) {totalprice_calculator(room_price[6]);}
-            if(room8_checkbox->isChecked()) {totalprice_calculator(room_price[7]);}
+            if(room1_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[0]);}
+            if(room2_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[1]);}
+            if(room3_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[2]);}
+            if(room4_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[3]);}
+            if(room5_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[4]);}
+            if(room6_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[5]);}
+            if(room7_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[6]);}
+            if(room8_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[7]);}
 
             if(breakfast_checkbox->isChecked()) {totalprice_calculator(service_charge[0]);}
             if(dinner_checkbox->isChecked()) {totalprice_calculator(service_charge[1]);}

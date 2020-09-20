@@ -1,9 +1,9 @@
 #include "database.h"
 
-//Database::Database()
-//{
+ //Database::Database()
+ //{
 
-//}
+ //}
 
 bool Database::connectDB(){
     // Setting up connection to MYSQL Database on Cloud

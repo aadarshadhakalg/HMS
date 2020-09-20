@@ -19,6 +19,7 @@ SOURCES += \
     Package.cpp \
     Room.cpp \
     Roommain.cpp \
+    billing.cpp \
     dashboard.cpp \
     database.cpp \
     guest.cpp \
@@ -27,12 +28,9 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     menu.cpp \
-    package.cpp \
     package_define.cpp \
     room_details.cpp \
     roombooking.cpp \
-    package.cpp \
-    room.cpp \
     style.cpp
 
 HEADERS += \
