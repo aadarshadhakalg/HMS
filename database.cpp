@@ -77,3 +77,18 @@ void Database::addPackages(QString name, QString company, QString details, int p
     query.bindValue(":available",avail);
     query.exec();
 }
+Package Database::getPackageByID(int id){
+    Package pkg;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM packages WHERE id=:id");
+    query.bindValue(":id", id);
+    if(query.exec()){
+            query.next();
+            pkg.setName(query.value(1).toString());
+            pkg.setCompany(query.value(2).toString());
+            pkg.setDetails(query.value(3).toString());
+            pkg.setPrice(query.value(4).toInt());
+            pkg.setavailable(false);
+    }
+    return pkg;
+}

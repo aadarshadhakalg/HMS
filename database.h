@@ -27,6 +27,7 @@ public:
     void removePackages(int id);
     void makeAvailable(int id);
     void makeUnavailable(int id);
+    Package getPackageByID(int id);
 
 
 };

@@ -37,12 +37,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void package_price_adder(std::string);
-    void totalprice_calculator(int);
     int totalprice = 0;
+    int pricepaid = 0;
     QLineEdit* display_price;
+    QLineEdit* price_paid;
     int roomBtn_select;//for room details showing
     QString room[5];
+    int package_price = 0;
+    bool room_1=true, room_2=true, room_3=true, room_4=true, room_5=true, room_6=true, room_7=true, room_8=true, sim=true, guide =true, transportation=true, breakfast=true, lunch=true, dinner=true;
 
 signals:
     void loggedIn();
@@ -69,7 +71,22 @@ private slots:
     void bookButton_clicked();
     void room_details();
 
-    void totalprice_display(int);
+    void totalprice_display1();
+    void totalprice_display2();
+    void totalprice_display3();
+    void totalprice_display4();
+    void totalprice_display5();
+    void totalprice_display6();
+    void totalprice_display7();
+    void totalprice_display8();
+    void totalprice_display9();
+    void totalprice_display10();
+    void totalprice_display11();
+    void totalprice_display12();
+    void totalprice_display13();
+    void totalprice_display14();
+    void packageprice_adder();
+    void packageprice_clearer();
     //slots for room details
     void room1();
     void room2();
@@ -89,6 +106,7 @@ private:
     QLineEdit *package_id;
     QSqlTableModel *qrymodel;
 
+
     QCheckBox *room1_checkbox;
     QCheckBox *room2_checkbox;
     QCheckBox *room3_checkbox;
@@ -97,6 +115,12 @@ private:
     QCheckBox *room6_checkbox;
     QCheckBox *room7_checkbox;
     QCheckBox *room8_checkbox;
+    QCheckBox *sim_checkbox;
+    QCheckBox *guide_checkbox;
+    QCheckBox *transportation_checkbox;
+    QCheckBox *lunch_checkbox;
+    QCheckBox *dinner_checkbox;
+    QCheckBox *breakfast_checkbox;
 
     //for master control
     QLineEdit *emailText;

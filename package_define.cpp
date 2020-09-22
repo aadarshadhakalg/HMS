@@ -9,7 +9,7 @@ QString Package::getDetails(){
     return this->details;
 }
 
-double Package::getPrice(){
+int Package::getPrice(){
     return this->price;
 }
 

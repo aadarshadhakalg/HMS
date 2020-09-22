@@ -72,7 +72,7 @@ QWidget * MainWindow::guesttable(){
         model->setHeaderData(11, Qt::Horizontal, tr("Paid"));
         model->setHeaderData(12, Qt::Horizontal, tr("Due"));
         model->setHeaderData(13, Qt::Horizontal, tr("Status"));
-        model->setHeaderData(14, Qt::Horizontal, tr("Registrar"));
+        model->setHeaderData(14, Qt::Horizontal, tr("Packages"));
 
         connect(sortby, static_cast<void(QComboBox::*)(int)>(&QComboBox::activated),
             [=](int index){

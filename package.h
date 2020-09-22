@@ -8,7 +8,7 @@ class Package
 private:
     QString name;
     QString details;
-    double price;
+    int price;
     QString company;
     bool available;
     QSqlDatabase db;
@@ -16,7 +16,7 @@ private:
 public:
     QString getName();
     QString getDetails();
-    double getPrice();
+    int getPrice();
     QString getCompany();
     bool isAvailable();
 
