@@ -21,14 +21,18 @@ private:
 public:
     bool connectDB();
     QSqlDatabase getDB();
-    void getAvailablePackages(Package activepackages[]);
-    void getUnavailablePackages(Package inactivepackages[]);
     void addPackages(QString name, QString company, QString details, int price, bool available);
-    void removePackages(int id);
+    bool removePackages(int id);
     void makeAvailable(int id);
     void makeUnavailable(int id);
+    Package getPackageByID(int id);
+    void getRooms(Guest guests[]);
+    void getUsers(Room rooms[]);
 
-
+    Guest getGuestDetailByRoomNo(int no);
+    bool guestCheckOut(int id);
+    bool payAmount(int amount, int id);
+    bool isCheckOutAble(int id);
 };
 
 #endif // DATABASE_H

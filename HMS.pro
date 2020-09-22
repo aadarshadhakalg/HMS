@@ -16,8 +16,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    Package.cpp \
-    Room.cpp \
     Roommain.cpp \
     billing.cpp \
     dashboard.cpp \
@@ -28,10 +26,20 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     menu.cpp \
+<<<<<<< HEAD
     package_define.cpp \
     room_details.cpp \
     roombooking.cpp \
     style.cpp
+=======
+    packagescreen.cpp \
+    package_define.cpp \
+    room_details.cpp \
+    roombooking.cpp \
+    room.cpp \
+    style.cpp \
+    billing.cpp
+>>>>>>> 2902ec9d0a393e6929b98c23dd91fe8c2452fbd5
 
 HEADERS += \
     database.h \
