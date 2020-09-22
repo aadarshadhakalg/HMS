@@ -11,8 +11,7 @@ void MainWindow::room6(){roomBtn_select = 6;}
 void MainWindow::room7(){roomBtn_select = 7;}
 void MainWindow::room8(){roomBtn_select = 8;}
 
-void MainWindow::room_details(){
-    if(db.open()){
+void MainWindow::room_details(){    
     QWidget* window = new QWidget();
     setCentralWidget(window);
     window->setStyleSheet("*{background:white;}");
@@ -138,7 +137,5 @@ void MainWindow::room_details(){
             room_layout->addWidget(room_label);
             room_layout->addWidget(room_details_form);
             room_layout->addWidget(backButton);
-            window->setLayout(room_layout);  //room_layout set to main window
-    }
-    else{QMessageBox::warning(window(),"Database Error 1","Not connected to database");}
+            window->setLayout(room_layout);  //room_layout set to main window    
 }
