@@ -107,6 +107,7 @@ void MainWindow::roombooking(){
             QCheckBox *room7_checkbox = new QCheckBox("Room 7");
             QCheckBox *room8_checkbox = new QCheckBox("Room 8");
 
+
             //Additional service select
             QLabel *service_select = new QLabel("SERVICES:");
             service_select->setStyleSheet("*{font-weight:bold;font-size:20px;padding:12px;}");

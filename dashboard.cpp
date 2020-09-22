@@ -23,11 +23,6 @@ void MainWindow::dashboard(){
     rightside->setStyleSheet("*{background:white;}");
 }
 
-void MainWindow::Bill(){
-    setWindowTitle("Billings");
-    style();
-    rightside->setStyleSheet("*{background:green;}");
-}
 void MainWindow::Customer(){
     setWindowTitle("Guests Records");
     style();

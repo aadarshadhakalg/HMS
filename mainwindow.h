@@ -119,6 +119,9 @@ private:
     QLineEdit *package_details;
     QLineEdit *package_price;
     QLineEdit *package_edit;
+
+    //checkOut Screen ( To get selected room ID )
+    QLabel *checkoutSelectedRoomID;
 };
 
 #endif // MAINWINDOW_H

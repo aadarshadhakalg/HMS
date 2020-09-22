@@ -30,7 +30,8 @@ SOURCES += \
     room_details.cpp \
     roombooking.cpp \
     room.cpp \
-    style.cpp
+    style.cpp \
+    billing.cpp
 
 HEADERS += \
     database.h \
