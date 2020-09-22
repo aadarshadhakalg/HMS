@@ -13,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent)
     else{ // If database connection is not established
     QMessageBox::warning(this,"Error Connection","Error connecting to Database"); //Displays a popup warning message
     }
+//    homeScreen();
 }
-
 // Definition of homescreen()
 
 void MainWindow::homeScreen(){
@@ -23,7 +23,7 @@ void MainWindow::homeScreen(){
     QWidget *window = new QWidget(this);
     setCentralWidget(window);
 
-    window->setStyleSheet("*{background-image:url(\"/home/aadarsha/Desktop/bg.jpg\");}"); // Giving Background Image
+    window->setStyleSheet("*{background-image:url(\"/home/aadarsha/Projects/qt5/HMS/HMS/hotel.jpg\");}"); // Giving Background Image
 
 
     QVBoxLayout *layout = new QVBoxLayout(); // Defining Box Layout
@@ -40,7 +40,7 @@ void MainWindow::homeScreen(){
     QPushButton *beginButton = new QPushButton("Go To Dashboard");
     beginButton->setStyleSheet("*{background:green;height:30px;}");
     beginButton->adjustSize();
-    connect(beginButton,SIGNAL(clicked()),this,SLOT(Roommain())); // Triggers loginScreen() method when button is clicked
+    connect(beginButton,SIGNAL(clicked()),this,SLOT(loginScreen())); // Triggers loginScreen() method when button is clicked
                                                                      // Navigates to the loginScreen.
 
     //Exit App Button Bottom

@@ -43,7 +43,7 @@ public:
     QLineEdit* price_paid;
     int roomBtn_select;//for room details showing
     QString room[5];
-    int package_price = 0;
+    int packageprice = 0;
     bool room_1=true, room_2=true, room_3=true, room_4=true, room_5=true, room_6=true, room_7=true, room_8=true, sim=true, guide =true, transportation=true, breakfast=true, lunch=true, dinner=true;
 
 signals:
@@ -96,6 +96,12 @@ private slots:
     void room6();
     void room7();
     void room8();
+
+    void addPackage();
+    void removePackage();
+    void sendAddRequest();
+    void sendRemoveRequest();
+
 private:
     //for room booking
     QLineEdit *customer_name;
@@ -103,9 +109,7 @@ private:
     QLineEdit *customer_phone;
     QLineEdit *customer_address;
     QLineEdit *customer_nationality;
-    QLineEdit *package_id;
     QSqlTableModel *qrymodel;
-
 
     QCheckBox *room1_checkbox;
     QCheckBox *room2_checkbox;
@@ -145,6 +149,18 @@ private:
     QLabel *label;
     QSqlDatabase db;
     QSqlTableModel *model;
+
+    //for adding package
+    QLineEdit *package_id;
+    QCheckBox *package_available;
+    QLineEdit *package_name;
+    QLineEdit *package_company;
+    QLineEdit *package_details;
+    QLineEdit *package_price;
+    QLineEdit *package_edit;
+
+    //checkOut Screen ( To get selected room ID )
+    QLabel *checkoutSelectedRoomID;
 };
 
 #endif // MAINWINDOW_H

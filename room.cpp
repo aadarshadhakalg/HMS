@@ -34,16 +34,16 @@ void MainWindow::packageprice_adder()
     Database db;
     for(int k = 0; k<count; k++){
         Package pkg = db.getPackageByID(*(array+k));
-        package_price += pkg.getPrice();
+        packageprice += pkg.getPrice();
     }
-    totalprice+=package_price;
+    totalprice+=packageprice;
     display_price->clear();
     display_price->setText(QString::number(totalprice));
 
 }
 void MainWindow::packageprice_clearer(){
-    totalprice-=package_price;
-    package_price = 0;
+    totalprice-=packageprice;
+    packageprice = 0;
     display_price->clear();
     display_price->setText(QString::number(totalprice));
 }

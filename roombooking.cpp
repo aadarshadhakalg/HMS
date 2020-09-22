@@ -5,7 +5,6 @@
 // Defining room booking screen //
 
 void MainWindow::roombooking(){
-    if (db.open()){
     QWidget *window = new QWidget(this);
     setCentralWidget(window);
     window->setStyleSheet("*{background:white;}");
@@ -124,6 +123,7 @@ void MainWindow::roombooking(){
             roomavailability_qry.next();
             if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room8_checkbox->setEnabled(false);}
 
+
             //Additional service select
             QLabel *service_select = new QLabel("SERVICES:");
             service_select->setStyleSheet("*{font-weight:bold;font-size:20px;padding:12px;}");
@@ -236,7 +236,5 @@ void MainWindow::roombooking(){
             connect(guide_checkbox,SIGNAL(clicked(bool)),this,SLOT(totalprice_display14()));
 
             connect(package_addButton,SIGNAL(clicked(bool)),this,SLOT(packageprice_adder()));
-            connect(package_clearButton,SIGNAL(clicked(bool)),this,SLOT(packageprice_clearer()));
-        }
-    else {QMessageBox::warning(window(),"Database Error 1","Not connected to database");}
+            connect(package_clearButton,SIGNAL(clicked(bool)),this,SLOT(packageprice_clearer()));       
 }

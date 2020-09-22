@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include<QDebug>
+#include "package.h"
 
 void MainWindow::dashboard(){
     Action();
@@ -15,18 +16,13 @@ void MainWindow::dashboard(){
     title->setFixedHeight(70);
 
     QWidget *image = new QWidget();
-    image->setStyleSheet("*{border-image: url('/home/aadarsha/Documents/hotel.jpg') 0 0 0 0 stretch stretch;}");
+    image->setStyleSheet("*{border-image: url('/home/aadarsha/Projects/qt5/HMS/HMS/hotel.jpg') 0 0 0 0 stretch stretch;}");
     layout->addWidget(title);
     layout->addWidget(image);
     rightside->setLayout(layout);
     rightside->setStyleSheet("*{background:white;}");
 }
 
-void MainWindow::Bill(){
-    setWindowTitle("Billings");
-    style();
-    rightside->setStyleSheet("*{background:green;}");
-}
 void MainWindow::Customer(){
     setWindowTitle("Guests Records");
     style();
