@@ -1,15 +1,5 @@
 #include "database.h"
-<<<<<<< HEAD
 
- //Database::Database()
- //{
-=======
-#include "QDebug"
-//Database::Database()
-//{
->>>>>>> 2902ec9d0a393e6929b98c23dd91fe8c2452fbd5
-
- //}
 
 bool Database::connectDB(){
     // Setting up connection to MYSQL Database on Cloud

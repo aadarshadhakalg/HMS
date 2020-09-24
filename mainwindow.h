@@ -39,6 +39,7 @@ public:
     int totalprice = 0 ;
     QLineEdit* display_price;
     int roomBtn_select;
+    void checkout(int);
 
 signals:
     void loggedIn();
@@ -55,7 +56,6 @@ private slots:
     void question();
     void style();
     void search();
-    void searchroom();
     void editTable();
     void noEditTable();
     void Bill();
@@ -96,7 +96,6 @@ private:
     QPushButton *editButton;
     QPushButton *noEditButton;
     QWidget *guesttable();
-    QWidget *showbill();
     void Action();
     void MenuItem();
     QMenu *file;
@@ -112,9 +111,6 @@ private:
     QLabel *label;
     QSqlDatabase db;
     QSqlTableModel *model;
-<<<<<<< HEAD
-    QVBoxLayout *billlayout;
-=======
 
     //for adding package
     QLineEdit *package_id;
@@ -127,7 +123,6 @@ private:
 
     //checkOut Screen ( To get selected room ID )
     QLabel *checkoutSelectedRoomID;
->>>>>>> 2902ec9d0a393e6929b98c23dd91fe8c2452fbd5
 };
 
 #endif // MAINWINDOW_H

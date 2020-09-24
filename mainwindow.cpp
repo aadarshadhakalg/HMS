@@ -40,11 +40,7 @@ void MainWindow::homeScreen(){
     QPushButton *beginButton = new QPushButton("Go To Dashboard");
     beginButton->setStyleSheet("*{background:green;height:30px;}");
     beginButton->adjustSize();
-<<<<<<< HEAD
     connect(beginButton,SIGNAL(clicked()),this,SLOT(dashboard())); // Triggers loginScreen() method when button is clicked
-=======
-    connect(beginButton,SIGNAL(clicked()),this,SLOT(loginScreen())); // Triggers loginScreen() method when button is clicked
->>>>>>> 2902ec9d0a393e6929b98c23dd91fe8c2452fbd5
                                                                      // Navigates to the loginScreen.
 
     //Exit App Button Bottom

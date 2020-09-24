@@ -69,5 +69,4 @@ void MainWindow::Bill(){
     main_layout->addLayout(bottom_layout);
 
     rightside->setLayout(main_layout);
->>>>>>> 2902ec9d0a393e6929b98c23dd91fe8c2452fbd5
 }
