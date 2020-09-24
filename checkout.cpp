@@ -44,16 +44,16 @@ void MainWindow::checkout(int room){
     nationalityHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
 
     QLabel *TotalPayHint = new QLabel("Total Amount");
-    nationalityHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+    TotalPayHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
 
     QLabel *PaidPayHint = new QLabel("Paid Amount");
-    nationalityHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+    PaidPayHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
 
     QLabel *DuePayHint = new QLabel("Due Amount");
-    nationalityHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+    DuePayHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
 
     // Input Forms
-    QLabel *custo_name = new QLabel();    //this refers to the MainWindow class
+    QLabel *custo_name = new QLabel();//this refers to the MainWindow class
     QLabel *custo_email = new QLabel();
     QLabel *custo_phone = new QLabel();
     QLabel *custo_address = new QLabel();
@@ -61,6 +61,17 @@ void MainWindow::checkout(int room){
     QLabel *Total = new QLabel();
     QLabel *Paid = new QLabel();
     QLabel *Due = new QLabel();
+
+    custo_name->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+    custo_email->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+    custo_phone->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+    custo_address->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+    custo_nationality->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+    Total->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+    Paid->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+    Due->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+
+
 
     custo_name->setText(guest.getName());
     custo_email->setText(guest.getEmail());
