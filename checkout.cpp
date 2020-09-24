@@ -92,19 +92,19 @@ void MainWindow::checkout(int room){
     user_formLayout->addWidget(nationalityHint,4,0);
     user_formLayout->addWidget(custo_nationality,4,1)
             ;
-    user_formLayout->addWidget(TotalPayHint,4,1);
-    user_formLayout->addWidget(Total,4,1);
+    user_formLayout->addWidget(TotalPayHint,5,0);
+    user_formLayout->addWidget(Total,5,1);
 
-    user_formLayout->addWidget(PaidPayHint,4,1);
-    user_formLayout->addWidget(Paid,4,1);
+    user_formLayout->addWidget(PaidPayHint,6,0);
+    user_formLayout->addWidget(Paid,6,1);
 
-    user_formLayout->addWidget(DuePayHint,4,1);
-    user_formLayout->addWidget(Due,4,1);
-
-
+    user_formLayout->addWidget(DuePayHint,7,0);
+    user_formLayout->addWidget(Due,7,1);
 
 
-    user_formLayout->setColumnStretch(4,1);
+
+
+    user_formLayout->setColumnStretch(7,1);
    layout->addWidget(infoLabel);
     widget->setLayout(user_formLayout);
     widget->setLayout(layout);
