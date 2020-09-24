@@ -95,6 +95,7 @@ Package Database::getPackageByID(int id){
     query.prepare("SELECT * FROM packages WHERE id=:id");
     query.bindValue(":id", id);
     if(query.exec()){
+            query.next();
             pkg.setName(query.value(1).toString());
             pkg.setCompany(query.value(2).toString());
             pkg.setDetails(query.value(3).toString());
