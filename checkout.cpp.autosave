@@ -117,5 +117,6 @@ void MainWindow::checkout(int room){
     user_formLayout->setColumnStretch(7,1);
    layout->addWidget(infoLabel);
     widget->setLayout(user_formLayout);
+    widget->setLayout(layout);
 
 }
