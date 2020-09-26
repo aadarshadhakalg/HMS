@@ -87,9 +87,6 @@ void MainWindow::Roommain(){
     roomtype-> addWidget(room8Btn,3,3,1,1);
     roomtype-> addWidget(bookbtn,4,3,1,1);
 
-
-
-
     rightside->setLayout(roomtype);
 
 

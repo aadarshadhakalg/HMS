@@ -105,23 +105,23 @@ void MainWindow::roombooking(){
             room8_checkbox = new QCheckBox("Room 8",this);
 
             QSqlQuery roomavailability_qry(db);
-            roomavailability_qry.exec("select room_status from room");
+            roomavailability_qry.exec("select status from guests");
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room1_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "Active"){ room1_checkbox->setEnabled(false);}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room2_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "Active"){ room2_checkbox->setEnabled(false);}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room3_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "Active"){ room3_checkbox->setEnabled(false);}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room4_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "Active"){ room4_checkbox->setEnabled(false);}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room5_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "Active"){ room5_checkbox->setEnabled(false);}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room6_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "Active"){ room6_checkbox->setEnabled(false);}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room7_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "Active"){ room7_checkbox->setEnabled(false);}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room8_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "Active"){ room8_checkbox->setEnabled(false);}
 
 
             //Additional service select
@@ -189,6 +189,7 @@ void MainWindow::roombooking(){
             //Adding layout to room_form
             room_formLayout->setColumnStretch(8,3);
             room_form->setLayout(room_formLayout); //room_form layout set
+
 
             //Layout for Buttons
             QWidget *Button_widget = new QWidget(window);

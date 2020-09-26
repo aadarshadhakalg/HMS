@@ -53,13 +53,93 @@ void MainWindow::contact()
 
    setCentralWidget(widget);
 
-    infoLabel = new QLabel();
-    infoLabel -> setAlignment(Qt::AlignCenter);
-    infoLabel->setText(tr("Number k ho"));
+   QLabel *title = new QLabel();
+   QLabel *subtitle1 = new QLabel();
+   QLabel *ssubtitle1 = new QLabel();
+   QLabel *subtitle2 = new QLabel();
+   QLabel *ssubtitle2 = new QLabel();
+   QLabel *subtitle3 = new QLabel();
+   QLabel *ssubtitle3 = new QLabel();
 
-    QVBoxLayout *layout = new QVBoxLayout;
 
-    layout->addWidget(infoLabel);
+
+
+
+
+
+   QFont banner("Helvetica",30,QFont::ExtraBold);
+   QFont question("Helvetica",20,QFont::Black);
+   QFont ans("Helvetica",15,QFont::ExtraLight);
+
+  title -> setAlignment(Qt::AlignCenter);
+  title ->setText(tr("CONTACT US" ));
+  title->setFont(banner);
+  //faq->setFixedHeight(40);
+  title->adjustSize();
+
+
+
+  subtitle1-> setAlignment(Qt::AlignLeft);
+
+  subtitle1->setText(tr("Contact Company"));
+  subtitle1->setFont(question);
+  subtitle1->adjustSize();
+
+  ssubtitle1-> setAlignment(Qt::AlignLeft);
+  ssubtitle1->setText("This project is brought to you by student of Kathmandu University.\n"
+                   "You can contact us at : sanohotel@gmail.com.");
+  ssubtitle1->setFont(ans);
+  ssubtitle1->adjustSize();
+
+
+  subtitle2-> setAlignment(Qt::AlignLeft);
+  subtitle2->setText(tr("About Developers"));
+  subtitle2->setFont(question);
+  subtitle2->adjustSize();
+
+
+
+  ssubtitle2-> setAlignment(Qt::AlignLeft);
+
+  ssubtitle2->setText("The developers of this application are\n"
+                "Aadarsha Dhakal \n"
+                "Ayush Paudel \n"
+                "Ayush Aryal \n"
+                "Sushant Adhikari.");
+  ssubtitle2->setFont(ans);
+  ssubtitle2->adjustSize();
+
+
+  subtitle3-> setAlignment(Qt::AlignLeft);
+  subtitle3->setText(tr("HELP US GROW"));
+  subtitle3->setFont(question);
+  subtitle3->adjustSize();
+
+  ssubtitle3-> setAlignment(Qt::AlignLeft);
+
+  ssubtitle3->setText("You can help us by funding our work");
+  ssubtitle3->setFont(ans);
+  ssubtitle3->adjustSize();
+
+  QPushButton *backButton = new QPushButton("Back");
+  backButton->setStyleSheet("*{background:blue;height:30px;}");
+  backButton->adjustSize();
+  connect(backButton,SIGNAL(clicked()),this,SLOT(dashboard()));
+
+
+   QVBoxLayout *layout = new QVBoxLayout;
+
+
+   layout->addWidget(title);
+   layout->addWidget(subtitle1);
+   layout->addWidget(ssubtitle1);
+   layout->addWidget(subtitle2);
+   layout->addWidget(ssubtitle2);
+   layout->addWidget(subtitle3);
+   layout->addWidget(ssubtitle3);
+   layout->addWidget(backButton);
+                                                                  // Navigates to the loginScreen.
+
     widget->setLayout(layout);
 
 }

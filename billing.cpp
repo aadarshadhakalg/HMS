@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 
+
 void MainWindow::Bill(){
     setWindowTitle("Billings");
     style();
@@ -27,28 +28,28 @@ void MainWindow::Bill(){
             case 0:
                 break;
             case 1:
-                checkoutSelectedRoomID->setText("Room 1 Selected");
+                checkout(1);
                 break;
             case 2:
-                checkoutSelectedRoomID->setText("Room 2 Selected");
+                checkout(2);
                 break;
             case 3:
-                checkoutSelectedRoomID->setText("Room 3 Selected");
-                break;
+                 checkout(3);
+                 break;
             case 4:
-                checkoutSelectedRoomID->setText("Room 4 Selected");
-                break;
+                 checkout(4);
+                 break;
             case 5:
-                checkoutSelectedRoomID->setText("Room 5 Selected");
+                 checkout(5);
                 break;
             case 6:
-                checkoutSelectedRoomID->setText("Room 6 Selected");
+                 checkout(6);
                 break;
             case 7:
-                checkoutSelectedRoomID->setText("Room 7 Selected");
+                 checkout(7);
                 break;
             case 8:
-                checkoutSelectedRoomID->setText("Room 8 Selected");
+                 checkout(8);
                 break;
             default:
                 break;

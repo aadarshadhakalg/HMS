@@ -17,6 +17,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Roommain.cpp \
+    billing.cpp \
+    checkout.cpp \
     dashboard.cpp \
     database.cpp \
     guest.cpp \
@@ -25,13 +27,12 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     menu.cpp \
-    packagescreen.cpp \
     package_define.cpp \
+    packagescreen.cpp \
+    room.cpp \
     room_details.cpp \
     roombooking.cpp \
-    room.cpp \
     style.cpp \
-    billing.cpp
 
 HEADERS += \
     database.h \
@@ -44,3 +45,7 @@ HEADERS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    hotel.jpg \
+    logo.png

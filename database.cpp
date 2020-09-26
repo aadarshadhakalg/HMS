@@ -1,9 +1,5 @@
 #include "database.h"
-#include "QDebug"
-//Database::Database()
-//{
 
-//}
 
 bool Database::connectDB(){
     // Setting up connection to MYSQL Database on Cloud
@@ -95,7 +91,7 @@ Package Database::getPackageByID(int id){
     query.prepare("SELECT * FROM packages WHERE id=:id");
     query.bindValue(":id", id);
     if(query.exec()){
-            query.next();
+            query.first();
             pkg.setName(query.value(1).toString());
             pkg.setCompany(query.value(2).toString());
             pkg.setDetails(query.value(3).toString());
@@ -128,6 +124,7 @@ Guest Database::getGuestDetailByRoomNo(int no){
     query.prepare("SELECT * FROM guests WHERE room_no=:no and status='Active'");
     query.bindValue(":no", no);
     if(query.exec()){
+        query.first();
         guest.setID(query.value(0).toInt());
         guest.setRoomNo(query.value(1).toInt());
         guest.setName(query.value(2).toString());
