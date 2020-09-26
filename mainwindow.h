@@ -34,7 +34,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    int Guest_id_cout ;
+    int Guest_room_cout ;
     void totalprice_calculator(int);
     int totalprice = 0 ;
     QLineEdit* display_price;
@@ -64,6 +65,7 @@ private slots:
     void roombooking();
     void Roommain();
     void bookButton_clicked();
+    void checkout_now();
     void room();
     //slots for room details
     void room1();
@@ -92,6 +94,7 @@ private:
     QLineEdit *emailText;
     QLineEdit *passwordText;
     QWidget *rightside;
+    QWidget *bottom_half;
     QLineEdit *searchField;
     QPushButton *editButton;
     QPushButton *noEditButton;

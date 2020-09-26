@@ -2,9 +2,12 @@
 
 
 void MainWindow::Bill(){
+    QWidget *parent = new QWidget; // parent widget
+
     setWindowTitle("Billings");
     style();
 
+    QWidget *tophalf = new QWidget;
     QVBoxLayout *main_layout = new QVBoxLayout();
         QHBoxLayout *top_layout = new QHBoxLayout();
             QLabel *selectRoomLabel = new QLabel("Select A Room");
@@ -18,8 +21,10 @@ void MainWindow::Bill(){
             selectRoom->addItem("Room 6 ( Deluxe )");
             selectRoom->addItem("Room 7 ( Deluxe )");
             selectRoom->addItem("Room 8 ( Deluxe )");
+
         top_layout->addWidget(selectRoomLabel);
         top_layout->addWidget(selectRoom);
+        tophalf->setLayout(top_layout);
 
 
         connect(selectRoom, static_cast<void(QComboBox::*)(int)>(&QComboBox::activated),
@@ -28,6 +33,7 @@ void MainWindow::Bill(){
             case 0:
                 break;
             case 1:
+
                 checkout(1);
                 break;
             case 2:
@@ -60,13 +66,9 @@ void MainWindow::Bill(){
         ////////////////////////////
         /// /////////////////////////
 
-        QVBoxLayout *bottom_layout = new QVBoxLayout();
-           checkoutSelectedRoomID = new QLabel();
-        bottom_layout->addWidget(checkoutSelectedRoomID);
+    bottom_half = new QWidget();
 
-
-    main_layout->addLayout(top_layout);
-    main_layout->addLayout(bottom_layout);
-
-    rightside->setLayout(main_layout);
+    main_layout->addWidget(tophalf);
+    main_layout->addWidget(bottom_half);
+    parent->setLayout(main_layout);
 }
