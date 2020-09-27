@@ -153,13 +153,14 @@ Guest Database::getGuestDetailByRoomNo(int no){
 // guest.getAddress          for Address
 // and similarly other
 
-bool Database::guestCheckOut(int id, int id2){
+bool Database::guestCheckOut(int id, int id2,QString checkout_date){
     QSqlQuery query;
     QSqlQuery roomQ;
-    query.prepare("UPDATE guests SET status='InActive' WHERE id=:id");
+    query.prepare("UPDATE guests SET status='InActive',checkout=':checkoutdate' WHERE id=:id");
     roomQ.prepare("UPDATE room SET room_status='UNOCCUPIED' WHERE room_no=:id2");
 
     query.bindValue(":id",id);
+    query.bindValue(":checkoutdate",checkout_date);
     query.exec();
 
     roomQ.bindValue(":id2",id2);
