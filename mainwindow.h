@@ -46,7 +46,10 @@ public:
     int packageprice = 0;
     bool daysprice_addable = true;
     void checkout(int);
-
+    int Guest_id_cout ;
+    int Guest_room_cout ;
+    void totalprice_calculator(int);
+    int guestPaid;
 
 signals:
     void loggedIn();
@@ -72,7 +75,6 @@ private slots:
     void Roommain();
     void bookButton_clicked();
     void room_details();
-
     void totalprice_display1();
     void totalprice_display2();
     void totalprice_display3();
@@ -91,6 +93,9 @@ private slots:
     void packageprice_clearer();
     void daysstayed_priceadder();
     void daysstayed_priceclearer();
+    void checkout_now();
+//    void room();
+    void payNow();
     //slots for room details
     void room1();
     void room2();
@@ -134,6 +139,7 @@ private:
     QLineEdit *emailText;
     QLineEdit *passwordText;
     QWidget *rightside;
+    QWidget *bottom_half;
     QLineEdit *searchField;
     QPushButton *editButton;
     QPushButton *noEditButton;
@@ -167,6 +173,10 @@ private:
 
     //checkOut Screen ( To get selected room ID )
     QLabel *checkoutSelectedRoomID;
+//    QVBoxLayout *billlayout;
+    QLineEdit *Pay_amount;
+    QLabel *Paid;
+    QLabel *Due;
 };
 
 #endif // MAINWINDOW_H

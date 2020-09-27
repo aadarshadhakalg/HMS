@@ -61,6 +61,7 @@ void MainWindow::contact()
    QLabel *subtitle3 = new QLabel();
    QLabel *ssubtitle3 = new QLabel();
 
+//<<<<<<< HEAD
    QFont banner("Helvetica",30,QFont::ExtraBold);
    QFont question("Helvetica",20,QFont::Black);
    QFont ans("Helvetica",15,QFont::ExtraLight);
@@ -133,7 +134,6 @@ void MainWindow::contact()
    layout->addWidget(ssubtitle3);
    layout->addWidget(backButton);
                                                                   // Navigates to the loginScreen.
-
     widget->setLayout(layout);
 
 }
