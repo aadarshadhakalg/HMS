@@ -3,9 +3,9 @@
 
 void MainWindow::Action()
 {
-    saveAct = new QAction(tr("&Save"), this);
-    saveAct->setStatusTip(tr("Saving"));
-    connect(saveAct, &QAction::triggered, this, &MainWindow::save);
+    saveAct = new QAction(tr("&Lock"), this);
+    saveAct->setStatusTip(tr("Logout"));
+    connect(saveAct, &QAction::triggered, this, &MainWindow::loginScreen);
 
     contactAct = new QAction(tr("&Contact us"), this);
     contactAct->setStatusTip(tr("Opening contact page"));
