@@ -41,6 +41,7 @@ public:
     QLineEdit* display_price;
     int roomBtn_select;
     void checkout(int);
+    int guestPaid;
 
 signals:
     void loggedIn();
@@ -67,6 +68,7 @@ private slots:
     void bookButton_clicked();
     void checkout_now();
     void room();
+    void payNow();
     //slots for room details
     void room1();
     void room2();
