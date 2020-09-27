@@ -73,13 +73,12 @@ void MainWindow::daysstayed_priceclearer(){
 
 void MainWindow::bookButton_clicked(){
 
-    QString name,email,address,nationality,phone,date,package;
+    QString name,email,address,nationality,phone,package;
     email = MainWindow::customer_email->text(); // fetch input text from email input field of loginscreen
     name = MainWindow::customer_name->text();  // fetch input text from password input field of loginscreen
     address = MainWindow::customer_address->text();
     nationality = MainWindow::customer_nationality->text();
     phone = MainWindow::customer_phone->text();
-    date = QDate::currentDate().toString("dd.mm.yyyy");
     QDateTime checkin = QDateTime::currentDateTime();
     package = MainWindow::package_id->text();
     int pricepaid = price_paid->text().toInt();
@@ -246,268 +245,215 @@ void MainWindow::bookButton_clicked(){
         query.exec();
         qry.exec("update room set room_status = 'OCCUPIED' where room_no = 1");
     }
-
     totalprice = 0;
     package_price = 0;
 }
 
 void MainWindow::totalprice_display1(){
-    int room_price[8]; //euta lai matra banauna parne int
+    int room_price;
     QSqlQuery roomprice_qry(db);
-    roomprice_qry.exec("SELECT room_price FROM room");
-    for (int i=0;roomprice_qry.next();i++){room_price[i] =roomprice_qry.value(0).toInt();}
+    roomprice_qry.exec("SELECT room_price FROM room where room_no = 1");
+    roomprice_qry.first();
+    room_price =roomprice_qry.value(0).toInt();
             if(room1_checkbox->isChecked()){
-                totalprice += room_price[0];
+                totalprice += room_price;
             }
-
         else{
-            totalprice -= room_price[0];
-
+            totalprice -= room_price;
     }
-
         display_price->clear();
         display_price->setText(QString::number(totalprice));
 }
 void MainWindow::totalprice_display2(){
-    int room_price[8];
+    int room_price;
     QSqlQuery roomprice_qry(db);
-    roomprice_qry.exec("SELECT room_price FROM room");
-    for (int i=0;roomprice_qry.next();i++){room_price[i] =roomprice_qry.value(0).toInt();}
-
+    roomprice_qry.exec("SELECT room_price FROM room where room_no = 2");
+    roomprice_qry.first();
+    room_price =roomprice_qry.value(0).toInt();
             if(room2_checkbox->isChecked()){
-                totalprice += room_price[1];
+                totalprice += room_price;
             }
-
         else{
-            totalprice -= room_price[1];
-
+            totalprice -= room_price;
         }
-
         display_price->clear();
         display_price->setText(QString::number(totalprice));
 }
 void MainWindow::totalprice_display3(){
-    int room_price[8];
+    int room_price;
     QSqlQuery roomprice_qry(db);
-    roomprice_qry.exec("SELECT room_price FROM room");
-    for (int i=0;roomprice_qry.next();i++){room_price[i] =roomprice_qry.value(0).toInt();}
-
+    roomprice_qry.exec("SELECT room_price FROM room where room_no = 3");
+    roomprice_qry.first();
+    room_price =roomprice_qry.value(0).toInt();
             if(room3_checkbox->isChecked()){
-                totalprice += room_price[2];
+                totalprice += room_price;
             }
-
         else{
-            totalprice -= room_price[2];
-
+            totalprice -= room_price;
         }
-
         display_price->clear();
         display_price->setText(QString::number(totalprice));
 }
 void MainWindow::totalprice_display4(){
-    int room_price[8];
+    int room_price;
     QSqlQuery roomprice_qry(db);
-    roomprice_qry.exec("SELECT room_price FROM room");
-    for (int i=0;roomprice_qry.next();i++){room_price[i] =roomprice_qry.value(0).toInt();}
-
+    roomprice_qry.exec("SELECT room_price FROM room where room_no = 4");
+    roomprice_qry.first();
+    room_price =roomprice_qry.value(0).toInt();
             if(room4_checkbox->isChecked()){
-                totalprice += room_price[3];
+                totalprice += room_price;
             }
-
         else{
-            totalprice -= room_price[3];
-
+            totalprice -= room_price;
         }
-
         display_price->clear();
         display_price->setText(QString::number(totalprice));
 }
 void MainWindow::totalprice_display5(){
-    int room_price[8];
+    int room_price;
     QSqlQuery roomprice_qry(db);
-    roomprice_qry.exec("SELECT room_price FROM room");
-    for (int i=0;roomprice_qry.next();i++){room_price[i] =roomprice_qry.value(0).toInt();}
-
+    roomprice_qry.exec("SELECT room_price FROM room where room_no = 5");
+    roomprice_qry.first();
+    room_price =roomprice_qry.value(0).toInt();
             if(room5_checkbox->isChecked()){
-                totalprice += room_price[4];
+                totalprice += room_price;
             }
-
         else{
-            totalprice -= room_price[4];
-
+            totalprice -= room_price;
         }
-
         display_price->clear();
         display_price->setText(QString::number(totalprice));
 }
 void MainWindow::totalprice_display6(){
-    int room_price[8];
+    int room_price;
     QSqlQuery roomprice_qry(db);
-    roomprice_qry.exec("SELECT room_price FROM room");
-    for (int i=0;roomprice_qry.next();i++){room_price[i] =roomprice_qry.value(0).toInt();}
-
+    roomprice_qry.exec("SELECT room_price FROM room where room_no = 6");
+    roomprice_qry.first();
+    room_price =roomprice_qry.value(0).toInt();
             if(room6_checkbox->isChecked()){
-                totalprice += room_price[5];
+                totalprice += room_price;
             }
-
         else{
-            totalprice -= room_price[5];
-
+            totalprice -= room_price;
         }
-
         display_price->clear();
         display_price->setText(QString::number(totalprice));
 }
 void MainWindow::totalprice_display7(){
-    int room_price[8];
+    int room_price;
     QSqlQuery roomprice_qry(db);
-    roomprice_qry.exec("SELECT room_price FROM room");
-    for (int i=0;roomprice_qry.next();i++){room_price[i] =roomprice_qry.value(0).toInt();}
-
+    roomprice_qry.exec("SELECT room_price FROM room where room_no = 7");
+    roomprice_qry.first();
+    room_price =roomprice_qry.value(0).toInt();
             if(room7_checkbox->isChecked()){
-                totalprice += room_price[6];
+                totalprice += room_price;
             }
-
         else{
-            totalprice -= room_price[6];
-
+            totalprice -= room_price;
         }
-
         display_price->clear();
         display_price->setText(QString::number(totalprice));
 }
 void MainWindow::totalprice_display8(){
-    int room_price[8];
+    int room_price;
     QSqlQuery roomprice_qry(db);
-    roomprice_qry.exec("SELECT room_price FROM room");
-    for (int i=0;roomprice_qry.next();i++){room_price[i] =roomprice_qry.value(0).toInt();}
-
+    roomprice_qry.exec("SELECT room_price FROM room where room_no =8");
+    roomprice_qry.first();
+    room_price =roomprice_qry.value(0).toInt();
             if(room8_checkbox->isChecked()){
-                totalprice += room_price[7];
-
+                totalprice += room_price;
         }
         else{
-            totalprice -= room_price[7];
-
+            totalprice -= room_price;
         }
-
         display_price->clear();
         display_price->setText(QString::number(totalprice));
 }
 void MainWindow::totalprice_display9(){
-        int service_charge[6];
+        int service_charge;
         QSqlQuery serviceprice_qry(db);
-        serviceprice_qry.exec("SELECT price FROM service_price");
-        for(int i=0;serviceprice_qry.next();i++){service_charge[i] = serviceprice_qry.value(0).toInt();}//database ko table aanusar serial wise data aaucha
-
+        serviceprice_qry.exec("SELECT price FROM service_price where services = 'breakfast'");
+        serviceprice_qry.first();
+        service_charge = serviceprice_qry.value(0).toInt();
             if(breakfast_checkbox->isChecked()){
-                totalprice += service_charge[0];
-
+                totalprice += service_charge;
             }
-
         else{
-            totalprice -= service_charge[0];
-
+            totalprice -= service_charge;
         }
-
         display_price->clear();
         display_price->setText(QString::number(totalprice));
 }
 void MainWindow::totalprice_display10(){
-        int service_charge[6];
+        int service_charge;
         QSqlQuery serviceprice_qry(db);
-        serviceprice_qry.exec("SELECT price FROM service_price");
-        for(int i=0;serviceprice_qry.next();i++){service_charge[i] = serviceprice_qry.value(0).toInt();}//database ko table aanusar serial wise data aaucha
-
+        serviceprice_qry.exec("SELECT price FROM service_price where services = 'dinner'");
+        serviceprice_qry.first();
+        service_charge = serviceprice_qry.value(0).toInt();
             if(dinner_checkbox->isChecked()){
-                totalprice += service_charge[1];
-
+                totalprice += service_charge;
             }
-
         else{
-            totalprice -= service_charge[1];
-
+            totalprice -= service_charge;
         }
-
         display_price->clear();
         display_price->setText(QString::number(totalprice));
 }
 void MainWindow::totalprice_display11(){
-        int service_charge[6];
+        int service_charge;
         QSqlQuery serviceprice_qry(db);
-        serviceprice_qry.exec("SELECT price FROM service_price");
-        for(int i=0;serviceprice_qry.next();i++){service_charge[i] = serviceprice_qry.value(0).toInt();}//database ko table aanusar serial wise data aaucha
-
+        serviceprice_qry.exec("SELECT price FROM service_price where services = 'lunch'");
+        serviceprice_qry.first();
+        service_charge = serviceprice_qry.value(0).toInt();
             if(lunch_checkbox->isChecked()){
-                totalprice += service_charge[2];
-
+                totalprice += service_charge;
             }
-
         else{
-            totalprice -= service_charge[2];
-
+            totalprice -= service_charge;
         }
-
         display_price->clear();
         display_price->setText(QString::number(totalprice));
 }
 void MainWindow::totalprice_display12(){
-        int service_charge[6];
+        int service_charge;
         QSqlQuery serviceprice_qry(db);
-        serviceprice_qry.exec("SELECT price FROM service_price");
-        for(int i=0;serviceprice_qry.next();i++){service_charge[i] = serviceprice_qry.value(0).toInt();}//database ko table aanusar serial wise data aaucha
-
-
-            if(transportation_checkbox->isChecked()){
-                totalprice += service_charge[3];
-
-            }
-
-        else{
-            totalprice -= service_charge[3];
-
+        serviceprice_qry.exec("SELECT price FROM service_price where services = 'transportation'");
+        serviceprice_qry.first();
+        service_charge = serviceprice_qry.value(0).toInt();
+        if(transportation_checkbox->isChecked()){
+            totalprice += service_charge;
         }
-
+        else{
+            totalprice -= service_charge;
+        }
         display_price->clear();
         display_price->setText(QString::number(totalprice));
 }
 void MainWindow::totalprice_display13(){
-        int service_charge[6];
+        int service_charge;
         QSqlQuery serviceprice_qry(db);
-        serviceprice_qry.exec("SELECT price FROM service_price");
-        for(int i=0;serviceprice_qry.next();i++){service_charge[i] = serviceprice_qry.value(0).toInt();}//database ko table aanusar serial wise data aaucha
-
-
+        serviceprice_qry.exec("SELECT price FROM service_price where services = 'sim'");
+        service_charge = serviceprice_qry.value(0).toInt();
             if(sim_checkbox->isChecked()){
-                totalprice += service_charge[4];
-
+                totalprice += service_charge;
             }
-
         else{
-            totalprice -= service_charge[4];
-
+            totalprice -= service_charge;
         }
-
         display_price->clear();
         display_price->setText(QString::number(totalprice));
 }
 void MainWindow::totalprice_display14(){
-        int service_charge[6];
+        int service_charge;
         QSqlQuery serviceprice_qry(db);
-        serviceprice_qry.exec("SELECT price FROM service_price");
-        for(int i=0;serviceprice_qry.next();i++){service_charge[i] = serviceprice_qry.value(0).toInt();}//database ko table aanusar serial wise data aaucha
-
+        serviceprice_qry.exec("SELECT price FROM service_price where services = 'guide'");
+        service_charge = serviceprice_qry.value(0).toInt();
             if(guide_checkbox->isChecked()){
-                totalprice += service_charge[5];
-
+                totalprice += service_charge;
             }
-
         else{
-            totalprice -= service_charge[5];
-
+            totalprice -= service_charge;
         }
-
-
     display_price->clear();
     display_price->setText(QString::number(totalprice));
 }

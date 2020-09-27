@@ -18,7 +18,6 @@ void MainWindow::room_details(){
         QVBoxLayout *room_layout =new QVBoxLayout();  //Defining vertical Box Layout
 
             //Displays Room Details Text At Center
-
             QLabel *room_label = new QLabel(window);
             room_label->setText("Room Details");
             room_label->setAlignment(Qt::AlignHCenter);
@@ -29,7 +28,6 @@ void MainWindow::room_details(){
 
             QSqlQuery room_query(db);
             int i;
-
             //connecting button and executing query
             if(roomBtn_select == 1){
             room_query.prepare("SELECT * FROM room WHERE room_no = 1");
