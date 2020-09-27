@@ -1,14 +1,16 @@
 #include "mainwindow.h"
 
 
-void MainWindow::Bill(){
-    QWidget *parent = new QWidget; // parent widget
 
+void MainWindow::Bill(){
+//    QWidget *parent = new QWidget; // parent widget
+    QVBoxLayout *main_layout = new QVBoxLayout();
     setWindowTitle("Billings");
     style();
+    rightside->setLayout(main_layout);
 
     QWidget *tophalf = new QWidget;
-    QVBoxLayout *main_layout = new QVBoxLayout();
+   // QVBoxLayout *main_layout = new QVBoxLayout();
         QHBoxLayout *top_layout = new QHBoxLayout();
             QLabel *selectRoomLabel = new QLabel("Select A Room");
             QComboBox *selectRoom = new QComboBox();
@@ -33,7 +35,6 @@ void MainWindow::Bill(){
             case 0:
                 break;
             case 1:
-
                 checkout(1);
                 break;
             case 2:
@@ -66,9 +67,10 @@ void MainWindow::Bill(){
         ////////////////////////////
         /// /////////////////////////
 
-    bottom_half = new QWidget();
 
+    bottom_half = new QWidget();
     main_layout->addWidget(tophalf);
     main_layout->addWidget(bottom_half);
-    parent->setLayout(main_layout);
+//    parent->setLayout(main_layout);
+//    rightside->setLayout(main_layout);s
 }

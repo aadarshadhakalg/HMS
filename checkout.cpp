@@ -5,8 +5,8 @@
 
 
 void MainWindow::checkout(int room){
-    setWindowTitle("Billings");
-    style();
+//    setWindowTitle("Billings");
+//    style();
 
 //    QWidget *widget = new QWidget;
 //    setCentralWidget(widget);
@@ -86,8 +86,8 @@ void MainWindow::checkout(int room){
     custo_address->setText(guest.getAddress());
     custo_nationality->setText(guest.getIdentity());
     Total->setNum(guest.getTotalAmount());
-    Paid->setNum(guest.getTotalAmount());
-    Due->setNum(guest.getTotalAmount());
+    Paid->setNum(guest.getPaidAmount());
+    Due->setNum(guest.getDueAmount());
 
 
 
