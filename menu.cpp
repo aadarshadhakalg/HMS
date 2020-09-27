@@ -61,12 +61,6 @@ void MainWindow::contact()
    QLabel *subtitle3 = new QLabel();
    QLabel *ssubtitle3 = new QLabel();
 
-
-
-
-
-
-
    QFont banner("Helvetica",30,QFont::ExtraBold);
    QFont question("Helvetica",20,QFont::Black);
    QFont ans("Helvetica",15,QFont::ExtraLight);

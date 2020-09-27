@@ -40,12 +40,11 @@ public:
     int totalprice = 0;
     int pricepaid = 0;
     QLineEdit* display_price;
-
+    QString room[5];
     QLineEdit* price_paid;
     int roomBtn_select;//for room details showing
-    QString room[5];
     int packageprice = 0;
-    bool room_1=true, room_2=true, room_3=true, room_4=true, room_5=true, room_6=true, room_7=true, room_8=true, sim=true, guide =true, transportation=true, breakfast=true, lunch=true, dinner=true;
+    bool daysprice_addable = true;
     void checkout(int);
 
 
@@ -90,6 +89,8 @@ private slots:
     void totalprice_display14();
     void packageprice_adder();
     void packageprice_clearer();
+    void daysstayed_priceadder();
+    void daysstayed_priceclearer();
     //slots for room details
     void room1();
     void room2();
@@ -152,6 +153,8 @@ private:
     QLabel *label;
     QSqlDatabase db;
     QSqlTableModel *model;
+
+    QLineEdit *days_staying;//for total days stayed
 
     //for adding package
     QLineEdit *package_id;

@@ -5,8 +5,9 @@
 // Defining room booking screen //
 
 void MainWindow::roombooking(){
+    QScrollArea* scroller = new QScrollArea(this);
+    setCentralWidget(scroller);
     QWidget *window = new QWidget(this);
-    setCentralWidget(window);
     window->setStyleSheet("*{background:white;}");
         QVBoxLayout *main_layout =new QVBoxLayout();  //Defining Vertical Box Layout
 
@@ -136,6 +137,17 @@ void MainWindow::roombooking(){
             sim_checkbox = new QCheckBox("SIM",this);
             guide_checkbox = new QCheckBox("GUIDE",this);
 
+            //for days staying
+            QLabel *days_Hint = new QLabel("Days Staying");
+            days_Hint->setStyleSheet("*{font-weight:bold;font-size:18px;padding:10px;}");
+            this->days_staying = new QLineEdit();
+            days_staying->setFixedHeight(40);
+            days_staying->setValidator(new QIntValidator(0,1000000000,this));
+            QPushButton *daysstaying_addButton = new QPushButton("ADD");
+            daysstaying_addButton->setStyleSheet("*{background:blue;height:30px;}");
+            QPushButton *daysstaying_clearButton = new QPushButton("CLEAR");
+            daysstaying_clearButton->setStyleSheet("*{background:blue;height:30px;}");
+
             //for package selection
             QLabel *packageHint = new QLabel("Package Id");
             packageHint->setStyleSheet("*{font-weight:bold;font-size:18px;padding:10px;}");
@@ -176,18 +188,22 @@ void MainWindow::roombooking(){
             room_formLayout->addWidget(transportation_checkbox,5,0);
             room_formLayout->addWidget(sim_checkbox,5,1);
             room_formLayout->addWidget(guide_checkbox,5,2);
-            room_formLayout->addWidget(packageHint,6,0);
-            room_formLayout->addWidget(package_id,6,1);
-            room_formLayout->addWidget(package_addButton,6,2);
-            room_formLayout->addWidget(package_clearButton,6,3);
+            room_formLayout->addWidget(days_Hint,6,0);
+            room_formLayout->addWidget(days_staying,6,1);
+            room_formLayout->addWidget(daysstaying_addButton,6,2);
+            room_formLayout->addWidget(daysstaying_clearButton,6,3);
+            room_formLayout->addWidget(packageHint,7,0);
+            room_formLayout->addWidget(package_id,7,1);
+            room_formLayout->addWidget(package_addButton,7,2);
+            room_formLayout->addWidget(package_clearButton,7,3);
 
-            room_formLayout->addWidget(price_label,7,0);
-            room_formLayout->addWidget(display_price,7,1);
-            room_formLayout->addWidget(paying_price,8,0);
-            room_formLayout->addWidget(price_paid,8,1);
+            room_formLayout->addWidget(price_label,8,0);
+            room_formLayout->addWidget(display_price,8,1);
+            room_formLayout->addWidget(paying_price,9,0);
+            room_formLayout->addWidget(price_paid,9,1);
 
             //Adding layout to room_form
-            room_formLayout->setColumnStretch(8,3);
+            room_formLayout->setColumnStretch(9,3);
             room_form->setLayout(room_formLayout); //room_form layout set
 
 
@@ -216,7 +232,12 @@ void MainWindow::roombooking(){
             main_layout->addWidget(userForm);
             main_layout->addWidget(room_form);
             main_layout->addWidget(Button_widget);
-            window->setLayout(main_layout);  //main_layout set to main window       
+            window->setLayout(main_layout);  //main_layout set to main window
+            window->adjustSize();
+
+            scroller->setWidget(window);
+            scroller->setVisible(true);
+            scroller->size();
 
             connect(book_nowButton,SIGNAL(clicked(bool)),this,SLOT(bookButton_clicked()));
             connect(book_nowButton,SIGNAL(clicked(bool)),this,SLOT(Roommain()));
@@ -236,6 +257,8 @@ void MainWindow::roombooking(){
             connect(sim_checkbox,SIGNAL(clicked(bool)),this,SLOT(totalprice_display13()));
             connect(guide_checkbox,SIGNAL(clicked(bool)),this,SLOT(totalprice_display14()));
 
+            connect(daysstaying_addButton,SIGNAL(clicked(bool)),this,SLOT(daysstayed_priceadder()));
+            connect(daysstaying_clearButton,SIGNAL(clicked(bool)),this,SLOT(daysstayed_priceclearer()));
             connect(package_addButton,SIGNAL(clicked(bool)),this,SLOT(packageprice_adder()));
             connect(package_clearButton,SIGNAL(clicked(bool)),this,SLOT(packageprice_clearer()));       
 }
