@@ -17,7 +17,7 @@ void MainWindow::style(){
     QPushButton* customerBtn = new QPushButton("Records");
     QPushButton* exitBtn = new QPushButton("Exit");
 
-    QPixmap logo = QPixmap("/logo.png");
+    QPixmap logo = QPixmap(":/Resources/logo.png");
     QLabel *logoLabel = new QLabel();
     logoLabel->setPixmap(logo);
     logoLabel->setScaledContents(true);

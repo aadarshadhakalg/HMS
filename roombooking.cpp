@@ -6,6 +6,7 @@
 
 void MainWindow::roombooking(){
     QScrollArea* scroller = new QScrollArea(this);
+    scroller->setAlignment(Qt::AlignHCenter);
     setCentralWidget(scroller);
     QWidget *window = new QWidget(this);
     window->setStyleSheet("*{background:white;}");

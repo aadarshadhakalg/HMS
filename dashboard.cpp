@@ -16,7 +16,7 @@ void MainWindow::dashboard(){
     title->setFixedHeight(70);
 
     QWidget *image = new QWidget();
-    image->setStyleSheet("*{border-image: url('/hotel.jpg') 0 0 0 0 stretch stretch;}");
+    image->setStyleSheet("*{border-image: url(':/Resources/hotel.jpg') 0 0 0 0 stretch stretch;}");
     layout->addWidget(title);
     layout->addWidget(image);
     rightside->setLayout(layout);
