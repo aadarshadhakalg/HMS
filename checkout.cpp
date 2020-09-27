@@ -130,13 +130,19 @@ void MainWindow::checkout(int room){
     connect(checkout_nowButton,SIGNAL(clicked(bool)),this,SLOT(checkout_now()));
     connect(checkout_nowButton,SIGNAL(clicked(bool)),this,SLOT(dashboard()));
     // GO Back Button
+    QPushButton *BackButton = new QPushButton("Back");
+    BackButton->setStyleSheet("*{background:red;height:30px;}");
+    BackButton->adjustSize();
+    connect(BackButton,SIGNAL(clicked()),this,SLOT(Bill()));
+
     QPushButton *PayButton = new QPushButton("Pay");
     PayButton->setStyleSheet("*{background:red;height:30px;}");
     PayButton->adjustSize();
     connect(PayButton,SIGNAL(clicked()),this,SLOT(payNow()));
 
     //adding button widgets to buttonlayout
-    buttonLayout->addWidget(PayButton,0,0,Qt::AlignLeft);
+    buttonLayout->addWidget(BackButton,0,0,Qt::AlignLeft);
+    buttonLayout->addWidget(PayButton,0,1,Qt::AlignLeft);
     buttonLayout->addWidget(checkout_nowButton,0,3,Qt::AlignRight);
     buttonLayout->setColumnStretch(2,2);
     Button_widget->setLayout(buttonLayout);
