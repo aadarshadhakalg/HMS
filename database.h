@@ -31,7 +31,7 @@ public:
     void getUsers(Room rooms[]);
 
     Guest getGuestDetailByRoomNo(int no);
-    bool guestCheckOut(int id);
+    bool guestCheckOut(int id, int id2);
     bool payAmount(int amount, int id);
     bool isCheckOutAble(int id);
 };

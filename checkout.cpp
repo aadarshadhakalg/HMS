@@ -7,14 +7,17 @@
 void MainWindow::checkout(int room){
     setWindowTitle("Billings");
     style();
-
     QWidget *widget = new QWidget;
     setCentralWidget(widget);
     QVBoxLayout *layout = new QVBoxLayout;
+//    QWidget *widget = new QWidget;
+//    setCentralWidget(widget);
 
 
     Database db;
     Guest guest = db.getGuestDetailByRoomNo(room);
+    Guest_id_cout = guest.getID();
+    Guest_room_cout = guest.getRoomNo();
     if(guest.getID() == NULL)
     {   infoLabel = new QLabel();
         infoLabel->setText("No user");
@@ -23,6 +26,11 @@ void MainWindow::checkout(int room){
         infoLabel = new QLabel();
         infoLabel->setText("Bill  For HMS");
     }
+
+    infoLabel->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+    infoLabel->setAlignment(Qt::AlignCenter);
+
+    QWidget *userForm = new QWidget(bottom_half); // QWidget(widget)
     QGridLayout *user_formLayout = new QGridLayout(); // Defines grid layout for name
     user_formLayout->setColumnMinimumWidth(1,300);
 
@@ -101,8 +109,7 @@ void MainWindow::checkout(int room){
     user_formLayout->addWidget(custo_address,3,1);
 
     user_formLayout->addWidget(nationalityHint,4,0);
-    user_formLayout->addWidget(custo_nationality,4,1)
-            ;
+    user_formLayout->addWidget(custo_nationality,4,1);
     user_formLayout->addWidget(TotalPayHint,5,0);
     user_formLayout->addWidget(Total,5,1);
 
@@ -112,12 +119,41 @@ void MainWindow::checkout(int room){
     user_formLayout->addWidget(DuePayHint,7,0);
     user_formLayout->addWidget(Due,7,1);
 
-
-
-
-    user_formLayout->setColumnStretch(7,1);
    layout->addWidget(infoLabel);
     widget->setLayout(user_formLayout);
     widget->setLayout(layout);
+    user_formLayout->setColumnStretch(7,1);
+     userForm->setLayout(user_formLayout);
+
+    QWidget *Button_widget = new QWidget(bottom_half); //QWidget(widget)
+    QGridLayout *buttonLayout = new QGridLayout();
+
+    QPushButton *checkout_nowButton = new QPushButton("Check out");
+    checkout_nowButton->setStyleSheet("*{background:red;height:30px;}");
+    connect(checkout_nowButton,SIGNAL(clicked(bool)),this,SLOT(checkout_now()));
+    connect(checkout_nowButton,SIGNAL(clicked(bool)),this,SLOT(dashboard()));
+    // GO Back Button
+    QPushButton *backButton = new QPushButton("Back");
+    backButton->setStyleSheet("*{background:red;height:30px;}");
+    backButton->adjustSize();
+    connect(backButton,SIGNAL(clicked()),this,SLOT(dashboard()));
+
+    //adding button widgets to buttonlayout
+    buttonLayout->addWidget(backButton,0,0,Qt::AlignLeft);
+    buttonLayout->addWidget(checkout_nowButton,0,3,Qt::AlignRight);
+    buttonLayout->setColumnStretch(2,2);
+    Button_widget->setLayout(buttonLayout);
+
+
+   layout->addWidget(infoLabel);
+   layout->addWidget(userForm);
+   layout->addWidget(Button_widget);
+   bottom_half->setLayout(layout); // widget->setLayout(layout)
+
+}
+
+void MainWindow::checkout_now(){
+    Database db;
+    db.guestCheckOut(Guest_id_cout, Guest_room_cout);
 
 }

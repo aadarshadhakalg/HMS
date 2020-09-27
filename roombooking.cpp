@@ -190,6 +190,53 @@ void MainWindow::roombooking(){
             room_formLayout->setColumnStretch(8,3);
             room_form->setLayout(room_formLayout); //room_form layout set
 
+<<<<<<< HEAD
+=======
+            int room_price[8], i;
+            QSqlQuery roomprice_qry(db);
+            roomprice_qry.exec("SELECT room_price FROM room");
+            for (i=0;roomprice_qry.next();i++){room_price[i] =roomprice_qry.value(0).toInt();}
+
+            int service_charge[service_max];
+            QSqlQuery serviceprice_qry(db);
+            serviceprice_qry.exec("SELECT service_price FROM services");//Table name ra column name sacchhaune
+            for(i=0;serviceprice_qry.next();i++){service_charge[i] = serviceprice_qry.value(0).toInt();}//database ko table aanusar serial wise data aaucha
+
+            QSqlQuery roomavailability_qry(db);
+            roomavailability_qry.exec("select room_status from room");
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room1_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room2_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room3_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room4_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room5_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room6_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room7_checkbox->setEnabled(false);}
+            roomavailability_qry.next();
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room8_checkbox->setEnabled(false);}
+
+            if(room1_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[0]);}
+            if(room2_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[1]);}
+            if(room3_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[2]);}
+            if(room4_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[3]);}
+            if(room5_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[4]);}
+            if(room6_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[5]);}
+            if(room7_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[6]);}
+            if(room8_checkbox->isChecked()) {MainWindow::totalprice_calculator(room_price[7]);}
+
+            if(breakfast_checkbox->isChecked()) {totalprice_calculator(service_charge[0]);}
+            if(dinner_checkbox->isChecked()) {totalprice_calculator(service_charge[1]);}
+            if(lunch_checkbox->isChecked()) {totalprice_calculator(service_charge[2]);}
+            if(transportation_checkbox->isChecked()) {totalprice_calculator(service_charge[3]);}
+            if(sim_checkbox->isChecked()) {totalprice_calculator(service_charge[4]);}
+            if(guide_checkbox->isChecked()) {totalprice_calculator(service_charge[5]);}
+>>>>>>> c1f898c5079244eb885bc8fe09851c88e406991f
 
             //Layout for Buttons
             QWidget *Button_widget = new QWidget(window);

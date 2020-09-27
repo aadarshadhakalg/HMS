@@ -153,11 +153,17 @@ Guest Database::getGuestDetailByRoomNo(int no){
 // guest.getAddress          for Address
 // and similarly other
 
-bool Database::guestCheckOut(int id){
+bool Database::guestCheckOut(int id, int id2){
     QSqlQuery query;
+    QSqlQuery roomQ;
     query.prepare("UPDATE guests SET status='InActive' WHERE id=:id");
+    roomQ.prepare("UPDATE room SET room_status='UNOCCUPIED' WHERE room_no=:id2");
+
     query.bindValue(":id",id);
-    if(query.exec()){
+    query.exec();
+
+    roomQ.bindValue(":id2",id2);
+    if(roomQ.exec()){
         return true;
     }else {
         return false;
