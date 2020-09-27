@@ -10,7 +10,6 @@ void MainWindow::checkout(int room){
 
 //    QWidget *widget = new QWidget;
 //    setCentralWidget(widget);
-
     QVBoxLayout *layout = new QVBoxLayout();
 
 
@@ -69,8 +68,8 @@ void MainWindow::checkout(int room){
     QLabel *custo_address = new QLabel();
     QLabel *custo_nationality = new QLabel();
     QLabel *Total = new QLabel();
-    QLabel *Paid = new QLabel();
-    QLabel *Due = new QLabel();
+    Paid = new QLabel();
+    Due = new QLabel();
 
    Pay_amount = new QLineEdit();
    Pay_amount->setFixedHeight(40);
@@ -159,7 +158,7 @@ void MainWindow::checkout(int room){
    layout->addWidget(infoLabel);
    layout->addWidget(userForm);
    layout->addWidget(Button_widget);
-   bottom_half->setLayout(layout); // widget->setLayout(layout)
+   bottom_half->setLayout(layout);
 
 }
 
@@ -187,6 +186,9 @@ void MainWindow::payNow(){
     QMessageBox msgBox;
     msgBox.setText("Amount Paid successfully");
     msgBox.exec();
+    Guest guest = db.getGuestDetailByID(Guest_id_cout);
+    Due->setNum(guest.getDueAmount());
+    Paid->setNum(guest.getPaidAmount());
     }else{
         QMessageBox msgBox;
         msgBox.setText("Error has occured");

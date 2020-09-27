@@ -130,6 +130,8 @@ private:
     QLabel *checkoutSelectedRoomID;
 //    QVBoxLayout *billlayout;
     QLineEdit *Pay_amount;
+    QLabel *Paid;
+    QLabel *Due;
 };
 
 #endif // MAINWINDOW_H

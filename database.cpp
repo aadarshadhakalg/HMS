@@ -153,14 +153,47 @@ Guest Database::getGuestDetailByRoomNo(int no){
 // guest.getAddress          for Address
 // and similarly other
 
-bool Database::guestCheckOut(int id, int id2,QString checkout_date){
+
+Guest Database::getGuestDetailByID(int no){
+    Guest guest;
+    QSqlQuery query;
+    query.prepare("SELECT * FROM guests WHERE id=:no and status='Active'");
+    query.bindValue(":no", no);
+    if(query.exec()){
+        query.first();
+        guest.setID(query.value(0).toInt());
+        guest.setRoomNo(query.value(1).toInt());
+        guest.setName(query.value(2).toString());
+        guest.setEmail(query.value(3).toString());
+        guest.setContact(query.value(4).toString());
+        guest.setAddress(query.value(5).toString());
+        guest.setCheckin(query.value(6).toString());
+        guest.setCheckout(query.value(7).toString());
+        guest.setIdentity(query.value(8).toString());
+        guest.setRoomType(query.value(9).toString());
+        guest.setTotalAmount(query.value(10).toInt());
+        guest.setPaidAmount(query.value(11).toInt());
+        guest.setDueAmount(query.value(12).toInt());
+        guest.setStatus(query.value(13).toString());
+        guest.setPackages(query.value(14).toString());
+
+    }
+    return guest;
+}
+
+
+
+bool Database::guestCheckOut(int id, int id2){
     QSqlQuery query;
     QSqlQuery roomQ;
-    query.prepare("UPDATE guests SET status='InActive',checkout=':checkoutdate' WHERE id=:id");
+//    QString checkout_date = QDate::currentDate().toString("dd.mm.yyyy");
+    QDateTime checkout = QDateTime::currentDateTime();
+
+    query.prepare("UPDATE guests SET status='InActive',checkout=:checkoutdate WHERE id=:id");
     roomQ.prepare("UPDATE room SET room_status='UNOCCUPIED' WHERE room_no=:id2");
 
     query.bindValue(":id",id);
-    query.bindValue(":checkoutdate",checkout_date);
+    query.bindValue(":checkoutdate",checkout);
     query.exec();
 
     roomQ.bindValue(":id2",id2);

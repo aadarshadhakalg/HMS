@@ -4,6 +4,7 @@
 #include <QSqlQuery>
 #include <QString>
 #include <string>
+#include <QDateTime>
 #include <QVariant>
 #include "package.h"
 #include "guest.h"
@@ -30,7 +31,8 @@ public:
     void getUsers(Room rooms[]);
 
     Guest getGuestDetailByRoomNo(int no);
-    bool guestCheckOut(int id, int id2,QString checkout_date);
+    Guest getGuestDetailByID(int no);
+    bool guestCheckOut(int id, int id2);
     bool payAmount(int amount, int id);
     bool isCheckOutAble(int id);
 };

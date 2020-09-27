@@ -71,6 +71,4 @@ void MainWindow::Bill(){
     bottom_half = new QWidget();
     main_layout->addWidget(tophalf);
     main_layout->addWidget(bottom_half);
-//    parent->setLayout(main_layout);
-//    rightside->setLayout(main_layout);s
 }
