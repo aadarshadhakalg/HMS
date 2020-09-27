@@ -29,8 +29,8 @@ To run this software succesfully in your machine, you should have
 
 * **Aadarsha Dhakal** - [TheDartMan](https://github.com/aadarshadhakalg)
 * **Ayush Paudel** - [user-metaterongo](https://github.com/user-metaterongo)
-* **Ayush Aryal** - [ayush7aryal](https://github.com/ayush7aryal)
 * **Sushant Adhikari** - [sushant-c](https://github.com/sushant-c)
+* **Ayush Aryal** - [ayush7aryal](https://github.com/ayush7aryal)
 
 See also the list of [contributors](https://github.com/aadarshadhakalg/HMS/contributors) who participated in this project.
 
