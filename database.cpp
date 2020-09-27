@@ -175,9 +175,10 @@ bool Database::guestCheckOut(int id, int id2){
 
 bool Database::isCheckOutAble(int id){
     QSqlQuery query;
-    query.prepare("SELECT due_amount FROM guests where if=:id");
+    query.prepare("SELECT due_amount FROM guests where id=:id");
     query.bindValue(":id",id);
     if(query.exec()){
+        query.next();
         int da = query.value(0).toInt();
         if(da == 0){
             return true;
@@ -196,19 +197,23 @@ bool Database::isCheckOutAble(int id){
 bool Database::payAmount(int amount, int id){
     QSqlQuery query;
     int ta, pa, da;
-    query.prepare("SELECT * FROM guests where id=:id");
+    query.prepare("SELECT * FROM guests WHERE id=:id");
     query.bindValue(":id",id);
     if(query.exec()){
+        query.next();
         ta = query.value(10).toInt();
         pa = query.value(11).toInt();
         da = query.value(12).toInt();
 
-        if((pa + amount) > ta){
+        int possible = pa+amount;
+        if(possible > ta){
             return false;
         }else{
-            query.prepare("UPDATE guests SET paid_amount=:npa and due_amount=:nda WHERE id=:id");
-            query.bindValue(":npa",pa+amount);
-            query.bindValue(":nda",da-amount);
+            int npa = pa+amount;
+            int nda = da-amount;
+            query.prepare("UPDATE guests SET paid_amount=:npa,due_amount=:nda WHERE id=:id");
+            query.bindValue(":npa",npa);
+            query.bindValue(":nda",nda);
             query.bindValue(":id",id);
             if(query.exec()){
                 return true;

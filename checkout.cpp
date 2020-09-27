@@ -72,13 +72,13 @@ void MainWindow::checkout(int room){
     QLabel *Paid = new QLabel();
     QLabel *Due = new QLabel();
 
-   QLineEdit *Pay_amount = new QLineEdit();
+   Pay_amount = new QLineEdit();
    Pay_amount->setFixedHeight(40);
    Pay_amount->setClearButtonEnabled(true);
    Pay_amount->setPlaceholderText("Pay Here");
 
-   QString a = Pay_amount->text();
-   int guestPaid = a.toInt();
+//   QString a = Pay_amount->text();
+//    guestPaid = a.toInt();
 
     custo_name->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
     custo_email->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
@@ -183,8 +183,13 @@ void MainWindow::checkout_now(){
 
 void MainWindow::payNow(){
     Database db;
-    db.payAmount(guestPaid, Guest_id_cout);
+    if(db.payAmount(Pay_amount->text().toInt(), Guest_id_cout)){
     QMessageBox msgBox;
     msgBox.setText("Amount Paid successfully");
     msgBox.exec();
+    }else{
+        QMessageBox msgBox;
+        msgBox.setText("Error has occured");
+        msgBox.exec();
+    }
 }

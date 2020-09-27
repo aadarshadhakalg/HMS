@@ -129,6 +129,7 @@ private:
     //checkOut Screen ( To get selected room ID )
     QLabel *checkoutSelectedRoomID;
 //    QVBoxLayout *billlayout;
+    QLineEdit *Pay_amount;
 };
 
 #endif // MAINWINDOW_H
