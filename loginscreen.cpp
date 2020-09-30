@@ -6,26 +6,8 @@
 // Defining loginScreen //
 
 void MainWindow::loginScreen(){
-    // Setting up connection to MYSQL Database on Cloud
-    //
-    // Database configuration details
-    // hostname: hms.cxsp6l8xtyqr.us-east-1.rds.amazonaws.com,
-    // Port: 3306,
-    // Database Name : hms,
-    // Database Username: hms,
-    // Database Password: password
 
-
-    db = QSqlDatabase::addDatabase("QMYSQL"); // Initializing Database, QMYSQL is MySQL database driver for QT.
-    db.setHostName("hms.cxsp6l8xtyqr.us-east-1.rds.amazonaws.com"); // Setting hostname
-    db.setPort(3306); // setting port
-    db.setDatabaseName("hms"); // setting database name
-    db.setUserName("hms"); //setting username
-    db.setPassword("password"); //setting password
-
-
-    if(db.open()){                                    // Ensures database is connected
-    //if database conection is successful displays new window
+//    if(db.open()){                                    // Ensures database is connected
 
     QWidget *window = new QWidget(this);
     setCentralWidget(window);
@@ -123,9 +105,9 @@ void MainWindow::loginScreen(){
 
 
 
-    }else{ // If database connection is not established
-        QMessageBox::warning(window(),"Error Connection","Error connecting to Database"); //Displays a popup warning message
-    }
+//    }else{ // If database connection is not established
+//        QMessageBox::warning(window(),"Error Connection","Error connecting to Database"); //Displays a popup warning message
+//    }
 
 }
 
@@ -135,19 +117,22 @@ void MainWindow::loginButton_clicked(){
     email = MainWindow::emailText->text(); // fetch input text from email input field of loginscreen
     password = MainWindow::passwordText->text();  // fetch input text from password input field of loginscreen
 
-    // Checks if the user with provided email and password exists in database or not.
-    // Searches for record with provided email and password in users table in database.
-    QSqlQuery query;
-    bool user = query.exec("SELECT * FROM users WHERE email='"+email+"' AND password='"+password+"';");
-
-    if(user){ // condition is true if user exists
-        if(query.next()){
+//    // Checks if the user with provided email and password exists in database or not.
+//    // Searches for record with provided email and password in users table in database.
+//    QSqlQuery query;
+//    bool user = query.exec("SELECT * FROM users WHERE email='"+email+"' AND password='"+password+"';");
+try{
+    if(database.loginUser(email,password)){ // condition is true if user exists
+//        if(query.next()){
             connect(this,SIGNAL(loggedIn()),this,SLOT(dashboard())); // Navigates to Dashboard //Receives loggedIn signal
             emit loggedIn(); // Emits loggedIn signal
         }else{
             QMessageBox::warning(window(),"NO USER Found","Check Email and Password before trying again"); // Displays user not found popup
         }
-    }else{
-        QMessageBox::warning(window(),"Network Error","Check Internet Connection"); // Displays Connection Error popup
+    }catch(const char* msg){
+//    }else{
+        QMessageBox::warning(window(),"Network Error",msg); // Displays Connection Error popup
+//    }
     }
+
 }

@@ -29,6 +29,26 @@ QSqlDatabase Database::getDB(){
     return db;
 }
 
+
+bool Database::loginUser(QString email,QString password){
+    QSqlQuery query;
+    bool user = query.exec("SELECT * FROM users WHERE email='"+email+"' AND password='"+password+"';");
+
+
+    if(user){ // condition is true if user exists
+        if(query.next()){
+           return true;
+        }else{
+           return false;
+        }
+    }else{
+         throw "ConnectionError";
+    }
+//    return false;
+}
+
+
+
 //void Database::getAvailablePackages(Package packages[]){
 //    QSqlQuery query;
 //    if(query.exec("SELECT * FROM packages WHERE available = 1")){

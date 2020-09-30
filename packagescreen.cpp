@@ -9,7 +9,7 @@ void MainWindow::PackageScreen(){
     //rightside->setStyleSheet("*{background:green;}");
 
 
-    QString StyleSheetBtns =   "QPushButton { color: white; background-color: #1c2c3c; border: solid 5px white; font: 16pt 'Microsoft YaHei UI Light'; font-weight:bold; outline: none; } QPushButton:hover { background-color: #dc2525; border-style: solid; border-width: 3px; border-color: white; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
+    QString StyleSheetBtns =   "QPushButton { color: white; background-color: #24510c; border: solid 5px white; font: 16pt 'Microsoft YaHei UI Light'; font-weight:bold; outline: none; } QPushButton:hover { background-color: #dc2525; border-style: solid; border-width: 3px; border-color: white; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
 
 
 
@@ -165,7 +165,6 @@ void MainWindow::addPackage(){
         this->package_company = new QLineEdit();
         this->package_details = new QLineEdit();
         this->package_price = new QLineEdit();
-        package_price->setValidator( new QIntValidator(0, 100000, this) );
         this->package_available = new QCheckBox();
 
 

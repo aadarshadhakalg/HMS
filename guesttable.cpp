@@ -82,11 +82,12 @@ QWidget * MainWindow::guesttable(){
                 model->select();
                 break;
             case 1:
-                model->setSort(1,Qt::AscendingOrder);
+                model->setSort(6,Qt::AscendingOrder);
                 model->select();
                 break;
             case 2:
-                model->setSort(3,Qt::AscendingOrder);
+                model->setSort(7,Qt::AscendingOrder);
+                model->select();
                 break;
             case 6:
                 model->setSort(6,Qt::AscendingOrder);

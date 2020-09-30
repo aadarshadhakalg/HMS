@@ -46,6 +46,7 @@ void MainWindow::roombooking(){
             this->customer_name = new QLineEdit();    //this refers to the MainWindow class
             this->customer_email = new QLineEdit();
             this->customer_phone = new QLineEdit();
+            customer_phone->setValidator(new QIntValidator(0,1000000000,this));
             this->customer_address = new QLineEdit();
             this->customer_nationality = new QLineEdit();
 
@@ -56,8 +57,6 @@ void MainWindow::roombooking(){
             customer_email->setFixedHeight(40);
             customer_email->setPlaceholderText("Active Email");
             customer_email->setClearButtonEnabled(true);
-
-
             customer_phone->setFixedHeight(40);
             customer_phone->setClearButtonEnabled(true);
 

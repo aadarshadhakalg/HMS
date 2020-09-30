@@ -159,6 +159,7 @@ private:
     QLabel *label;
     QSqlDatabase db;
     QSqlTableModel *model;
+    Database database;
 
     QLineEdit *days_staying;//for total days stayed
 

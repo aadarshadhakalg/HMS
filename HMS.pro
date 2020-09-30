@@ -48,3 +48,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     assets.qrc
+
+DISTFILES += \
+    android-sources/AndroidManifest.xml
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-sources
+
+ANDROID_ABIS = armeabi-v7a

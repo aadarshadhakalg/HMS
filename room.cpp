@@ -84,6 +84,18 @@ void MainWindow::bookButton_clicked(){
     int pricepaid = price_paid->text().toInt();
     int dueamount = totalprice - pricepaid;
 
+    QRegularExpression emailrx("\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b",
+                          QRegularExpression::CaseInsensitiveOption);
+    if(!emailrx.match(customer_email->text()).hasMatch()){
+        QMessageBox::warning(this,"Invalid Email","OOPS! Email address is not valid!");
+    }
+
+    QRegularExpression phonerx("^[0-9]{10}$",
+                          QRegularExpression::CaseInsensitiveOption);
+    if(!phonerx.match(customer_phone->text()).hasMatch()){
+        QMessageBox::warning(this,"Invalid Phone","OOPS! Input valid phone number!");
+    }
+
     QSqlQuery room_qry;
     room_qry.exec("select room_type from room");
     room_qry.next();
