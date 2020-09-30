@@ -11,7 +11,7 @@ To run this application, clone the project files and open it with QT Creater.
 To run this software succesfully in your machine, you should have
 
 ```
-1. Windows/Linux
+1. Windows/Linux/Android
 2. Qt 5 Installed
 3. Qt Creator Installed
 4. Qt Mysql Database Driver Installed
