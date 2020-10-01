@@ -55,6 +55,7 @@ public:
 signals:
     void loggedIn();
     void dbready();
+    void bookingSuccess();
 
 // SLOTS
 private slots:

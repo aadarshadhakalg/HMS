@@ -46,7 +46,6 @@ void MainWindow::roombooking(){
             this->customer_name = new QLineEdit();    //this refers to the MainWindow class
             this->customer_email = new QLineEdit();
             this->customer_phone = new QLineEdit();
-            customer_phone->setValidator(new QIntValidator(0,1000000000,this));
             this->customer_address = new QLineEdit();
             this->customer_nationality = new QLineEdit();
 
@@ -272,9 +271,6 @@ void MainWindow::roombooking(){
             scroller->size();
 
             connect(book_nowButton,SIGNAL(clicked(bool)),this,SLOT(bookButton_clicked()));
-            if(book_successful){
-                connect(book_nowButton,SIGNAL(clicked(bool)),this,SLOT(Roommain()));
-            }
             connect(room1_checkbox,SIGNAL(clicked(bool)),this,SLOT(totalprice_display1()));
             connect(room2_checkbox,SIGNAL(clicked(bool)),this,SLOT(totalprice_display2()));
             connect(room3_checkbox,SIGNAL(clicked(bool)),this,SLOT(totalprice_display3()));

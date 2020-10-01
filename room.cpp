@@ -78,20 +78,22 @@ void MainWindow::bookButton_clicked(){
     phone = MainWindow::customer_phone->text();
     bool email_check = false, phone_check = false;
 
-    QRegularExpression emailrx("\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+zz.[A-Z]{2,4}\\b",
+    QRegularExpression emailrx("\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}\\b",
                                QRegularExpression::CaseInsensitiveOption);
+
+    QRegularExpression phonerx("^[0-9]{10}$",
+                               QRegularExpression::CaseInsensitiveOption);
+
     if(!emailrx.match(email).hasMatch()){
         QMessageBox::warning(this,"Invalid Email","OOPS! Email address is not valid");
         email_check = true;
-    }
-    QRegularExpression phonerx("^[0-9]{10}$",
-                               QRegularExpression::CaseInsensitiveOption);
-    if(!phonerx.match(phone).hasMatch()){
+    } else if(!phonerx.match(phone).hasMatch()){
         QMessageBox::warning(this,"Invalid Phone","OOPS! Input valid phone number!");
         phone_check = true;
-    }
+    } else {
 
-    if(email_check == true && phone_check == true){
+//    if(){
+//
         name = MainWindow::customer_name->text();  // fetch input text from password input field of loginscreen
         address = MainWindow::customer_address->text();
         nationality = MainWindow::customer_nationality->text();
@@ -265,11 +267,14 @@ void MainWindow::bookButton_clicked(){
         package_price = 0;
         QMessageBox msgBox;
         msgBox.setText("Room booked successfully");
-        book_successful = true;
+        connect(this,SIGNAL(bookingSuccess()),this,SLOT(Roommain()));
+        emit bookingSuccess();
+        email_check = false;
+        phone_check = false;
     }
-    else{
-        book_successful = false;
-    }
+//    else{
+//        book_successful = false;
+//    }
 }
 
 void MainWindow::totalprice_display1(){
