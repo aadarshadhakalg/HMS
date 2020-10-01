@@ -46,6 +46,7 @@ void MainWindow::roombooking(){
             this->customer_name = new QLineEdit();    //this refers to the MainWindow class
             this->customer_email = new QLineEdit();
             this->customer_phone = new QLineEdit();
+            customer_phone->setValidator(new QIntValidator(0,1000000000,this));
             this->customer_address = new QLineEdit();
             this->customer_nationality = new QLineEdit();
 
@@ -56,7 +57,6 @@ void MainWindow::roombooking(){
             customer_email->setFixedHeight(40);
             customer_email->setPlaceholderText("Active Email");
             customer_email->setClearButtonEnabled(true);
-
 
             customer_phone->setFixedHeight(40);
             customer_phone->setClearButtonEnabled(true);
@@ -109,22 +109,53 @@ void MainWindow::roombooking(){
             QSqlQuery roomavailability_qry(db);
             roomavailability_qry.exec("select room_status from room");
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room1_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){
+                room1_checkbox->setEnabled(false);
+                unavailable_room1 = true;
+            }
+            else{unavailable_room1 = false;}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room2_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){
+                room2_checkbox->setEnabled(false);
+                unavailable_room2 = true;
+            }
+            else{unavailable_room2 = false;}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room3_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){
+                room3_checkbox->setEnabled(false);
+                unavailable_room3 = true;
+            }
+            else{unavailable_room3 = false;}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room4_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){
+                room4_checkbox->setEnabled(false);
+                unavailable_room4 = true;
+            }
+            else{unavailable_room4 = false;}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room5_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){
+                room5_checkbox->setEnabled(false);
+                unavailable_room5 = true;
+            }
+            else{unavailable_room5 = false;}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room6_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){
+                room6_checkbox->setEnabled(false);
+                unavailable_room6 = true;
+            }
+            else{unavailable_room6 = false;}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room7_checkbox->setEnabled(false);}
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){
+                room7_checkbox->setEnabled(false);
+                unavailable_room7 = true;
+            }
+            else{unavailable_room7 = false;}
             roomavailability_qry.next();
-            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){ room8_checkbox->setEnabled(false);}
-
+            if(roomavailability_qry.value(0).toString() == "OCCUPIED"){
+                room8_checkbox->setEnabled(false);
+                unavailable_room8 = true;
+            }
+            else{unavailable_room8 = false;}
 
             //Additional service select
             QLabel *service_select = new QLabel("SERVICES:");
@@ -241,8 +272,9 @@ void MainWindow::roombooking(){
             scroller->size();
 
             connect(book_nowButton,SIGNAL(clicked(bool)),this,SLOT(bookButton_clicked()));
-            connect(book_nowButton,SIGNAL(clicked(bool)),this,SLOT(Roommain()));
-
+            if(book_successful){
+                connect(book_nowButton,SIGNAL(clicked(bool)),this,SLOT(Roommain()));
+            }
             connect(room1_checkbox,SIGNAL(clicked(bool)),this,SLOT(totalprice_display1()));
             connect(room2_checkbox,SIGNAL(clicked(bool)),this,SLOT(totalprice_display2()));
             connect(room3_checkbox,SIGNAL(clicked(bool)),this,SLOT(totalprice_display3()));
@@ -261,5 +293,5 @@ void MainWindow::roombooking(){
             connect(daysstaying_addButton,SIGNAL(clicked(bool)),this,SLOT(daysstayed_priceadder()));
             connect(daysstaying_clearButton,SIGNAL(clicked(bool)),this,SLOT(daysstayed_priceclearer()));
             connect(package_addButton,SIGNAL(clicked(bool)),this,SLOT(packageprice_adder()));
-            connect(package_clearButton,SIGNAL(clicked(bool)),this,SLOT(packageprice_clearer()));       
+            connect(package_clearButton,SIGNAL(clicked(bool)),this,SLOT(packageprice_clearer()));
 }

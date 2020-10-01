@@ -75,190 +75,201 @@ void MainWindow::bookButton_clicked(){
 
     QString name,email,address,nationality,phone,package;
     email = MainWindow::customer_email->text(); // fetch input text from email input field of loginscreen
-    name = MainWindow::customer_name->text();  // fetch input text from password input field of loginscreen
-    address = MainWindow::customer_address->text();
-    nationality = MainWindow::customer_nationality->text();
     phone = MainWindow::customer_phone->text();
-    QDateTime checkin = QDateTime::currentDateTime();
-    package = MainWindow::package_id->text();
-    int pricepaid = price_paid->text().toInt();
-    int dueamount = totalprice - pricepaid;
+    bool email_check = false, phone_check = false;
 
-    QRegularExpression emailrx("\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b",
-                          QRegularExpression::CaseInsensitiveOption);
-    if(!emailrx.match(customer_email->text()).hasMatch()){
-        QMessageBox::warning(this,"Invalid Email","OOPS! Email address is not valid!");
+    QRegularExpression emailrx("\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+zz.[A-Z]{2,4}\\b",
+                               QRegularExpression::CaseInsensitiveOption);
+    if(!emailrx.match(email).hasMatch()){
+        QMessageBox::warning(this,"Invalid Email","OOPS! Email address is not valid");
+        email_check = true;
     }
-
     QRegularExpression phonerx("^[0-9]{10}$",
-                          QRegularExpression::CaseInsensitiveOption);
-    if(!phonerx.match(customer_phone->text()).hasMatch()){
+                               QRegularExpression::CaseInsensitiveOption);
+    if(!phonerx.match(phone).hasMatch()){
         QMessageBox::warning(this,"Invalid Phone","OOPS! Input valid phone number!");
+        phone_check = true;
     }
 
-    QSqlQuery room_qry;
-    room_qry.exec("select room_type from room");
-    room_qry.next();
-    QString room_type[8];
-    for (int i=0; i<8; i++){
-        room_type[i] = room_qry.value(0).toString();
+    if(email_check == true && phone_check == true){
+        name = MainWindow::customer_name->text();  // fetch input text from password input field of loginscreen
+        address = MainWindow::customer_address->text();
+        nationality = MainWindow::customer_nationality->text();
+        QDateTime checkin = QDateTime::currentDateTime();
+        package = MainWindow::package_id->text();
+        int pricepaid = price_paid->text().toInt();
+        int dueamount = totalprice - pricepaid;
+
+        QSqlQuery room_qry;
+        room_qry.exec("select room_type from room");
         room_qry.next();
-    }
+        QString room_type[8];
+        for (int i=0; i<8; i++){
+            room_type[i] = room_qry.value(0).toString();
+            room_qry.next();
+        }
 
-    if(room1_checkbox->isChecked()){
-        QSqlQuery query,qry;
-        query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
-        query.addBindValue(1);
-        query.addBindValue(name);
-        query.addBindValue(email);
-        query.addBindValue(phone);
-        query.addBindValue(address);
-        query.addBindValue(nationality);
-        query.addBindValue(checkin);
-        query.addBindValue(package);
-        query.addBindValue(room_type[0]);
-        query.addBindValue(totalprice);
-        query.addBindValue(pricepaid);
-        query.addBindValue(dueamount);
-        query.exec();
-        qry.exec("update room set room_status = 'OCCUPIED' where room_no = 1");
+        if(room1_checkbox->isChecked()){
+            QSqlQuery query,qry;
+            query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
+                        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+            query.addBindValue(1);
+            query.addBindValue(name);
+            query.addBindValue(email);
+            query.addBindValue(phone);
+            query.addBindValue(address);
+            query.addBindValue(nationality);
+            query.addBindValue(checkin);
+            query.addBindValue(package);
+            query.addBindValue(room_type[0]);
+            query.addBindValue(totalprice);
+            query.addBindValue(pricepaid);
+            query.addBindValue(dueamount);
+            query.exec();
+            qry.exec("update room set room_status = 'OCCUPIED' where room_no = 1");
+        }
+        if(room2_checkbox->isChecked()){
+            QSqlQuery query,qry;
+            query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
+                        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+            query.addBindValue(2);
+            query.addBindValue(name);
+            query.addBindValue(email);
+            query.addBindValue(phone);
+            query.addBindValue(address);
+            query.addBindValue(nationality);
+            query.addBindValue(checkin);
+            query.addBindValue(package);
+            query.addBindValue(room_type[1]);
+            query.addBindValue(totalprice);
+            query.addBindValue(pricepaid);
+            query.addBindValue(dueamount);
+            query.exec();
+            qry.exec("update room set room_status = 'OCCUPIED' where room_no = 2");
+        }
+        if(room3_checkbox->isChecked()){
+            QSqlQuery query,qry;
+            query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
+                        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+            query.addBindValue(3);
+            query.addBindValue(name);
+            query.addBindValue(email);
+            query.addBindValue(phone);
+            query.addBindValue(address);
+            query.addBindValue(nationality);
+            query.addBindValue(checkin);
+            query.addBindValue(package);
+            query.addBindValue(room_type[2]);
+            query.addBindValue(totalprice);
+            query.addBindValue(pricepaid);
+            query.addBindValue(dueamount);
+            query.exec();
+            qry.exec("update room set room_status = 'OCCUPIED' where room_no = 3");
+        }
+        if(room4_checkbox->isChecked()){
+            QSqlQuery query,qry;
+            query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
+                        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+            query.addBindValue(4);
+            query.addBindValue(name);
+            query.addBindValue(email);
+            query.addBindValue(phone);
+            query.addBindValue(address);
+            query.addBindValue(nationality);
+            query.addBindValue(checkin);
+            query.addBindValue(package);
+            query.addBindValue(room_type[3]);
+            query.addBindValue(totalprice);
+            query.addBindValue(pricepaid);
+            query.addBindValue(dueamount);
+            query.exec();
+            qry.exec("update room set room_status = 'OCCUPIED' where room_no = 4");
+        }
+        if(room5_checkbox->isChecked()){
+            QSqlQuery query,qry;
+            query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
+                        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+            query.addBindValue(5);
+            query.addBindValue(name);
+            query.addBindValue(email);
+            query.addBindValue(phone);
+            query.addBindValue(address);
+            query.addBindValue(nationality);
+            query.addBindValue(checkin);
+            query.addBindValue(package);
+            query.addBindValue(room_type[4]);
+            query.addBindValue(totalprice);
+            query.addBindValue(pricepaid);
+            query.addBindValue(dueamount);
+            query.exec();
+            qry.exec("update room set room_status = 'OCCUPIED' where room_no = 5");
+        }
+        if(room6_checkbox->isChecked()){
+            QSqlQuery query,qry;
+            query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
+                        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+            query.addBindValue(6);
+            query.addBindValue(name);
+            query.addBindValue(email);
+            query.addBindValue(phone);
+            query.addBindValue(address);
+            query.addBindValue(nationality);
+            query.addBindValue(checkin);
+            query.addBindValue(package);
+            query.addBindValue(room_type[5]);
+            query.addBindValue(totalprice);
+            query.addBindValue(pricepaid);
+            query.addBindValue(dueamount);
+            query.exec();
+            qry.exec("update room set room_status = 'OCCUPIED' where room_no = 6");
+        }
+        if(room7_checkbox->isChecked()){
+            QSqlQuery query,qry;
+            query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
+                        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+            query.addBindValue(7);
+            query.addBindValue(name);
+            query.addBindValue(email);
+            query.addBindValue(phone);
+            query.addBindValue(address);
+            query.addBindValue(nationality);
+            query.addBindValue(checkin);
+            query.addBindValue(package);
+            query.addBindValue(room_type[6]);
+            query.addBindValue(totalprice);
+            query.addBindValue(pricepaid);
+            query.addBindValue(dueamount);
+            query.exec();
+            qry.exec("update room set room_status = 'OCCUPIED' where room_no = 7");
+        }
+        if(room8_checkbox->isChecked()){
+            QSqlQuery query,qry;
+            query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
+                        "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+            query.addBindValue(8);
+            query.addBindValue(name);
+            query.addBindValue(email);
+            query.addBindValue(phone);
+            query.addBindValue(address);
+            query.addBindValue(nationality);
+            query.addBindValue(checkin);
+            query.addBindValue(package);
+            query.addBindValue(room_type[7]);
+            query.addBindValue(totalprice);
+            query.addBindValue(pricepaid);
+            query.addBindValue(dueamount);
+            query.exec();
+            qry.exec("update room set room_status = 'OCCUPIED' where room_no = 8");
+        }
+        totalprice = 0;
+        package_price = 0;
+        QMessageBox msgBox;
+        msgBox.setText("Room booked successfully");
+        book_successful = true;
     }
-    if(room2_checkbox->isChecked()){
-        QSqlQuery query,qry;
-        query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
-        query.addBindValue(2);
-        query.addBindValue(name);
-        query.addBindValue(email);
-        query.addBindValue(phone);
-        query.addBindValue(address);
-        query.addBindValue(nationality);
-        query.addBindValue(checkin);
-        query.addBindValue(package);
-        query.addBindValue(room_type[1]);
-        query.addBindValue(totalprice);
-        query.addBindValue(pricepaid);
-        query.addBindValue(dueamount);
-        query.exec();
-        qry.exec("update room set room_status = 'OCCUPIED' where room_no = 2");
+    else{
+        book_successful = false;
     }
-    if(room3_checkbox->isChecked()){
-        QSqlQuery query,qry;
-        query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
-        query.addBindValue(3);
-        query.addBindValue(name);
-        query.addBindValue(email);
-        query.addBindValue(phone);
-        query.addBindValue(address);
-        query.addBindValue(nationality);
-        query.addBindValue(checkin);
-        query.addBindValue(package);
-        query.addBindValue(room_type[2]);
-        query.addBindValue(totalprice);
-        query.addBindValue(pricepaid);
-        query.addBindValue(dueamount);
-        query.exec();
-        qry.exec("update room set room_status = 'OCCUPIED' where room_no = 3");
-    }
-    if(room4_checkbox->isChecked()){
-        QSqlQuery query,qry;
-        query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
-        query.addBindValue(4);
-        query.addBindValue(name);
-        query.addBindValue(email);
-        query.addBindValue(phone);
-        query.addBindValue(address);
-        query.addBindValue(nationality);
-        query.addBindValue(checkin);
-        query.addBindValue(package);
-        query.addBindValue(room_type[3]);
-        query.addBindValue(totalprice);
-        query.addBindValue(pricepaid);
-        query.addBindValue(dueamount);
-        query.exec();
-        qry.exec("update room set room_status = 'OCCUPIED' where room_no = 4");
-    }
-    if(room5_checkbox->isChecked()){
-        QSqlQuery query,qry;
-        query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
-        query.addBindValue(5);
-        query.addBindValue(name);
-        query.addBindValue(email);
-        query.addBindValue(phone);
-        query.addBindValue(address);
-        query.addBindValue(nationality);
-        query.addBindValue(checkin);
-        query.addBindValue(package);
-        query.addBindValue(room_type[4]);
-        query.addBindValue(totalprice);
-        query.addBindValue(pricepaid);
-        query.addBindValue(dueamount);
-        query.exec();
-        qry.exec("update room set room_status = 'OCCUPIED' where room_no = 5");
-    }
-    if(room6_checkbox->isChecked()){
-        QSqlQuery query,qry;
-        query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
-        query.addBindValue(6);
-        query.addBindValue(name);
-        query.addBindValue(email);
-        query.addBindValue(phone);
-        query.addBindValue(address);
-        query.addBindValue(nationality);
-        query.addBindValue(checkin);
-        query.addBindValue(package);
-        query.addBindValue(room_type[5]);
-        query.addBindValue(totalprice);
-        query.addBindValue(pricepaid);
-        query.addBindValue(dueamount);
-        query.exec();
-        qry.exec("update room set room_status = 'OCCUPIED' where room_no = 6");
-    }
-    if(room7_checkbox->isChecked()){
-        QSqlQuery query,qry;
-        query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
-        query.addBindValue(7);
-        query.addBindValue(name);
-        query.addBindValue(email);
-        query.addBindValue(phone);
-        query.addBindValue(address);
-        query.addBindValue(nationality);
-        query.addBindValue(checkin);
-        query.addBindValue(package);
-        query.addBindValue(room_type[6]);
-        query.addBindValue(totalprice);
-        query.addBindValue(pricepaid);
-        query.addBindValue(dueamount);
-        query.exec();
-        qry.exec("update room set room_status = 'OCCUPIED' where room_no = 7");
-    }
-    if(room8_checkbox->isChecked()){
-        QSqlQuery query,qry;
-        query.prepare("INSERT INTO hms.guests (room_no, name, email, contact, address, identity, checkin, packages, room_type, total_amount, paid_amount, due_amount)"
-                    "VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
-        query.addBindValue(8);
-        query.addBindValue(name);
-        query.addBindValue(email);
-        query.addBindValue(phone);
-        query.addBindValue(address);
-        query.addBindValue(nationality);
-        query.addBindValue(checkin);
-        query.addBindValue(package);
-        query.addBindValue(room_type[7]);
-        query.addBindValue(totalprice);
-        query.addBindValue(pricepaid);
-        query.addBindValue(dueamount);
-        query.exec();
-        qry.exec("update room set room_status = 'OCCUPIED' where room_no = 1");
-    }
-    totalprice = 0;
-    package_price = 0;
 }
 
 void MainWindow::totalprice_display1(){
@@ -269,8 +280,22 @@ void MainWindow::totalprice_display1(){
     room_price =roomprice_qry.value(0).toInt();
             if(room1_checkbox->isChecked()){
                 totalprice += room_price;
+                room2_checkbox->setEnabled(false);
+                room3_checkbox->setEnabled(false);
+                room4_checkbox->setEnabled(false);
+                room5_checkbox->setEnabled(false);
+                room6_checkbox->setEnabled(false);
+                room7_checkbox->setEnabled(false);
+                room8_checkbox->setEnabled(false);
             }
         else{
+                if(!unavailable_room2){room2_checkbox->setEnabled(true);}
+                if(!unavailable_room3){room3_checkbox->setEnabled(true);}
+                if(!unavailable_room4){room4_checkbox->setEnabled(true);}
+                if(!unavailable_room5){room5_checkbox->setEnabled(true);}
+                if(!unavailable_room6){room6_checkbox->setEnabled(true);}
+                if(!unavailable_room7){room7_checkbox->setEnabled(true);}
+                if(!unavailable_room8){room8_checkbox->setEnabled(true);}
             totalprice -= room_price;
     }
         display_price->clear();
@@ -284,9 +309,23 @@ void MainWindow::totalprice_display2(){
     room_price =roomprice_qry.value(0).toInt();
             if(room2_checkbox->isChecked()){
                 totalprice += room_price;
+                room1_checkbox->setEnabled(false);
+                room3_checkbox->setEnabled(false);
+                room4_checkbox->setEnabled(false);
+                room5_checkbox->setEnabled(false);
+                room6_checkbox->setEnabled(false);
+                room7_checkbox->setEnabled(false);
+                room8_checkbox->setEnabled(false);
             }
         else{
             totalprice -= room_price;
+            if(!unavailable_room1){room1_checkbox->setEnabled(true);}
+            if(!unavailable_room3){room3_checkbox->setEnabled(true);}
+            if(!unavailable_room4){room4_checkbox->setEnabled(true);}
+            if(!unavailable_room5){room5_checkbox->setEnabled(true);}
+            if(!unavailable_room6){room6_checkbox->setEnabled(true);}
+            if(!unavailable_room7){room7_checkbox->setEnabled(true);}
+            if(!unavailable_room8){room8_checkbox->setEnabled(true);}
         }
         display_price->clear();
         display_price->setText(QString::number(totalprice));
@@ -299,9 +338,23 @@ void MainWindow::totalprice_display3(){
     room_price =roomprice_qry.value(0).toInt();
             if(room3_checkbox->isChecked()){
                 totalprice += room_price;
+                room1_checkbox->setEnabled(false);
+                room2_checkbox->setEnabled(false);
+                room4_checkbox->setEnabled(false);
+                room5_checkbox->setEnabled(false);
+                room6_checkbox->setEnabled(false);
+                room7_checkbox->setEnabled(false);
+                room8_checkbox->setEnabled(false);
             }
         else{
             totalprice -= room_price;
+            if(!unavailable_room1){room1_checkbox->setEnabled(true);}
+            if(!unavailable_room2){room2_checkbox->setEnabled(true);}
+            if(!unavailable_room4){room4_checkbox->setEnabled(true);}
+            if(!unavailable_room5){room5_checkbox->setEnabled(true);}
+            if(!unavailable_room6){room6_checkbox->setEnabled(true);}
+            if(!unavailable_room7){room7_checkbox->setEnabled(true);}
+            if(!unavailable_room8){room8_checkbox->setEnabled(true);}
         }
         display_price->clear();
         display_price->setText(QString::number(totalprice));
@@ -314,9 +367,23 @@ void MainWindow::totalprice_display4(){
     room_price =roomprice_qry.value(0).toInt();
             if(room4_checkbox->isChecked()){
                 totalprice += room_price;
+                room1_checkbox->setEnabled(false);
+                room2_checkbox->setEnabled(false);
+                room3_checkbox->setEnabled(false);
+                room5_checkbox->setEnabled(false);
+                room6_checkbox->setEnabled(false);
+                room7_checkbox->setEnabled(false);
+                room8_checkbox->setEnabled(false);
             }
         else{
             totalprice -= room_price;
+            if(!unavailable_room1){room1_checkbox->setEnabled(true);}
+            if(!unavailable_room2){room2_checkbox->setEnabled(true);}
+            if(!unavailable_room3){room3_checkbox->setEnabled(true);}
+            if(!unavailable_room5){room5_checkbox->setEnabled(true);}
+            if(!unavailable_room6){room6_checkbox->setEnabled(true);}
+            if(!unavailable_room7){room7_checkbox->setEnabled(true);}
+            if(!unavailable_room8){room8_checkbox->setEnabled(true);}
         }
         display_price->clear();
         display_price->setText(QString::number(totalprice));
@@ -329,9 +396,23 @@ void MainWindow::totalprice_display5(){
     room_price =roomprice_qry.value(0).toInt();
             if(room5_checkbox->isChecked()){
                 totalprice += room_price;
+                room1_checkbox->setEnabled(false);
+                room2_checkbox->setEnabled(false);
+                room3_checkbox->setEnabled(false);
+                room4_checkbox->setEnabled(false);
+                room6_checkbox->setEnabled(false);
+                room7_checkbox->setEnabled(false);
+                room8_checkbox->setEnabled(false);
             }
         else{
             totalprice -= room_price;
+            if(!unavailable_room1){room1_checkbox->setEnabled(true);}
+            if(!unavailable_room2){room2_checkbox->setEnabled(true);}
+            if(!unavailable_room3){room3_checkbox->setEnabled(true);}
+            if(!unavailable_room4){room4_checkbox->setEnabled(true);}
+            if(!unavailable_room6){room6_checkbox->setEnabled(true);}
+            if(!unavailable_room7){room7_checkbox->setEnabled(true);}
+            if(!unavailable_room8){room8_checkbox->setEnabled(true);}
         }
         display_price->clear();
         display_price->setText(QString::number(totalprice));
@@ -344,9 +425,23 @@ void MainWindow::totalprice_display6(){
     room_price =roomprice_qry.value(0).toInt();
             if(room6_checkbox->isChecked()){
                 totalprice += room_price;
+                room1_checkbox->setEnabled(false);
+                room2_checkbox->setEnabled(false);
+                room3_checkbox->setEnabled(false);
+                room4_checkbox->setEnabled(false);
+                room5_checkbox->setEnabled(false);
+                room7_checkbox->setEnabled(false);
+                room8_checkbox->setEnabled(false);
             }
         else{
             totalprice -= room_price;
+            if(!unavailable_room1){room1_checkbox->setEnabled(true);}
+            if(!unavailable_room2){room2_checkbox->setEnabled(true);}
+            if(!unavailable_room3){room3_checkbox->setEnabled(true);}
+            if(!unavailable_room4){room4_checkbox->setEnabled(true);}
+            if(!unavailable_room5){room5_checkbox->setEnabled(true);}
+            if(!unavailable_room7){room7_checkbox->setEnabled(true);}
+            if(!unavailable_room8){room8_checkbox->setEnabled(true);}
         }
         display_price->clear();
         display_price->setText(QString::number(totalprice));
@@ -359,9 +454,23 @@ void MainWindow::totalprice_display7(){
     room_price =roomprice_qry.value(0).toInt();
             if(room7_checkbox->isChecked()){
                 totalprice += room_price;
+                room1_checkbox->setEnabled(false);
+                room2_checkbox->setEnabled(false);
+                room3_checkbox->setEnabled(false);
+                room4_checkbox->setEnabled(false);
+                room5_checkbox->setEnabled(false);
+                room6_checkbox->setEnabled(false);
+                room8_checkbox->setEnabled(false);
             }
         else{
             totalprice -= room_price;
+            if(!unavailable_room1){room1_checkbox->setEnabled(true);}
+            if(!unavailable_room2){room2_checkbox->setEnabled(true);}
+            if(!unavailable_room3){room3_checkbox->setEnabled(true);}
+            if(!unavailable_room4){room4_checkbox->setEnabled(true);}
+            if(!unavailable_room5){room5_checkbox->setEnabled(true);}
+            if(!unavailable_room6){room6_checkbox->setEnabled(true);}
+            if(!unavailable_room8){room8_checkbox->setEnabled(true);}
         }
         display_price->clear();
         display_price->setText(QString::number(totalprice));
@@ -374,9 +483,23 @@ void MainWindow::totalprice_display8(){
     room_price =roomprice_qry.value(0).toInt();
             if(room8_checkbox->isChecked()){
                 totalprice += room_price;
+                room1_checkbox->setEnabled(false);
+                room2_checkbox->setEnabled(false);
+                room3_checkbox->setEnabled(false);
+                room4_checkbox->setEnabled(false);
+                room5_checkbox->setEnabled(false);
+                room6_checkbox->setEnabled(false);
+                room7_checkbox->setEnabled(false);
         }
         else{
             totalprice -= room_price;
+            if(!unavailable_room1){room1_checkbox->setEnabled(true);}
+            if(!unavailable_room2){room2_checkbox->setEnabled(true);}
+            if(!unavailable_room3){room3_checkbox->setEnabled(true);}
+            if(!unavailable_room4){room4_checkbox->setEnabled(true);}
+            if(!unavailable_room5){room5_checkbox->setEnabled(true);}
+            if(!unavailable_room6){room6_checkbox->setEnabled(true);}
+            if(!unavailable_room7){room7_checkbox->setEnabled(true);}
         }
         display_price->clear();
         display_price->setText(QString::number(totalprice));

@@ -40,7 +40,7 @@ public:
     int totalprice = 0;
     int pricepaid = 0;
     QLineEdit* display_price;
-    QString room[5];
+    QString room[5];//for room details
     QLineEdit* price_paid;
     int roomBtn_select;//for room details showing
     int packageprice = 0;
@@ -48,8 +48,9 @@ public:
     void checkout(int);
     int Guest_id_cout ;
     int Guest_room_cout ;
-    void totalprice_calculator(int);
     int guestPaid;
+    bool unavailable_room1, unavailable_room2, unavailable_room3, unavailable_room4, unavailable_room5, unavailable_room6, unavailable_room7, unavailable_room8;
+    bool book_successful = false;
 
 signals:
     void loggedIn();
@@ -159,7 +160,6 @@ private:
     QLabel *label;
     QSqlDatabase db;
     QSqlTableModel *model;
-    Database database;
 
     QLineEdit *days_staying;//for total days stayed
 

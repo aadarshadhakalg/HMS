@@ -20,7 +20,7 @@ private:
     Package activepackages[10];
 
 public:
-    bool connectDB();
+    bool connectDB(); 
     QSqlDatabase getDB();
     void addPackages(QString name, QString company, QString details, int price, bool available);
     bool removePackages(int id);

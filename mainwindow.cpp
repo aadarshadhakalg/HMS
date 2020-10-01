@@ -5,7 +5,7 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-//    Database database;
+    Database database;
     if(database.connectDB()){
         db = database.getDB();
         setWindowTitle("Hotel Management System");
