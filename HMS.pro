@@ -31,10 +31,12 @@ SOURCES += \
     packagescreen.cpp \
     room.cpp \
     room_details.cpp \
+    roombook.cpp \
     roombooking.cpp \
     style.cpp \
 
 HEADERS += \
+    Service.h \
     database.h \
     guest.h \
     mainwindow.h \
@@ -46,6 +48,12 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+RESOURCES += \
+    assets.qrc
+
 DISTFILES += \
-    hotel.jpg \
-    logo.png
+    android-sources/AndroidManifest.xml
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android-sources
+
+ANDROID_ABIS = armeabi-v7a

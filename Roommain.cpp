@@ -17,7 +17,7 @@ void MainWindow::Roommain(){
 
     rightside->setStyleSheet("*{background:white"
                              ";}");
-    QString StyleSheetBtns = "QPushButton { color: white; background-color: #1c2c3c; border: solid 5px white; font: 16pt 'Microsoft YaHei UI Light'; font-weight:bold; outline: none; } QPushButton:hover { background-color: #dc2525; border-style: solid; border-width: 3px; border-color: white; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
+    QString StyleSheetBtns = "QPushButton { color: white; background-color: #24510c; border: solid 5px white; font: 16pt 'Microsoft YaHei UI Light'; font-weight:bold; outline: none; } QPushButton:hover { background-color: #dc2525; border-style: solid; border-width: 3px; border-color: white; } QPushButton:pressed { background-color: #81DAF5; border-style: solid; border-width: 3px; border-color: #A9E2F3; }";
 
     QPushButton* room1Btn = new QPushButton("Room 1");
     QPushButton* room2Btn = new QPushButton("Room 2");

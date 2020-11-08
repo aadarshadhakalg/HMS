@@ -9,15 +9,15 @@ void MainWindow::dashboard(){
     style();
 
     QVBoxLayout  *layout = new QVBoxLayout();
-    QLabel *title = new QLabel("Welcome to Ocean View");
-    QFont banner("Helvetica",30,QFont::Bold);
-    title->setFont(banner);
-    title->setAlignment(Qt::AlignHCenter);
-    title->setFixedHeight(70);
+//    QLabel *title = new QLabel("Sano Hotel Administration");
+//    QFont banner("Helvetica",30,QFont::Bold);
+//    title->setFont(banner);
+//    title->setAlignment(Qt::AlignHCenter);
+//    title->setFixedHeight(70);
 
     QWidget *image = new QWidget();
-    image->setStyleSheet("*{border-image: url('/hotel.jpg') 0 0 0 0 stretch stretch;}");
-    layout->addWidget(title);
+    image->setStyleSheet("*{border-image: url(':/Resources/hotel.jpg') 0 0 0 0 stretch stretch;}");
+//    layout->addWidget(title);
     layout->addWidget(image);
     rightside->setLayout(layout);
     rightside->setStyleSheet("*{background:white;}");

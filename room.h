@@ -2,20 +2,22 @@
 #define CLASS_ROOM_H
 #include <QSqlDatabase>
 #include <QString>
-class Room
+#include "Service.h"
+
+class Room: public service
 {
 public:
-    Room();
-    bool IsUnOccupied() ;
-private:
-     QString type;
-    int no_of_beds;
-    bool wifi,tv,couple_friendly;
-    QString details;
-    double price;
-    QSqlDatabase db;
-    bool available;
-    // Database Current_Guest;
+    Room(int);
+    int number;
+    QString type;
+    //QString details;
+    //int price;
+    //bool available;
+    void setType(QString);
+    void setDetails(QString);
+    void setPrice(int);
+    void setavailable(QString);
+    int operator +(int*);
 
 };
 

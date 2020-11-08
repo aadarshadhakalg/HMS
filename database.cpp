@@ -29,6 +29,26 @@ QSqlDatabase Database::getDB(){
     return db;
 }
 
+
+bool Database::loginUser(QString email,QString password){
+    QSqlQuery query;
+    bool user = query.exec("SELECT * FROM users WHERE email='"+email+"' AND password='"+password+"';");
+
+
+    if(user){ // condition is true if user exists
+        if(query.next()){
+           return true;
+        }else{
+           return false;
+        }
+    }else{
+         throw "ConnectionError";
+    }
+//    return false;
+}
+
+
+
 //void Database::getAvailablePackages(Package packages[]){
 //    QSqlQuery query;
 //    if(query.exec("SELECT * FROM packages WHERE available = 1")){
@@ -153,11 +173,51 @@ Guest Database::getGuestDetailByRoomNo(int no){
 // guest.getAddress          for Address
 // and similarly other
 
-bool Database::guestCheckOut(int id){
+
+Guest Database::getGuestDetailByID(int no){
+    Guest guest;
     QSqlQuery query;
-    query.prepare("UPDATE guests SET status='InActive' WHERE id=:id");
-    query.bindValue(":id",id);
+    query.prepare("SELECT * FROM guests WHERE id=:no and status='Active'");
+    query.bindValue(":no", no);
     if(query.exec()){
+        query.first();
+        guest.setID(query.value(0).toInt());
+        guest.setRoomNo(query.value(1).toInt());
+        guest.setName(query.value(2).toString());
+        guest.setEmail(query.value(3).toString());
+        guest.setContact(query.value(4).toString());
+        guest.setAddress(query.value(5).toString());
+        guest.setCheckin(query.value(6).toString());
+        guest.setCheckout(query.value(7).toString());
+        guest.setIdentity(query.value(8).toString());
+        guest.setRoomType(query.value(9).toString());
+        guest.setTotalAmount(query.value(10).toInt());
+        guest.setPaidAmount(query.value(11).toInt());
+        guest.setDueAmount(query.value(12).toInt());
+        guest.setStatus(query.value(13).toString());
+        guest.setPackages(query.value(14).toString());
+
+    }
+    return guest;
+}
+
+
+
+bool Database::guestCheckOut(int id, int id2){
+    QSqlQuery query;
+    QSqlQuery roomQ;
+//    QString checkout_date = QDate::currentDate().toString("dd.mm.yyyy");
+    QDateTime checkout = QDateTime::currentDateTime();
+
+    query.prepare("UPDATE guests SET status='InActive',checkout=:checkoutdate WHERE id=:id");
+    roomQ.prepare("UPDATE room SET room_status='UNOCCUPIED' WHERE room_no=:id2");
+
+    query.bindValue(":id",id);
+    query.bindValue(":checkoutdate",checkout);
+    query.exec();
+
+    roomQ.bindValue(":id2",id2);
+    if(roomQ.exec()){
         return true;
     }else {
         return false;
@@ -169,9 +229,10 @@ bool Database::guestCheckOut(int id){
 
 bool Database::isCheckOutAble(int id){
     QSqlQuery query;
-    query.prepare("SELECT due_amount FROM guests where if=:id");
+    query.prepare("SELECT due_amount FROM guests where id=:id");
     query.bindValue(":id",id);
     if(query.exec()){
+        query.next();
         int da = query.value(0).toInt();
         if(da == 0){
             return true;
@@ -190,19 +251,23 @@ bool Database::isCheckOutAble(int id){
 bool Database::payAmount(int amount, int id){
     QSqlQuery query;
     int ta, pa, da;
-    query.prepare("SELECT * FROM guests where id=:id");
+    query.prepare("SELECT * FROM guests WHERE id=:id");
     query.bindValue(":id",id);
     if(query.exec()){
+        query.next();
         ta = query.value(10).toInt();
         pa = query.value(11).toInt();
         da = query.value(12).toInt();
 
-        if((pa + amount) > ta){
+        int possible = pa+amount;
+        if(possible > ta){
             return false;
         }else{
-            query.prepare("UPDATE guests SET paid_amount=:npa and due_amount=:nda WHERE id=:id");
-            query.bindValue(":npa",pa+amount);
-            query.bindValue(":nda",da-amount);
+            int npa = pa+amount;
+            int nda = da-amount;
+            query.prepare("UPDATE guests SET paid_amount=:npa,due_amount=:nda WHERE id=:id");
+            query.bindValue(":npa",npa);
+            query.bindValue(":nda",nda);
             query.bindValue(":id",id);
             if(query.exec()){
                 return true;

@@ -5,16 +5,12 @@
 
 
 void MainWindow::checkout(int room){
-    setWindowTitle("Billings");
-    style();
 
-    QWidget *widget = new QWidget;
-    setCentralWidget(widget);
     QVBoxLayout *layout = new QVBoxLayout;
-
-
     Database db;
     Guest guest = db.getGuestDetailByRoomNo(room);
+    Guest_id_cout = guest.getID();
+    Guest_room_cout = guest.getRoomNo();
     if(guest.getID() == NULL)
     {   infoLabel = new QLabel();
         infoLabel->setText("No user");
@@ -23,6 +19,11 @@ void MainWindow::checkout(int room){
         infoLabel = new QLabel();
         infoLabel->setText("Bill  For HMS");
     }
+
+    infoLabel->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
+    infoLabel->setAlignment(Qt::AlignCenter);
+
+    QWidget *userForm = new QWidget(bottom_half); // QWidget(widget)
     QGridLayout *user_formLayout = new QGridLayout(); // Defines grid layout for name
     user_formLayout->setColumnMinimumWidth(1,300);
 
@@ -51,7 +52,8 @@ void MainWindow::checkout(int room){
 
     QLabel *DuePayHint = new QLabel("Due Amount");
     DuePayHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
-
+    QLabel *PayHint = new QLabel("Pay:");
+    PayHint->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
     // Input Forms
     QLabel *custo_name = new QLabel();//this refers to the MainWindow class
     QLabel *custo_email = new QLabel();
@@ -59,8 +61,13 @@ void MainWindow::checkout(int room){
     QLabel *custo_address = new QLabel();
     QLabel *custo_nationality = new QLabel();
     QLabel *Total = new QLabel();
-    QLabel *Paid = new QLabel();
-    QLabel *Due = new QLabel();
+    Paid = new QLabel();
+    Due = new QLabel();
+
+   Pay_amount = new QLineEdit();
+   Pay_amount->setFixedHeight(40);
+   Pay_amount->setClearButtonEnabled(true);
+   Pay_amount->setPlaceholderText("Pay Here");
 
     custo_name->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
     custo_email->setStyleSheet("*{font-weight:bold;font-size:15px;padding:10px;}");
@@ -79,11 +86,8 @@ void MainWindow::checkout(int room){
     custo_address->setText(guest.getAddress());
     custo_nationality->setText(guest.getIdentity());
     Total->setNum(guest.getTotalAmount());
-    Paid->setNum(guest.getTotalAmount());
-    Due->setNum(guest.getTotalAmount());
-
-
-
+    Paid->setNum(guest.getPaidAmount());
+    Due->setNum(guest.getDueAmount());
 
 
     //Adding widgets in the userForm layout
@@ -101,8 +105,7 @@ void MainWindow::checkout(int room){
     user_formLayout->addWidget(custo_address,3,1);
 
     user_formLayout->addWidget(nationalityHint,4,0);
-    user_formLayout->addWidget(custo_nationality,4,1)
-            ;
+    user_formLayout->addWidget(custo_nationality,4,1);
     user_formLayout->addWidget(TotalPayHint,5,0);
     user_formLayout->addWidget(Total,5,1);
 
@@ -112,12 +115,76 @@ void MainWindow::checkout(int room){
     user_formLayout->addWidget(DuePayHint,7,0);
     user_formLayout->addWidget(Due,7,1);
 
+    user_formLayout->addWidget(PayHint,8,0);
+    user_formLayout->addWidget(Pay_amount,8,1);
 
 
+    user_formLayout->setColumnStretch(8,1);
+     userForm->setLayout(user_formLayout);
 
-    user_formLayout->setColumnStretch(7,1);
+    QWidget *Button_widget = new QWidget(bottom_half); //QWidget(widget)
+    QGridLayout *buttonLayout = new QGridLayout();
+
+    QPushButton *checkout_nowButton = new QPushButton("Check out");
+    checkout_nowButton->setStyleSheet("*{background:red;height:30px;}");
+    connect(checkout_nowButton,SIGNAL(clicked(bool)),this,SLOT(checkout_now()));
+    connect(checkout_nowButton,SIGNAL(clicked(bool)),this,SLOT(dashboard()));
+    // GO Back Button
+    QPushButton *BackButton = new QPushButton("Back");
+    BackButton->setStyleSheet("*{background:red;height:30px;}");
+    BackButton->adjustSize();
+    connect(BackButton,SIGNAL(clicked()),this,SLOT(Bill()));
+
+    QPushButton *PayButton = new QPushButton("Pay");
+    PayButton->setStyleSheet("*{background:red;height:30px;}");
+    PayButton->adjustSize();
+    connect(PayButton,SIGNAL(clicked()),this,SLOT(payNow()));
+
+    //adding button widgets to buttonlayout
+    buttonLayout->addWidget(BackButton,0,0,Qt::AlignLeft);
+    buttonLayout->addWidget(PayButton,0,1,Qt::AlignLeft);
+    buttonLayout->addWidget(checkout_nowButton,0,3,Qt::AlignRight);
+    buttonLayout->setColumnStretch(2,2);
+    Button_widget->setLayout(buttonLayout);
+
+
    layout->addWidget(infoLabel);
-    widget->setLayout(user_formLayout);
-    widget->setLayout(layout);
+   layout->addWidget(userForm);
+   layout->addWidget(Button_widget);
+   bottom_half->setLayout(layout);
 
+}
+
+void MainWindow::checkout_now(){
+    Database db;
+        QMessageBox msgBox;
+    if (db.isCheckOutAble(Guest_id_cout))
+    {
+        db.guestCheckOut(Guest_id_cout, Guest_room_cout);
+        msgBox.setText("Check Out successful");
+
+    }
+    else
+    {
+        msgBox.setText("Please check your amount and try again");
+    }
+
+    msgBox.exec();
+
+}
+
+void MainWindow::payNow(){
+    Database db;
+    if(db.payAmount(Pay_amount->text().toInt(), Guest_id_cout)){
+    QMessageBox msgBox;
+    msgBox.setText("Amount Paid successfully");
+    msgBox.exec();
+    Guest guest = db.getGuestDetailByID(Guest_id_cout);
+    Due->setNum(guest.getDueAmount());
+    Paid->setNum(guest.getPaidAmount());
+    }else{
+        QMessageBox msgBox;
+        msgBox.setText("Error has occured");
+        msgBox.exec();
+    }
 }

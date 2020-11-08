@@ -40,17 +40,22 @@ public:
     int totalprice = 0;
     int pricepaid = 0;
     QLineEdit* display_price;
-    QString room[5];
+    QString room[5];//for room details
     QLineEdit* price_paid;
     int roomBtn_select;//for room details showing
     int packageprice = 0;
     bool daysprice_addable = true;
     void checkout(int);
-
+    int Guest_id_cout ;
+    int Guest_room_cout ;
+    int guestPaid;
+    bool unavailable_room1, unavailable_room2, unavailable_room3, unavailable_room4, unavailable_room5, unavailable_room6, unavailable_room7, unavailable_room8;
+    bool book_successful = false;
 
 signals:
     void loggedIn();
     void dbready();
+    void bookingSuccess();
 
 // SLOTS
 private slots:
@@ -72,7 +77,6 @@ private slots:
     void Roommain();
     void bookButton_clicked();
     void room_details();
-
     void totalprice_display1();
     void totalprice_display2();
     void totalprice_display3();
@@ -91,6 +95,9 @@ private slots:
     void packageprice_clearer();
     void daysstayed_priceadder();
     void daysstayed_priceclearer();
+    void checkout_now();
+//    void room();
+    void payNow();
     //slots for room details
     void room1();
     void room2();
@@ -134,6 +141,7 @@ private:
     QLineEdit *emailText;
     QLineEdit *passwordText;
     QWidget *rightside;
+    QWidget *bottom_half;
     QLineEdit *searchField;
     QPushButton *editButton;
     QPushButton *noEditButton;
@@ -167,6 +175,10 @@ private:
 
     //checkOut Screen ( To get selected room ID )
     QLabel *checkoutSelectedRoomID;
+//    QVBoxLayout *billlayout;
+    QLineEdit *Pay_amount;
+    QLabel *Paid;
+    QLabel *Due;
 };
 
 #endif // MAINWINDOW_H
