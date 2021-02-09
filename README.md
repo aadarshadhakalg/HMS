@@ -28,7 +28,7 @@ To run this software succesfully in your machine, you should have
 ## Authors
 
 * **Aadarsha Dhakal** - [TheDartMan](https://github.com/aadarshadhakalg)
-* **Ayush Paudel** - [user-metaterongo](https://github.com/user-metaterongo)
+* **Ayush Paudel** - [user-metaterongo](https://github.com/user-metaterongo)/ [AyushPaudel](https://github.com/AyushPaudel)
 * **Sushant Adhikari** - [sushant-c](https://github.com/sushant-c)
 * **Ayush Aryal** - [ayush7aryal](https://github.com/ayush7aryal)
 
